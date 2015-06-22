@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Talk is cheap,show me the code!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com//"/>
-  <updated>2015-06-18T15:10:22.000Z</updated>
+  <updated>2015-06-22T02:54:54.000Z</updated>
   <id>http://yoursite.com//</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[2015下半年读书清单]]></title>
+    <link href="http://yoursite.com/2015/06/22/readingList/"/>
+    <id>http://yoursite.com/2015/06/22/readingList/</id>
+    <published>2015-06-22T02:45:18.000Z</published>
+    <updated>2015-06-22T02:54:54.000Z</updated>
+    <content type="html"><![CDATA[<p>前几天网上看到书店打折，心血来潮的就买了很多书，计划着下半年有时间一定要看完这些书，平时上班虽然很忙，但发现在学到的知识都是零乱的，为了能够系统的去学和增加阅读习惯，希望能多看看书，涨涨知识，趁着年轻多读点书。</p>
+<ol>
+<li>The Presentation Secrets Of Steve Jobs </li>
+<li>Asking The Right Questions </li>
+<li>Programming Pearls </li>
+<li>Clean Code</li>
+<li>Effective Java </li>
+<li>Code Complete</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>前几天网上看到书店打折，心血来潮的就买了很多书，计划着下半年有时间一定要看完这些书，平时上班虽然很忙，但发现在学到的知识都是零乱的，为了能够系统的去学和增加阅读习惯，希望能多看看书，涨涨知识，趁着年轻多读点书。</p>
+<ol>
+<li>The Presentation S]]>
+    </summary>
+    
+      <category term="Reading List" scheme="http://yoursite.com/tags/Reading-List/"/>
+    
+      <category term="读书清单" scheme="http://yoursite.com/categories/%E8%AF%BB%E4%B9%A6%E6%B8%85%E5%8D%95/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[A Simple Video]]></title>
