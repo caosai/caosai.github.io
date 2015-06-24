@@ -383,7 +383,7 @@
       
         <p><strong>java.lang.StringIndexOutOfBoundsException: String index out of range: -10</strong></p>
 <p>查看日志看到这个返回异常消息时，也不知道问题出在哪里。后来想到有调用过String.subString()方法，当时在程序中截取字符串的时候把截取的位置写死了，以为传过来的被截字符串长度是固定的。后来传过来的值变小了，就出现了index 越界的情况。</p>
-<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">	<span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">  <span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -400,6 +400,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/25/Java中子类和父类的构造函数/">Java中子类和父类的构造函数</a>
             
           </div>
 
@@ -471,21 +473,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
