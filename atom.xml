@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Talk is cheap,show me the code!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com//"/>
-  <updated>2015-06-25T14:36:12.000Z</updated>
+  <updated>2015-06-27T15:27:42.000Z</updated>
   <id>http://yoursite.com//</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[java中开发者如何排序]]></title>
+    <link href="http://yoursite.com/2015/06/27/java%E4%B8%AD%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E6%8E%92%E5%BA%8F/"/>
+    <id>http://yoursite.com/2015/06/27/java中开发者如何排序/</id>
+    <published>2015-06-27T15:24:05.000Z</published>
+    <updated>2015-06-27T15:27:42.000Z</updated>
+    <content type="html"><![CDATA[<p> 分析开源java项目的大量开源代码，我发现java开发者常用的排序方法有两种。一种是用Collections或者Arrays的sort()方法，另一种是用排好序的数据结构，例如TreeMap和TreeSet。</p>
+<h2 id="使用sort()方法">使用sort()方法</h2><p>集合使用Collections.sort()方法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Collections.sort</span></span><br><span class="line">List&lt;ObjectName&gt; <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList&lt;ObjectName&gt;();</span><br><span class="line">Collections.sort(<span class="built_in">list</span>,<span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ObjectName o1, ObjectName o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().compareTo(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>数组使用Arrays.sort()方法</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Arrays.sort</span></span><br><span class="line">ObjectName[] arr = <span class="keyword">new</span> ObjectName[<span class="number">10</span>];</span><br><span class="line">Arrays.<span class="keyword">sort</span>(arr, <span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> compare(ObjectName o1, ObjectName o2) &#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().<span class="keyword">compareTo</span>(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当集合或数据创建好了，这种方式非常简洁。</p>
+<h2 id="使用排序好的数据结构">使用排序好的数据结构</h2><p>list或者set使用TreeSet排序<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TreeSet</span></span><br><span class="line">Set&lt;ObjectName&gt; sortedSet = new TreeSet&lt;ObjectName&gt;<span class="params">(new Comparator&lt;ObjectName&gt;<span class="params">()</span> &#123;</span><br><span class="line">	public int compare<span class="params">(ObjectName o1, ObjectName o2)</span> &#123;</span><br><span class="line">		return o1.toString<span class="params">()</span>.compareTo<span class="params">(o2.toString<span class="params">()</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span>;</span><br><span class="line">sortedSet.addAll<span class="params">(unsortedSet)</span>;</span><br></pre></td></tr></table></figure></p>
+<p>map使用TreeMap排序,TreeMap 根据key排序</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TreeMap - using String.CASE_INSENSITIVE_ORDER which is a Comparator that orders Strings by compareToIgnoreCase</span></span><br><span class="line"><span class="built_in">Map</span><span class="subst">&lt;</span><span class="built_in">String</span>, <span class="built_in">Integer</span><span class="subst">&gt;</span> sortedMap <span class="subst">=</span> <span class="literal">new</span> TreeMap<span class="subst">&lt;</span><span class="built_in">String</span>, <span class="built_in">Integer</span><span class="subst">&gt;</span>(<span class="built_in">String</span><span class="built_in">.</span>CASE_INSENSITIVE_ORDER);</span><br><span class="line">sortedMap<span class="built_in">.</span>putAll(unsortedMap);</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//TreeMap - In general, defined comparator</span></span><br><span class="line"><span class="built_in">Map</span>&lt;ObjectName, <span class="built_in">String</span>&gt; sortedMap = <span class="keyword">new</span> TreeMap&lt;ObjectName, <span class="built_in">String</span>&gt;(<span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	public <span class="built_in">int</span> compare(ObjectName o1, ObjectName o2) &#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().compareTo(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">sortedMap.putAll(unsortedMap);</span><br></pre></td></tr></table></figure>
+<p>这种方法是非常有用的,如果你想做很多关于集合的搜索操作。排序的数据结构的时间是复杂度O(logn),低于O(n)。</p>
+<h2 id="不好的实例">不好的实例</h2><p>有很多不好的实例,比如使用自定义排序算法。以下面的代码为例,不仅算法不是有效的,而且它是不可读的。这种情况发生在不同形式的变化。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">double t;</span><br><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; <span class="number">2</span>; <span class="built_in">i</span>++)</span><br><span class="line">	<span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="built_in">i</span> + <span class="number">1</span>; <span class="built_in">j</span> &lt; <span class="number">3</span>; <span class="built_in">j</span>++)</span><br><span class="line">		<span class="keyword">if</span> (r<span class="matrix">[j]</span> &lt; r<span class="matrix">[i]</span>) <span class="cell">&#123;</span><br><span class="line">			t = r[i];</span><br><span class="line">			r[i] = r[j];</span><br><span class="line">			r[j] = t;</span><br><span class="line">		&#125;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p> 分析开源java项目的大量开源代码，我发现java开发者常用的排序方法有两种。一种是用Collections或者Arrays的sort()方法，另一种是用排好序的数据结构，例如TreeMap和TreeSet。</p>
+<h2 id="使用sort()方法">使用sort(]]>
+    </summary>
+    
+      <category term="sort" scheme="http://yoursite.com/tags/sort/"/>
+    
+      <category term="simple java" scheme="http://yoursite.com/categories/simple-java/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[深入理解Arrays.sort()数组排序]]></title>
