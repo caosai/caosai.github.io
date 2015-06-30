@@ -59,7 +59,7 @@
 
 
 
-  <title> 分类: java // Courage Me </title>
+  <title> 归档 // Courage Me </title>
 </head>
 
 <body>
@@ -73,7 +73,7 @@
   </div>
 <![endif]-->
 
-  <div class="container one-column ">
+  <div class="container one-column  page-archive ">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -327,14 +327,31 @@
           
 
   <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        java
-        <small>分类</small>
-      </h2>
-    </div>
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 11 篇日志。 继续努力。
+    </span>
 
     
+
+      
+      
+      
+
+      
+        
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+        </div>
+      
+      
+
       
 
   <div class="post post-type-normal">
@@ -342,65 +359,23 @@
 
       <div class="post-title">
         
-            <a class="post-title-link" href="/2015/06/25/Java-比较器/">
-              深入理解Arrays.sort()数组排序
+            <a class="post-title-link" href="/2015/07/01/Java中按行读取文件的方法/">
+              Java中按行读取文件的方法
             </a>
         
       </div>
 
       <div class="post-meta">
-        <span class="post-time"> 06-25 </span>
+        <span class="post-time"> 07-01 </span>
       </div>
 
     </div>
   </div>
 
 
-    
-      
-
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/06/24/字符串索引越界异常/">
-              字符串索引越界异常
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 06-24 </span>
-      </div>
-
-    </div>
-  </div>
-
 
     
-      
 
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/06/23/java-Long-to-Integer/">
-              java.lang.Long cannot be cast to java.lang.Integer
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 06-23 </span>
-      </div>
-
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -563,6 +538,12 @@
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
+
 
   <script type="text/javascript">
     $(document).ready(function () {
