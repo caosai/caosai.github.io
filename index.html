@@ -340,6 +340,95 @@
           
           
             
+              <a class="post-title-link" href="/2015/07/01/Java中按行写文件的方法/">
+                Java中按行写文件的方法
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-01
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/01/Java中按行写文件的方法/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/01/Java中按行写文件的方法/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>这篇文章总结了使用相关类写文件的操作</p>
+<h2 id="1-_FileOutputStream">1. FileOutputStream</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> writeFile1() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> fout = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"out.txt"</span>);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fout);</span><br><span class="line">		BufferedWriter br = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(fos));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				br.<span class="keyword">write</span>(<span class="string">"test"</span>);</span><br><span class="line">				br.newLine();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子中用了FileOutputStream,你可以使用FileWriter或者PrintWriter代替处理txt格式的文件操作</p>
+<h2 id="2-_FileWriter">2. FileWriter</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">writeFile2</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"out.txt"</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				fw.write(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-_PrintWriter">3. PrintWriter</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">writeFile3</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">"out.txt"</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				pw.write(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		pw.close();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-_OutputStreamWriter">4. OutputStreamWriter</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> writeFile4() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> fout = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"out.txt"</span>);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fout);</span><br><span class="line">		OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(fos);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				osw.<span class="keyword">write</span>(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		osw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-_它们的区别">5. 它们的区别</h2><p>来自Java Doc</p>
+<blockquote>
+<p>FileWriter是写入字符文件的工具类。该类的构造函数假设默认的字符编码和默认的字节缓冲区大小是可以接受的。<br>如果需要自定义这些参数值，通过构建一个OutputStreamWriter基于FileOutputStream。</p>
+<p>PrintWriter打印格式化的对象表示通过文本输出流。<br>这个类实现了所有被创建在PrintWriter中的方法。它不包含写原始字节的方法，因此程序应该使用未编码的字节流。</p>
+</blockquote>
+<p>主要的区别是，PrintWriter提供格式如println和printf一些额外的方法。此外，FileWriter会抛出异常以防任何一种I/O失败。<br>PrintWriter方法不抛出IOException，它们设置一个可使用checkerror()获得的boolean型flag位。PrintWriter在每个被写入的数据字节后自动调用flush。涉及到FileWriter，调用者需要注意使用flush。</p>
+<p><a href="http://www.programcreek.com/2011/03/java-write-to-a-file-code-example/" target="_blank" rel="external">原文链接</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/01/Java中按行读取文件的方法/">
                 Java中按行读取文件的方法
               </a>
@@ -1132,82 +1221,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/18/firstblog/">
-                First Blog
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-18
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/start/">start</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/18/firstblog/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/18/firstblog/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="Talk_is_cheap,show_me_the_code-">Talk is cheap,show me the code.</h1>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1246,7 +1259,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1260,7 +1273,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
