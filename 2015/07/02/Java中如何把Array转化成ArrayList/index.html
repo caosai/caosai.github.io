@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="StringIndexOutOfBoundsException," />
+  <meta name="keywords" content="Array2ArrayList," />
 
 
 
@@ -59,7 +59,7 @@
 
 
 
-  <title> 字符串索引越界异常 // Courage Me </title>
+  <title> Java中如何把Array转化成ArrayList // Courage Me </title>
 </head>
 
 <body>
@@ -338,7 +338,7 @@
           
           
             
-              字符串索引越界异常
+              Java中如何把Array转化成ArrayList
             
           
         </h1>
@@ -346,14 +346,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-24
+          发表于 2015-07-02
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/java/">java</a>
+              <a href="/categories/Simple-Java/">Simple Java</a>
 
               
               
@@ -366,8 +366,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/24/字符串索引越界异常/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/24/字符串索引越界异常/"></span>
+            <a href="/2015/07/02/Java中如何把Array转化成ArrayList/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/02/Java中如何把Array转化成ArrayList/"></span>
             </a>
           </span>
           
@@ -381,9 +381,24 @@
       
 
       
-        <p><strong>java.lang.StringIndexOutOfBoundsException: String index out of range: -10</strong></p>
-<p>查看日志看到这个返回异常消息时，也不知道问题出在哪里。后来想到有调用过String.subString()方法，当时在程序中截取字符串的时候把截取的位置写死了，以为传过来的被截字符串长度是固定的。后来传过来的值变小了，就出现了index 越界的情况。</p>
-<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">  <span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>本文分析了在Stack Overflow上的问题的答案。问这个问题的人得到了很多的赞，这可以让他有权限做大量的事情在Stack Overflow。这对我来说不是很有意义，但是让我们先来看看这个问题吧。</p>
+<p>**问题是：如何将下面的 数组转换成ArrayList集合？</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Element<span class="keyword">[</span>]<span class="instruction"> array </span>= &#123;new<span class="function"> Element(</span>1<span class="function">)</span>,new<span class="function"> Element(</span>2<span class="function">)</span>,new<span class="function"> Element(</span>3<span class="function">)</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1-_最流行和被接受的答案">1. 最流行和被接受的答案</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Element&gt; arrayList = new ArrayList&lt;Element&gt;<span class="list">(<span class="keyword">Arrays</span>.asList<span class="list">(<span class="keyword">array</span>)</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>首先，我们看下Java Doc中关于ArrayList的构造函数的描述：</p>
+<pre><code>&gt; <span class="type">ArrayList</span>(<span class="type">Collection</span> &lt; ? extends E &gt; c) : <span class="type">Constructs</span> a list containing the elements <span class="keyword">of</span> the specified collection, <span class="keyword">in</span> the order they are returned by the collection's <span class="keyword">iterator</span>.
+</code></pre><p>所以构造函数做了下面两件事：</p>
+<pre><code><span class="bullet">1. </span>把Collection转换成Array
+<span class="bullet">2. </span>复制Array到ArrayList自己的备份数组“elementData”中
+</code></pre><p>下面是ArrayList的构造器的源代码</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">public ArrayList(Collection&lt;? <span class="keyword">extends</span> E&gt; c ) &#123;</span><br><span class="line">		elementData = c<span class="string">.toArray()</span>;</span><br><span class="line">		size = elementData<span class="string">.length</span>;</span><br><span class="line">		if(elementData<span class="string">.getClass()</span> != Object[]<span class="string">.class)</span> &#123;</span><br><span class="line">				elementData = Arrays<span class="string">.copyOf(elementData</span>, size, Object[]<span class="string">.class)</span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-_第二流行的答案">2. 第二流行的答案</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="subst">&lt;</span>Element<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> Arrays<span class="built_in">.</span>asList(<span class="built_in">array</span>);</span><br></pre></td></tr></table></figure>
+<p>这不是最好的，因为从aslist()返回list的大小是固定的。实际上返回的list是不java.util.ArrayList，而是私有静态类内部定义的java.util.Arrays。我们知道ArrayList基本实现为一个Array，从aslist()返回的list是由原来的Array返回的一个固定大小的list。这样，如果从返回的list中添加或删除元素，将抛出UnsupportedOperationException。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">list</span>.<span class="built_in">add</span>(<span class="keyword">new</span> Element(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java<span class="class">.lang</span><span class="class">.ClassCastException</span>: java<span class="class">.util</span><span class="class">.Arrays</span><span class="variable">$ArrayList</span> cannot be cast to java<span class="class">.util</span><span class="class">.ArrayList</span></span><br><span class="line">	at collection<span class="class">.ConvertArray</span><span class="class">.main</span>(ConvertArray<span class="class">.java</span>:<span class="number">22</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="3-_另外一个的答案">3. 另外一个的答案</h2><p>这个答案来自于网友的评论</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Element<span class="keyword">[</span>]<span class="instruction"> array </span>= &#123;new<span class="function"> Element(</span>1<span class="function">)</span>,<span class="instruction"> new </span>Element(2<span class="function">)</span>&#125;;</span><br><span class="line">List&lt;element&gt; list =<span class="instruction"> new </span>ArrayList&lt;element&gt;(array.length<span class="function">)</span>;</span><br><span class="line">Collections.addAll(list, array<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.programcreek.com/2013/04/how-to-convert-array-to-arraylist-in-java/" target="_blank" rel="external">原文链接</a></p>
 
       
     </div>
@@ -392,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/StringIndexOutOfBoundsException/"> #StringIndexOutOfBoundsException </a>
+            <a href="/tags/Array2ArrayList/"> #Array2ArrayList </a>
           
         </div>
       
@@ -401,13 +416,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/25/Java中子类和父类的构造函数/">Java中子类和父类的构造函数</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/23/java-Long-to-Integer/">java.lang.Long cannot be cast to java.lang.Integer</a>
+              <a href="/2015/07/02/随机生成手机号码/">随机生成手机号码</a>
             
           </div>
         </div>
@@ -425,8 +438,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/06/24/字符串索引越界异常/"
-               data-title="字符串索引越界异常" data-url="http://yoursite.com/2015/06/24/字符串索引越界异常/">
+          <div class="ds-thread" data-thread-key="2015/07/02/Java中如何把Array转化成ArrayList/"
+               data-title="Java中如何把Array转化成ArrayList" data-url="http://yoursite.com/2015/07/02/Java中如何把Array转化成ArrayList/">
           </div>
         
       </div>
@@ -538,7 +551,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_最流行和被接受的答案"><span class="nav-number">1.</span> <span class="nav-text">1. 最流行和被接受的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_第二流行的答案"><span class="nav-number">2.</span> <span class="nav-text">2. 第二流行的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_另外一个的答案"><span class="nav-number">3.</span> <span class="nav-text">3. 另外一个的答案</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
