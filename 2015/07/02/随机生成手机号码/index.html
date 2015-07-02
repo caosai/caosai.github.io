@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="writeFile," />
+  <meta name="keywords" content="随机生成手机号码," />
 
 
 
@@ -59,7 +59,7 @@
 
 
 
-  <title> Java中按行写文件的方法 // Courage Me </title>
+  <title> 随机生成手机号码 // Courage Me </title>
 </head>
 
 <body>
@@ -338,7 +338,7 @@
           
           
             
-              Java中按行写文件的方法
+              随机生成手机号码
             
           
         </h1>
@@ -346,14 +346,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-07-01
+          发表于 2015-07-02
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/Simple-Java/">Simple Java</a>
+              <a href="/categories/Java-Tools/">Java Tools</a>
 
               
               
@@ -366,8 +366,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/07/01/Java中按行写文件的方法/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/01/Java中按行写文件的方法/"></span>
+            <a href="/2015/07/02/随机生成手机号码/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/02/随机生成手机号码/"></span>
             </a>
           </span>
           
@@ -381,19 +381,9 @@
       
 
       
-        <p>这篇文章总结了使用相关类写文件的操作</p>
-<h2 id="1-_FileOutputStream">1. FileOutputStream</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> writeFile1() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> fout = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"out.txt"</span>);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fout);</span><br><span class="line">		BufferedWriter br = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(fos));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				br.<span class="keyword">write</span>(<span class="string">"test"</span>);</span><br><span class="line">				br.newLine();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个例子中用了FileOutputStream,你可以使用FileWriter或者PrintWriter代替处理txt格式的文件操作</p>
-<h2 id="2-_FileWriter">2. FileWriter</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">writeFile2</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"out.txt"</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				fw.write(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-_PrintWriter">3. PrintWriter</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">writeFile3</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">"out.txt"</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				pw.write(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		pw.close();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-_OutputStreamWriter">4. OutputStreamWriter</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> writeFile4() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> fout = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"out.txt"</span>);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fout);</span><br><span class="line">		OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(fos);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				osw.<span class="keyword">write</span>(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		osw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="5-_它们的区别">5. 它们的区别</h2><p>来自Java Doc</p>
-<blockquote>
-<p>FileWriter是写入字符文件的工具类。该类的构造函数假设默认的字符编码和默认的字节缓冲区大小是可以接受的。<br>如果需要自定义这些参数值，通过构建一个OutputStreamWriter基于FileOutputStream。</p>
-<p>PrintWriter打印格式化的对象表示通过文本输出流。<br>这个类实现了所有被创建在PrintWriter中的方法。它不包含写原始字节的方法，因此程序应该使用未编码的字节流。</p>
-</blockquote>
-<p>主要的区别是，PrintWriter提供格式如println和printf一些额外的方法。此外，FileWriter会抛出异常以防任何一种I/O失败。<br>PrintWriter方法不抛出IOException，它们设置一个可使用checkerror()获得的boolean型flag位。PrintWriter在每个被写入的数据字节后自动调用flush。涉及到FileWriter，调用者需要注意使用flush。</p>
-<p><a href="http://www.programcreek.com/2011/03/java-write-to-a-file-code-example/" target="_blank" rel="external">原文链接</a></p>
+        <h2 id="随机生成一个手机号码">随机生成一个手机号码</h2><p>首先说说手机号码的构成：<br>我国使用的手机号码为11位，其中各段有不同的编码方向：前3位———网络识别号；第4-7位———地区编码；第8-11位———用户号码。<br>前三位：代表不同的运营商，也就是号段。<br>        移动137、138、139 联通 132、155、156、186 电信 133、180、181、189 等<br>第4-7位：代表中国地区：也就是利用这个查询归属地的<br>后四位：随机是生成</p>
+<p>了解了手机号码的构成后，生成随机的手机号就变得简单了<br>手机号 11 =  3（号段）+4（地区号）+4（随机生成4位）</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 随机生成电话号码</span><br><span class="line"> * @author cslience</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> class RandomTelephoneNumber &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 随机生成某一个运营商的某些地区的号码</span><br><span class="line">	 * 手机号码共11位数字。前3位是不同的移动运营商（公司）字段。4-7位就是区域代码</span><br><span class="line">	 * carries:各种号段数组   location：区域代码数组</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> generatePhoneNumber(<span class="keyword">String</span>[] carries, <span class="keyword">String</span>[] location) &#123;</span><br><span class="line"></span><br><span class="line">		Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">		<span class="comment">//随机取 号段+区域代码</span></span><br><span class="line">		<span class="built_in">int</span> carriesIndex = rand.nextInt(carries.length);</span><br><span class="line">		<span class="built_in">int</span> locationIndex = rand.nextInt(location.length);</span><br><span class="line">		<span class="comment">//随机生成后4位数</span></span><br><span class="line">		<span class="keyword">String</span>[] beforeShuffle = &#123;<span class="string">"1"</span>,<span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span>, <span class="string">"7"</span>, <span class="string">"8"</span>, <span class="string">"9"</span>,<span class="string">"0"</span>&#125;;</span><br><span class="line">		List&lt;<span class="keyword">String</span>&gt; list = Arrays.asList(beforeShuffle);</span><br><span class="line">		Collections.shuffle(list);</span><br><span class="line">		StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">String</span> s : list) &#123;</span><br><span class="line">			sb.<span class="built_in">append</span>(s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">String</span> afterShuffle = sb.toString();</span><br><span class="line">		<span class="keyword">String</span> last4 = afterShuffle.substring(<span class="number">0</span>,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> carries[carriesIndex] + location[locationIndex] + last4;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		<span class="keyword">String</span>[] ca = &#123;<span class="string">"138"</span>,<span class="string">"188"</span>&#125;;</span><br><span class="line">		<span class="keyword">String</span>[] lo = &#123;<span class="string">"1324"</span>,<span class="string">"1234"</span>&#125;;</span><br><span class="line">		<span class="comment">//测试</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(generatePhoneNumber(ca, lo));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -402,7 +392,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/writeFile/"> #writeFile </a>
+            <a href="/tags/随机生成手机号码/"> #随机生成手机号码 </a>
           
         </div>
       
@@ -411,13 +401,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/02/随机生成手机号码/">随机生成手机号码</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/01/Java中按行读取文件的方法/">Java中按行读取文件的方法</a>
+              <a href="/2015/07/01/Java中按行写文件的方法/">Java中按行写文件的方法</a>
             
           </div>
         </div>
@@ -435,8 +423,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/07/01/Java中按行写文件的方法/"
-               data-title="Java中按行写文件的方法" data-url="http://yoursite.com/2015/07/01/Java中按行写文件的方法/">
+          <div class="ds-thread" data-thread-key="2015/07/02/随机生成手机号码/"
+               data-title="随机生成手机号码" data-url="http://yoursite.com/2015/07/02/随机生成手机号码/">
           </div>
         
       </div>
@@ -548,7 +536,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_FileOutputStream"><span class="nav-number">1.</span> <span class="nav-text">1. FileOutputStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_FileWriter"><span class="nav-number">2.</span> <span class="nav-text">2. FileWriter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_PrintWriter"><span class="nav-number">3.</span> <span class="nav-text">3. PrintWriter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-_OutputStreamWriter"><span class="nav-number">4.</span> <span class="nav-text">4. OutputStreamWriter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-_它们的区别"><span class="nav-number">5.</span> <span class="nav-text">5. 它们的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机生成一个手机号码"><span class="nav-number">1.</span> <span class="nav-text">随机生成一个手机号码</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
