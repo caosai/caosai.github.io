@@ -388,9 +388,10 @@
 <p>首先，我们看下Java Doc中关于ArrayList的构造函数的描述：</p>
 <pre><code>&gt; <span class="type">ArrayList</span>(<span class="type">Collection</span> &lt; ? extends E &gt; c) : <span class="type">Constructs</span> a list containing the elements <span class="keyword">of</span> the specified collection, <span class="keyword">in</span> the order they are returned by the collection's <span class="keyword">iterator</span>.
 </code></pre><p>所以构造函数做了下面两件事：</p>
-<pre><code><span class="bullet">1. </span>把Collection转换成Array
-<span class="bullet">2. </span>复制Array到ArrayList自己的备份数组“elementData”中
-</code></pre><p>下面是ArrayList的构造器的源代码</p>
+<ol>
+<li>把Collection转换成Array</li>
+<li>复制Array到ArrayList自己的备份数组“elementData”中<br>下面是ArrayList的构造器的源代码</li>
+</ol>
 <figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">public ArrayList(Collection&lt;? <span class="keyword">extends</span> E&gt; c ) &#123;</span><br><span class="line">		elementData = c<span class="string">.toArray()</span>;</span><br><span class="line">		size = elementData<span class="string">.length</span>;</span><br><span class="line">		if(elementData<span class="string">.getClass()</span> != Object[]<span class="string">.class)</span> &#123;</span><br><span class="line">				elementData = Arrays<span class="string">.copyOf(elementData</span>, size, Object[]<span class="string">.class)</span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="2-_第二流行的答案">2. 第二流行的答案</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="subst">&lt;</span>Element<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> Arrays<span class="built_in">.</span>asList(<span class="built_in">array</span>);</span><br></pre></td></tr></table></figure>
 <p>这不是最好的，因为从aslist()返回list的大小是固定的。实际上返回的list是不java.util.ArrayList，而是私有静态类内部定义的java.util.Arrays。我们知道ArrayList基本实现为一个Array，从aslist()返回的list是由原来的Array返回的一个固定大小的list。这样，如果从返回的list中添加或删除元素，将抛出UnsupportedOperationException。</p>
@@ -415,6 +416,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/03/Java中PrintMap/">Java中PrintMap</a>
             
           </div>
 
@@ -486,7 +489,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +503,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
