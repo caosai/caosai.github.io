@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="StringIndexOutOfBoundsException," />
+  <meta name="keywords" content="array contains value," />
 
 
 
@@ -59,7 +59,7 @@
 
 
 
-  <title> 字符串索引越界异常 // Courage Me </title>
+  <title> Java中检查数组中是否存在某个值的方法 // Courage Me </title>
 </head>
 
 <body>
@@ -338,7 +338,7 @@
           
           
             
-              字符串索引越界异常
+              Java中检查数组中是否存在某个值的方法
             
           
         </h1>
@@ -346,14 +346,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-24
+          发表于 2015-07-05
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/java/">java</a>
+              <a href="/categories/Simple-Java/">Simple Java</a>
 
               
               
@@ -366,8 +366,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/24/字符串索引越界异常/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/24/字符串索引越界异常/"></span>
+            <a href="/2015/07/05/Java中检查数组中是否存在某个值的方法/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/05/Java中检查数组中是否存在某个值的方法/"></span>
             </a>
           </span>
           
@@ -381,10 +381,8 @@
       
 
       
-        <p><strong>java.lang.StringIndexOutOfBoundsException: String index out of range: -10</strong></p>
-<p>查看日志看到这个返回异常消息时，也不知道问题出在哪里。后来想到有调用过String.subString()方法，当时在程序中截取字符串的时候把截取的位置写死了，以为传过来的被截字符串长度是固定的。后来传过来的值变小了，就出现了index 越界的情况。</p>
-<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">  <span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+        <p>检查数组中是否存在某一个值的方法有三种方式<br>    foreach：for循环<br>    Arrays.asList(arr);<br>    Set</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * java中检查一个数组中是否含有某个值的方法</span><br><span class="line"> * @author cslience</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> class ArrayUtils &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//useLoop 推荐这种方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> isContainsValueLoop(<span class="keyword">String</span>[] arr, <span class="keyword">String</span> targetValue) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">String</span> s : arr) &#123;</span><br><span class="line">			<span class="keyword">if</span>(s.equals(targetValue)) </span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//useList</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> isContainsValueList(<span class="keyword">String</span>[] arr, <span class="keyword">String</span> targetValue) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> Arrays.asList(arr).contains(targetValue);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> isContainsValueSet(<span class="keyword">String</span>[] arr, <span class="keyword">String</span> targetValue) &#123;</span><br><span class="line">		</span><br><span class="line">		Set&lt;<span class="keyword">String</span>&gt; <span class="built_in">set</span> = <span class="keyword">new</span> HashSet&lt;<span class="keyword">String</span>&gt;(Arrays.asList(arr));</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">set</span>.contains(targetValue);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//5,1k,10k  time complexity</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">String</span>[] arr = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>&#125;;</span><br><span class="line">		<span class="keyword">String</span> targetValue = <span class="string">"e"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">long</span> begin = System.nanoTime();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			isContainsValueLoop(arr, targetValue);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">long</span> end = System.nanoTime();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">long</span> cost = end - begin;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"loop cost time = "</span> + cost/<span class="number">1000</span>);</span><br><span class="line">		</span><br><span class="line">		begin = System.nanoTime();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			isContainsValueSet(arr, targetValue);</span><br><span class="line">		&#125;</span><br><span class="line">		end = System.nanoTime();</span><br><span class="line">		</span><br><span class="line">		cost = end - begin;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"set cost time = "</span> + cost/<span class="number">1000</span>);</span><br><span class="line">		</span><br><span class="line">		begin = System.nanoTime();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			isContainsValueList(arr, targetValue);</span><br><span class="line">		&#125;</span><br><span class="line">		end = System.nanoTime();</span><br><span class="line">		</span><br><span class="line">		cost = end - begin;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"list cost time = "</span> + cost/<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -392,7 +390,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/StringIndexOutOfBoundsException/"> #StringIndexOutOfBoundsException </a>
+            <a href="/tags/array-contains-value/"> #array contains value </a>
           
         </div>
       
@@ -401,13 +399,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/25/Java中子类和父类的构造函数/">Java中子类和父类的构造函数</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/23/java-Long-to-Integer/">java.lang.Long cannot be cast to java.lang.Integer</a>
+              <a href="/2015/07/03/Java中PrintMap/">Java中PrintMap</a>
             
           </div>
         </div>
@@ -425,8 +421,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/06/24/字符串索引越界异常/"
-               data-title="字符串索引越界异常" data-url="http://yoursite.com/2015/06/24/字符串索引越界异常/">
+          <div class="ds-thread" data-thread-key="2015/07/05/Java中检查数组中是否存在某个值的方法/"
+               data-title="Java中检查数组中是否存在某个值的方法" data-url="http://yoursite.com/2015/07/05/Java中检查数组中是否存在某个值的方法/">
           </div>
         
       </div>
