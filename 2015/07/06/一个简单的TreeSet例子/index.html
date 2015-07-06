@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="StringIndexOutOfBoundsException," />
+  <meta name="keywords" content="TreeSet," />
 
 
 
@@ -59,7 +59,7 @@
 
 
 
-  <title> 字符串索引越界异常 // Courage Me </title>
+  <title> 一个简单的TreeSet例子 // Courage Me </title>
 </head>
 
 <body>
@@ -338,7 +338,7 @@
           
           
             
-              字符串索引越界异常
+              一个简单的TreeSet例子
             
           
         </h1>
@@ -346,14 +346,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-24
+          发表于 2015-07-06
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/java/">java</a>
+              <a href="/categories/Simple-Java/">Simple Java</a>
 
               
               
@@ -366,8 +366,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/24/字符串索引越界异常/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/24/字符串索引越界异常/"></span>
+            <a href="/2015/07/06/一个简单的TreeSet例子/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/一个简单的TreeSet例子/"></span>
             </a>
           </span>
           
@@ -381,9 +381,26 @@
       
 
       
-        <p><strong>java.lang.StringIndexOutOfBoundsException: String index out of range: -10</strong></p>
-<p>查看日志看到这个返回异常消息时，也不知道问题出在哪里。后来想到有调用过String.subString()方法，当时在程序中截取字符串的时候把截取的位置写死了，以为传过来的被截字符串长度是固定的。后来传过来的值变小了，就出现了index 越界的情况。</p>
-<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">  <span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>下面是一个非常简单的TreeSet的例子。从这个简单的例子中我们可以得知：</p>
+<ul>
+<li>TreeSet是有序的</li>
+<li>如何遍历TreeSet</li>
+<li>如何检查空</li>
+<li>如何检索第一个/最后一个元素</li>
+<li>如何删除元素</li>
+</ul>
+<p>如果你想了解更多关于Java Collection的内容，你可以查看<a href="http://www.programcreek.com/2009/02/the-interface-and-class-hierarchy-for-collections/" target="_blank" rel="external">Java Collection hierarchy diagram</a></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="type">Iterator</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">TreeSet</span>;</span><br><span class="line"> </span><br><span class="line">public class <span class="type">TreeSetExample</span> &#123;</span><br><span class="line"> </span><br><span class="line">   public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set Example!\n"</span>);</span><br><span class="line">	<span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt; tree = new <span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt;();</span><br><span class="line">	tree.add(<span class="number">12</span>);</span><br><span class="line">	tree.add(<span class="number">63</span>);</span><br><span class="line">	tree.add(<span class="number">34</span>);</span><br><span class="line">	tree.add(<span class="number">45</span>);</span><br><span class="line"> </span><br><span class="line">	// here it test it's sorted, <span class="number">63</span> <span class="keyword">is</span> the last element. see output below</span><br><span class="line">	<span class="type">Iterator</span>&lt;<span class="type">Integer</span>&gt; <span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree set data: "</span>);</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Displaying</span> the <span class="type">Tree</span> <span class="type">set</span> data</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println();</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Check</span> empty <span class="keyword">or</span> <span class="keyword">not</span></span><br><span class="line">	<span class="keyword">if</span> (tree.isEmpty()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree Set is empty."</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set size: "</span> + tree.size());</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Retrieve</span> first data <span class="keyword">from</span> tree <span class="type">set</span></span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"First data: "</span> + tree.first());</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Retrieve</span> last data <span class="keyword">from</span> tree <span class="type">set</span></span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Last data: "</span> + tree.last());</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (tree.remove(<span class="number">45</span>)) &#123; // remove element by value</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Data is removed from tree set"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Data doesn't exist!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Now the tree set contain: "</span>);</span><br><span class="line">	<span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Displaying</span> the <span class="type">Tree</span> <span class="type">set</span> data</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println();</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Now the size of tree set: "</span> + tree.size());</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Remove</span> all</span><br><span class="line">	tree.clear();</span><br><span class="line">	<span class="keyword">if</span> (tree.isEmpty()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree Set is empty."</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set size: "</span> + tree.size());</span><br><span class="line">	&#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>Tree Set Example!</p>
+</blockquote>
+<p>Tree set data: 12 34 45 63<br>Tree Set size: 4</p>
+<p>First data: 12<br>Last data: 63</p>
+<p>Data is removed from tree set</p>
+<p>Now the tree set contain: 12 34 63<br>Now the size of tree set: 3</p>
+<p>Tree Set is empty.</p>
+<p><a href="http://www.programcreek.com/2009/02/a-simple-treeset-example/" target="_blank" rel="external">原文链接</a></p>
 
       
     </div>
@@ -392,7 +409,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/StringIndexOutOfBoundsException/"> #StringIndexOutOfBoundsException </a>
+            <a href="/tags/TreeSet/"> #TreeSet </a>
           
         </div>
       
@@ -401,13 +418,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/25/Java中子类和父类的构造函数/">Java中子类和父类的构造函数</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/23/java-Long-to-Integer/">java.lang.Long cannot be cast to java.lang.Integer</a>
+              <a href="/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/">HashSet vs TreeSet vs LinkedHashSet</a>
             
           </div>
         </div>
@@ -425,8 +440,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/06/24/字符串索引越界异常/"
-               data-title="字符串索引越界异常" data-url="http://yoursite.com/2015/06/24/字符串索引越界异常/">
+          <div class="ds-thread" data-thread-key="2015/07/06/一个简单的TreeSet例子/"
+               data-title="一个简单的TreeSet例子" data-url="http://yoursite.com/2015/07/06/一个简单的TreeSet例子/">
           </div>
         
       </div>

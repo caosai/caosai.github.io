@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Talk is cheap,show me the code!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com//"/>
-  <updated>2015-07-06T15:35:14.000Z</updated>
+  <updated>2015-07-06T15:50:44.000Z</updated>
   <id>http://yoursite.com//</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[一个简单的TreeSet例子]]></title>
+    <link href="http://yoursite.com/2015/07/06/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84TreeSet%E4%BE%8B%E5%AD%90/"/>
+    <id>http://yoursite.com/2015/07/06/一个简单的TreeSet例子/</id>
+    <published>2015-07-06T15:43:01.000Z</published>
+    <updated>2015-07-06T15:50:44.000Z</updated>
+    <content type="html"><![CDATA[<p>下面是一个非常简单的TreeSet的例子。从这个简单的例子中我们可以得知：</p>
+<ul>
+<li>TreeSet是有序的</li>
+<li>如何遍历TreeSet</li>
+<li>如何检查空</li>
+<li>如何检索第一个/最后一个元素</li>
+<li>如何删除元素</li>
+</ul>
+<p>如果你想了解更多关于Java Collection的内容，你可以查看<a href="http://www.programcreek.com/2009/02/the-interface-and-class-hierarchy-for-collections/" target="_blank" rel="external">Java Collection hierarchy diagram</a></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="type">Iterator</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">TreeSet</span>;</span><br><span class="line"> </span><br><span class="line">public class <span class="type">TreeSetExample</span> &#123;</span><br><span class="line"> </span><br><span class="line">   public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set Example!\n"</span>);</span><br><span class="line">	<span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt; tree = new <span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt;();</span><br><span class="line">	tree.add(<span class="number">12</span>);</span><br><span class="line">	tree.add(<span class="number">63</span>);</span><br><span class="line">	tree.add(<span class="number">34</span>);</span><br><span class="line">	tree.add(<span class="number">45</span>);</span><br><span class="line"> </span><br><span class="line">	// here it test it's sorted, <span class="number">63</span> <span class="keyword">is</span> the last element. see output below</span><br><span class="line">	<span class="type">Iterator</span>&lt;<span class="type">Integer</span>&gt; <span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree set data: "</span>);</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Displaying</span> the <span class="type">Tree</span> <span class="type">set</span> data</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println();</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Check</span> empty <span class="keyword">or</span> <span class="keyword">not</span></span><br><span class="line">	<span class="keyword">if</span> (tree.isEmpty()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree Set is empty."</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set size: "</span> + tree.size());</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Retrieve</span> first data <span class="keyword">from</span> tree <span class="type">set</span></span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"First data: "</span> + tree.first());</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Retrieve</span> last data <span class="keyword">from</span> tree <span class="type">set</span></span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Last data: "</span> + tree.last());</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (tree.remove(<span class="number">45</span>)) &#123; // remove element by value</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Data is removed from tree set"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Data doesn't exist!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Now the tree set contain: "</span>);</span><br><span class="line">	<span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Displaying</span> the <span class="type">Tree</span> <span class="type">set</span> data</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println();</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Now the size of tree set: "</span> + tree.size());</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Remove</span> all</span><br><span class="line">	tree.clear();</span><br><span class="line">	<span class="keyword">if</span> (tree.isEmpty()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree Set is empty."</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set size: "</span> + tree.size());</span><br><span class="line">	&#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>Tree Set Example!</p>
+</blockquote>
+<p>Tree set data: 12 34 45 63<br>Tree Set size: 4</p>
+<p>First data: 12<br>Last data: 63</p>
+<p>Data is removed from tree set</p>
+<p>Now the tree set contain: 12 34 63<br>Now the size of tree set: 3</p>
+<p>Tree Set is empty.</p>
+<p><a href="http://www.programcreek.com/2009/02/a-simple-treeset-example/" target="_blank" rel="external">原文链接</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>下面是一个非常简单的TreeSet的例子。从这个简单的例子中我们可以得知：</p>
+<ul>
+<li>TreeSet是有序的</li>
+<li>如何遍历TreeSet</li>
+<li>如何检查空</li>
+<li>如何检索第一个/最后一个元素</li>
+<li>如何删除元]]>
+    </summary>
+    
+      <category term="TreeSet" scheme="http://yoursite.com/tags/TreeSet/"/>
+    
+      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[HashSet vs TreeSet vs LinkedHashSet]]></title>
