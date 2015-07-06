@@ -1,0 +1,824 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+  <meta name="google-site-verification" content="VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0" />
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+    <meta name="description" content="Talk is cheap,show me the code!" />
+
+
+
+  <meta name="keywords" content="set," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Courage Me" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    analytics: {
+      google: ''
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b56ed77ba442f0ae3cb743e752e28a87";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <title> HashSet vs TreeSet vs LinkedHashSet // Courage Me </title>
+</head>
+
+<body>
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Courage Me</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<div class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+      <li> <a title="�����������ϵ�����Chrome�ղؼй�������" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High Once Time</a> </li>
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PL96x7fVNTKfxFRsKqT8','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              HashSet vs TreeSet vs LinkedHashSet
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <p>一个set集合不包含重复元素。这是使用set的主要原因之一。有3个常用的实现set的途径：HashSet，TreeSet和LinkedHashSet。何时使用哪一种是一个重要问题。总之，如果你需要一个快速的set，你应该使用HashSet；如果你需要一个有序集合，则使用TreeSet；如果你需要一个可以插入顺序存储的set，那么LinkedHashSet应被使用。</p>
+<h2 id="1-_set的接口">1. set的接口</h2><p>Set继承Collection 接口。在一个set中，没有重复的元素。在set中的每一个元素必须是唯一的。你可以简单地将元素添加到一个集合中，重复的元素会被自动删除。</p>
+<p>下图是set集合集成的树形图</p>
+<p><img src="/avatar/java-collection-hierarchy.jpeg2" alt="Alt text"></p>
+<h2 id="2-_HashSet_vs-_TreeSet_vs-_LinkedHashSet_之间的比较">2. HashSet vs. TreeSet vs. LinkedHashSet 之间的比较</h2><p>HashSet 使用一个 hash table 实现. 元素是无序的。添加add，删除remove，和包含contains的方法有恒定的时间复杂度O(1)。</p>
+<p>TreeSet 使用一个树形结构实现（算法中的红黑树）。set中的元素是有序的，但是add、remove、contains方法的时间复杂度是O(log(n))。TreeSet提供不同的方法处理有序的set集合，像first()/last()/headSet()/tailSert()等</p>
+<p>LinkedHashSet 基于HashSet和TreeSet之间。它使用一个hash table实现基于一个链表的结构，所以它提供按顺序插入到集合中，时间复杂度是O(1)</p>
+<h2 id="3-_TreeSet的例子">3. TreeSet的例子</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt; tree = new <span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt;();</span><br><span class="line">tree.add(<span class="number">12</span>);</span><br><span class="line">tree.add(<span class="number">63</span>);</span><br><span class="line">tree.add(<span class="number">34</span>);</span><br><span class="line">tree.add(<span class="number">45</span>);</span><br><span class="line"> </span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Integer</span>&gt; <span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree set data: "</span>);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">    <span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果(有序的)：</p>
+<blockquote>
+<p>Tree set data: 12 34 45 63 </p>
+</blockquote>
+<p>下面定义一个Dog类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span><br><span class="line">	<span class="keyword">int</span> size;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Dog</span>(<span class="params"><span class="keyword">int</span> s</span>) </span>&#123;</span><br><span class="line">		size = s;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> size + <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>向TreeSet中add几组Dog对象</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="type">Iterator</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">TreeSet</span>;</span><br><span class="line"> </span><br><span class="line">public class <span class="type">TestTreeSet</span> &#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">		<span class="type">TreeSet</span>&lt;<span class="type">Dog</span>&gt; dset = new <span class="type">TreeSet</span>&lt;<span class="type">Dog</span>&gt;();</span><br><span class="line">		dset.add(new <span class="type">Dog</span>(<span class="number">2</span>));</span><br><span class="line">		dset.add(new <span class="type">Dog</span>(<span class="number">1</span>));</span><br><span class="line">		dset.add(new <span class="type">Dog</span>(<span class="number">3</span>));</span><br><span class="line"> </span><br><span class="line">		<span class="type">Iterator</span>&lt;<span class="type">Dog</span>&gt; <span class="keyword">iterator</span> = dset.<span class="keyword">iterator</span>();</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">			<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译成功，但是运行时出现错误</p>
+<blockquote>
+<p>Exception in thread “main” java.lang.ClassCastException: collection.**Dog cannot be cast to java.lang.Comparable<br>    at java.util.TreeMap.put(Unknown Source)<br>    at java.util.TreeSet.add(Unknown Source)<br>    at collection.TestTreeSet.main(TestTreeSet.java:22)</p>
+</blockquote>
+<p>原因： TreeSet是有序的集合，Dog对象需要实现**java.lang.Comparable’s compareTo() 方法</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Dog <span class="keyword">implements</span> Comparable&lt;Dog&gt;&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">size</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> Dog(<span class="keyword">int</span> s) &#123;</span><br><span class="line">		<span class="keyword">size</span> = s;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> String toString() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">size</span> + <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> <span class="keyword">compareTo</span>(Dog o) &#123;</span><br><span class="line">	        <span class="keyword">return</span> <span class="keyword">size</span> - o.<span class="keyword">size</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>1 2 3</p>
+</blockquote>
+<h2 id="4-_HashSet_例子">4. HashSet 例子</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HashSet</span>&lt;<span class="type">Dog</span>&gt; dset = new <span class="type">HashSet</span>&lt;<span class="type">Dog</span>&gt;();</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">2</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">1</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">3</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">5</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">4</span>));</span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Dog</span>&gt; <span class="keyword">iterator</span> = dset.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<blockquote>
+<p>5 3 2 1 4<br>注意结果顺序是不确定的。</p>
+</blockquote>
+<h2 id="5-_LinkedHashSet_例子">5. LinkedHashSet 例子</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LinkedHashSet</span>&lt;<span class="type">Dog</span>&gt; dset = new <span class="type">LinkedHashSet</span>&lt;<span class="type">Dog</span>&gt;();</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">2</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">1</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">3</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">5</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">4</span>));</span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Dog</span>&gt; <span class="keyword">iterator</span> = dset.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出的结果顺序是一定的，按照添加的先后顺序排序。</p>
+<blockquote>
+<p>2 1 3 5 4</p>
+</blockquote>
+<h2 id="6-_性能测试">6. 性能测试</h2><p>下面的测试方法是测试 三种不同的set的add方法的性能</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public static void main<span class="params">(String[] args)</span> &#123;</span><br><span class="line"> </span><br><span class="line">	Random r = new Random<span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	HashSet&lt;Dog&gt; hashSet = new HashSet&lt;Dog&gt;<span class="params">()</span>;</span><br><span class="line">	TreeSet&lt;Dog&gt; treeSet = new TreeSet&lt;Dog&gt;<span class="params">()</span>;</span><br><span class="line">	LinkedHashSet&lt;Dog&gt; linkedSet = new LinkedHashSet&lt;Dog&gt;<span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// start time</span></span><br><span class="line">	long startTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span> &#123;</span><br><span class="line">		int x = r.nextInt<span class="params">(<span class="number">1000</span> - <span class="number">10</span>)</span> + <span class="number">10</span>;</span><br><span class="line">		hashSet.add<span class="params">(new Dog<span class="params">(x)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// end time</span></span><br><span class="line">	long endTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	long duration = endTime - startTime;</span><br><span class="line">	System.out.println<span class="params">(<span class="string">"HashSet: "</span> + duration)</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// start time</span></span><br><span class="line">	startTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span> &#123;</span><br><span class="line">		int x = r.nextInt<span class="params">(<span class="number">1000</span> - <span class="number">10</span>)</span> + <span class="number">10</span>;</span><br><span class="line">		treeSet.add<span class="params">(new Dog<span class="params">(x)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// end time</span></span><br><span class="line">	endTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	duration = endTime - startTime;</span><br><span class="line">	System.out.println<span class="params">(<span class="string">"TreeSet: "</span> + duration)</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// start time</span></span><br><span class="line">	startTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span> &#123;</span><br><span class="line">		int x = r.nextInt<span class="params">(<span class="number">1000</span> - <span class="number">10</span>)</span> + <span class="number">10</span>;</span><br><span class="line">		linkedSet.add<span class="params">(new Dog<span class="params">(x)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// end time</span></span><br><span class="line">	endTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	duration = endTime - startTime;</span><br><span class="line">	System.out.println<span class="params">(<span class="string">"LinkedHashSet: "</span> + duration)</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从输出的结果可以清楚的知道，HashSet的add方法花费时间最少。</p>
+<blockquote>
+<p>HashSet: 2244768<br>TreeSet: 3549314<br>LinkedHashSet: 2263320</p>
+</blockquote>
+<p>*测试虽然不精确，但能反映基本思想TreeSet慢得多因为它是排好序的。</p>
+<p><img src="/avatar/hashset-treeset-linkedhashset1.png" alt="Alt text"></p>
+<p><a href="http://www.programcreek.com/2013/03/hashset-vs-treeset-vs-linkedhashset/" target="_blank" rel="external">原文链接</a></p>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/set/"> #set </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/05/Java中检查数组中是否存在某个值的方法/">Java中检查数组中是否存在某个值的方法</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+
+    
+      <div class="comments" id="comments">
+        
+          <div class="ds-thread" data-thread-key="2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/"
+               data-title="HashSet vs TreeSet vs LinkedHashSet" data-url="http://yoursite.com/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/">
+          </div>
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/avatar/yihu.jpg" alt="Cao Sai" />
+          <p class="site-author-name">Cao Sai</p>
+        </div>
+        <p class="site-description motion-element">Talk is cheap,show me the code!</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/caosai" target="_blank">GitHub</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://weibo.com/cslience" target="_blank">Weibo</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.jianshu.com/users/d87ba011ebff/timeline" target="_blank">JianShu</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element">
+            <a href="http://creativecommons.org/licenses/zero/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-zero.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_set的接口"><span class="nav-number">1.</span> <span class="nav-text">1. set的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_HashSet_vs-_TreeSet_vs-_LinkedHashSet_之间的比较"><span class="nav-number">2.</span> <span class="nav-text">2. HashSet vs. TreeSet vs. LinkedHashSet 之间的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_TreeSet的例子"><span class="nav-number">3.</span> <span class="nav-text">3. TreeSet的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-_HashSet_例子"><span class="nav-number">4.</span> <span class="nav-text">4. HashSet 例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-_LinkedHashSet_例子"><span class="nav-number">5.</span> <span class="nav-text">5. LinkedHashSet 例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-_性能测试"><span class="nav-number">6.</span> <span class="nav-text">6. 性能测试</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Cao Sai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"caosai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+  
+  
+
+</body>
+</html>
