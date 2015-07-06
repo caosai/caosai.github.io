@@ -389,7 +389,7 @@
           <p>一个set集合不包含重复元素。这是使用set的主要原因之一。有3个常用的实现set的途径：HashSet，TreeSet和LinkedHashSet。何时使用哪一种是一个重要问题。总之，如果你需要一个快速的set，你应该使用HashSet；如果你需要一个有序集合，则使用TreeSet；如果你需要一个可以插入顺序存储的set，那么LinkedHashSet应被使用。</p>
 <h2 id="1-_set的接口">1. set的接口</h2><p>Set继承Collection 接口。在一个set中，没有重复的元素。在set中的每一个元素必须是唯一的。你可以简单地将元素添加到一个集合中，重复的元素会被自动删除。</p>
 <p>下图是set集合集成的树形图</p>
-<p><img src="/avatar/java-collection-hierarchy.jpeg2" alt="Alt text"></p>
+<p><img src="/avatar/java-collection-hierarchy.png" alt="Alt text"></p>
 <h2 id="2-_HashSet_vs-_TreeSet_vs-_LinkedHashSet_之间的比较">2. HashSet vs. TreeSet vs. LinkedHashSet 之间的比较</h2><p>HashSet 使用一个 hash table 实现. 元素是无序的。添加add，删除remove，和包含contains的方法有恒定的时间复杂度O(1)。</p>
 <p>TreeSet 使用一个树形结构实现（算法中的红黑树）。set中的元素是有序的，但是add、remove、contains方法的时间复杂度是O(log(n))。TreeSet提供不同的方法处理有序的set集合，像first()/last()/headSet()/tailSert()等</p>
 <p>LinkedHashSet 基于HashSet和TreeSet之间。它使用一个hash table实现基于一个链表的结构，所以它提供按顺序插入到集合中，时间复杂度是O(1)</p>
