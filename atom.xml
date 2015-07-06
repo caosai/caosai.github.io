@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Talk is cheap,show me the code!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com//"/>
-  <updated>2015-07-06T15:50:44.000Z</updated>
+  <updated>2015-07-06T16:00:18.000Z</updated>
   <id>http://yoursite.com//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2015/07/06/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84TreeSet%E4%BE%8B%E5%AD%90/"/>
     <id>http://yoursite.com/2015/07/06/一个简单的TreeSet例子/</id>
     <published>2015-07-06T15:43:01.000Z</published>
-    <updated>2015-07-06T15:50:44.000Z</updated>
+    <updated>2015-07-06T16:00:18.000Z</updated>
     <content type="html"><![CDATA[<p>下面是一个非常简单的TreeSet的例子。从这个简单的例子中我们可以得知：</p>
 <ul>
 <li>TreeSet是有序的</li>
@@ -34,12 +34,12 @@
 <p>输出结果：</p>
 <blockquote>
 <p>Tree Set Example!</p>
-</blockquote>
 <p>Tree set data: 12 34 45 63<br>Tree Set size: 4</p>
 <p>First data: 12<br>Last data: 63</p>
 <p>Data is removed from tree set</p>
 <p>Now the tree set contain: 12 34 63<br>Now the size of tree set: 3</p>
 <p>Tree Set is empty.</p>
+</blockquote>
 <p><a href="http://www.programcreek.com/2009/02/a-simple-treeset-example/" target="_blank" rel="external">原文链接</a></p>
 ]]></content>
     <summary type="html">
