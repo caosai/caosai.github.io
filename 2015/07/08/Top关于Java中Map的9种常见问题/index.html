@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="sort," />
+  <meta name="keywords" content="CAO,next" />
 
 
 
@@ -59,7 +59,7 @@
 
 
 
-  <title> java中开发者如何排序 // Courage Me </title>
+  <title> Top关于Java中Map的9种常见问题 // Courage Me </title>
 </head>
 
 <body>
@@ -338,7 +338,7 @@
           
           
             
-              java中开发者如何排序
+              Top关于Java中Map的9种常见问题
             
           
         </h1>
@@ -346,28 +346,17 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-27
+          发表于 2015-07-08
         </span>
 
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Simple-Java/">Simple Java</a>
-
-              
-              
-
-            
-          </span>
         
 
         
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/27/java中开发者如何排序/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/27/java中开发者如何排序/"></span>
+            <a href="/2015/07/08/Top关于Java中Map的9种常见问题/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/08/Top关于Java中Map的9种常见问题/"></span>
             </a>
           </span>
           
@@ -381,43 +370,52 @@
       
 
       
-        <p> 分析开源java项目的大量开源代码，我发现java开发者常用的排序方法有两种。一种是用Collections或者Arrays的sort()方法，另一种是用排好序的数据结构，例如TreeMap和TreeSet。</p>
-<h2 id="使用sort()方法">使用sort()方法</h2><p>集合使用Collections.sort()方法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Collections.sort</span></span><br><span class="line">List&lt;ObjectName&gt; <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList&lt;ObjectName&gt;();</span><br><span class="line">Collections.sort(<span class="built_in">list</span>,<span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ObjectName o1, ObjectName o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().compareTo(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>数组使用Arrays.sort()方法</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Arrays.sort</span></span><br><span class="line">ObjectName[] arr = <span class="keyword">new</span> ObjectName[<span class="number">10</span>];</span><br><span class="line">Arrays.<span class="keyword">sort</span>(arr, <span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> compare(ObjectName o1, ObjectName o2) &#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().<span class="keyword">compareTo</span>(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>当集合或数据创建好了，这种方式非常简洁。</p>
-<h2 id="使用排序好的数据结构">使用排序好的数据结构</h2><p>list或者set使用TreeSet排序<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TreeSet</span></span><br><span class="line">Set&lt;ObjectName&gt; sortedSet = new TreeSet&lt;ObjectName&gt;<span class="params">(new Comparator&lt;ObjectName&gt;<span class="params">()</span> &#123;</span><br><span class="line">	public int compare<span class="params">(ObjectName o1, ObjectName o2)</span> &#123;</span><br><span class="line">		return o1.toString<span class="params">()</span>.compareTo<span class="params">(o2.toString<span class="params">()</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span>;</span><br><span class="line">sortedSet.addAll<span class="params">(unsortedSet)</span>;</span><br></pre></td></tr></table></figure></p>
-<p>map使用TreeMap排序,TreeMap 根据key排序</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TreeMap - using String.CASE_INSENSITIVE_ORDER which is a Comparator that orders Strings by compareToIgnoreCase</span></span><br><span class="line"><span class="built_in">Map</span><span class="subst">&lt;</span><span class="built_in">String</span>, <span class="built_in">Integer</span><span class="subst">&gt;</span> sortedMap <span class="subst">=</span> <span class="literal">new</span> TreeMap<span class="subst">&lt;</span><span class="built_in">String</span>, <span class="built_in">Integer</span><span class="subst">&gt;</span>(<span class="built_in">String</span><span class="built_in">.</span>CASE_INSENSITIVE_ORDER);</span><br><span class="line">sortedMap<span class="built_in">.</span>putAll(unsortedMap);</span><br></pre></td></tr></table></figure>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//TreeMap - In general, defined comparator</span></span><br><span class="line"><span class="built_in">Map</span>&lt;ObjectName, <span class="built_in">String</span>&gt; sortedMap = <span class="keyword">new</span> TreeMap&lt;ObjectName, <span class="built_in">String</span>&gt;(<span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	public <span class="built_in">int</span> compare(ObjectName o1, ObjectName o2) &#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().compareTo(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">sortedMap.putAll(unsortedMap);</span><br></pre></td></tr></table></figure>
-<p>这种方法是非常有用的,如果你想做很多关于集合的搜索操作。排序的数据结构的时间是复杂度O(logn),低于O(n)。</p>
-<h2 id="不好的实例">不好的实例</h2><p>有很多不好的实例,比如使用自定义排序算法。以下面的代码为例,不仅算法不是有效的,而且它是不可读的。这种情况发生在不同形式的变化。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">double t;</span><br><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; <span class="number">2</span>; <span class="built_in">i</span>++)</span><br><span class="line">	<span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="built_in">i</span> + <span class="number">1</span>; <span class="built_in">j</span> &lt; <span class="number">3</span>; <span class="built_in">j</span>++)</span><br><span class="line">		<span class="keyword">if</span> (r<span class="matrix">[j]</span> &lt; r<span class="matrix">[i]</span>) <span class="cell">&#123;</span><br><span class="line">			t = r[i];</span><br><span class="line">			r[i] = r[j];</span><br><span class="line">			r[j] = t;</span><br><span class="line">		&#125;</span></span><br></pre></td></tr></table></figure>
+        <p>总的来说，Map是一种集合的数据结构有key-value对组成，每一个key可以在Map中出现一次。这篇文章总结了Java中Map最常用的9种使用方法。为了简单起见，我将在例子中使用泛型。因此我只使用Map而不使用具体的Map。但是你可以假设K和V都实现了Comparable接口。</p>
+<h2 id="0-_Map2List_Map转化成List">0. Map2List Map转化成List</h2><p>Java中，Map接口提供三种集合：key集合、value结合、和key-value结合。它们都可以转化成一个List通过一个构造器或者addAll()方法。下面的代码片段展示了如何使用构造器创建通过Map创建一个ArrayList。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//keyList</span></span><br><span class="line"><span class="built_in">List</span> keyList <span class="subst">=</span> ArrayList(<span class="built_in">map</span><span class="built_in">.</span>keySet());</span><br><span class="line"><span class="comment">//valueList</span></span><br><span class="line"><span class="built_in">List</span> valueList <span class="subst">=</span> ArrayList(<span class="built_in">map</span><span class="built_in">.</span>valueSet());</span><br><span class="line"><span class="comment">//entryList key-value set</span></span><br><span class="line"><span class="built_in">List</span> entryList <span class="subst">=</span> ArrayList(<span class="built_in">map</span><span class="built_in">.</span>entrySet());</span><br></pre></td></tr></table></figure>
+<h2 id="1-_在Map中遍历每一个Entry">1. 在Map中遍历每一个Entry</h2><p>通过一个键值对迭代遍历一个Map是最基本的操作。在Java，键值对存储在Map中被称为Map.Entry。Map.entrySet()返回一个键值对的集合，因此要通过一个Map的每一个entry是最有效的方式来遍历map</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">for</span>(<span class="preprocessor">Entry</span> <span class="preprocessor">entry</span> : <span class="preprocessor">map</span>.entrySet()) &#123;</span><br><span class="line">	K key = <span class="preprocessor">entry</span>.getKey()<span class="comment">;</span></span><br><span class="line">	V value = <span class="preprocessor">entry</span>.getValue()<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在JDK1.5以前还可以一下方式遍历Map</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Iterator </span><span class="keyword">it </span>= <span class="preprocessor">map</span>.entrySet().<span class="keyword">iterator();</span><br><span class="line"></span><span class="label">while</span>(<span class="keyword">it.hasNext()) </span>&#123;</span><br><span class="line">	<span class="preprocessor">Entry</span> <span class="preprocessor">entry</span> = <span class="keyword">it.next();</span><br><span class="line"></span>	K key = <span class="preprocessor">entry</span>.getKey()<span class="comment">;</span></span><br><span class="line">	V value = <span class="preprocessor">entry</span>.getValue()<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-_根据key在Map中排序">2. 根据key在Map中排序</h2><p>根据key排序Map是一个经常用到的操作。一个方法是将Map.Entry放进List中，使用一个比较器Comparator来排序value。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList(<span class="built_in">map</span>.entrySet());</span><br><span class="line">Collections.sort(<span class="built_in">list</span>,<span class="keyword">new</span> Comparator() &#123;</span><br><span class="line">	@<span class="function">Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Entry e1, Entry e2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> e1.getKey().compareTo(e2.getKey());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>另外一种方法是使用排好序的Map，可以根据key值进行自动排序。因此所有的key值必须要实现Comparable接口或者可以被一个Comparator接受。<br>一种实现了SortMap的类是TreeMap。它的构造器可以接受一个Comparator。下面的代码展示了如何将一个map转换成一个排好序的map的。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SortedMap sortMap = <span class="keyword">new</span> TreeMap(<span class="keyword">new</span> Comparator() &#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(K k1, K k2)</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">return</span> k1.<span class="title">compareTo</span><span class="params">(k2)</span></span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">sortMap.putAll(map);</span><br></pre></td></tr></table></figure>
+<h1 id="3-_根据value在Map中排序">3. 根据value在Map中排序</h1><p>将Map变成一个list然后排序也是可以的，不同的是我们比较Entry.getValue().下面的代码和上面几乎一样。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList(<span class="built_in">map</span>.entrySet());</span><br><span class="line">Collections.sort(<span class="built_in">list</span>,<span class="keyword">new</span> Comparator() &#123;</span><br><span class="line">	@<span class="function">Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Entry e1, Entry e2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> e1.getValue().compareTo(e2.getValue());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>我们仍然可以使用一个排序的Map来解决这个问题，但只有当value是唯一的时候。在这样的条件下，你可以把key-value的值反倒。这个解决方案有很强的限制，因此不推荐使用。</p>
+<h2 id="4-_初始化一个静态的或者不可以变的Map">4. 初始化一个静态的或者不可以变的Map</h2><p>当你期望Map保持不变时，将它复制到一个不可改变的Map上是一个很好的做法。这种防御性的编程技术将帮助您创建不仅使用安全局，但而且线程Map也很安全。<br>初始化一个静态的、一成不变的Map，我们可以使用一个静态初始化器（如下）。这个代码的问题是，尽管Map被声明为static final，我们仍然可以在初始化之后对它进行操作，如Test.map.put(3,”three”);操作。因此它不是真的不可改变的。使用静态初始化器创建一个不变的Map，在初始化的最后一步，我们需要一个额外的匿名类并复制到一个不可修改的Map中。请参阅第二段代码。如果你运行Test.map.put(3,”three”);然后一个UnsupportedOperationException异常将会被抛出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Test &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> final Map <span class="built_in">map</span>;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		<span class="built_in">map</span> = <span class="keyword">new</span> Map();</span><br><span class="line">		<span class="built_in">map</span>.put(<span class="string">"a"</span>,<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">map</span>.put(<span class="string">"b"</span>,<span class="number">4</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Test &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> final Map <span class="built_in">map</span>;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		Map tmpMap = <span class="keyword">new</span> Map();</span><br><span class="line">		tmpMap.put(<span class="string">"a"</span>,<span class="number">3</span>);</span><br><span class="line">		tmpMap.put(<span class="string">"b"</span>,<span class="number">4</span>);</span><br><span class="line">		<span class="built_in">map</span> = Collections.unmodifiableMap(tmpMap);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Guava libraries也支持不同的初始化静态不变的Collection的方法。要了解更多关于Guava 不可变的Collection的好处，去看不可变集合的解释在Guava User Guide中。</p>
+<h2 id="5-_HashMap,TreeMap,HashTable区别">5. HashMap,TreeMap,HashTable区别</h2><p>在Java中实现Map接口的三个主要实现类分别是：HashMap,TreeMap,HashTable<br>他们之间最重要的区别如下：</p>
+<ol>
+<li><strong>遍历的顺序</strong>。HashMap和HashTable不能保证map中元素的顺序，特别是，他们不保证随着时间的推移顺序会保持不变。但TreeMap将遍历整个条目按“自然顺序”的key值，或由一个比较器。</li>
+<li><strong>key-value的规则</strong>。HashMap允许null的key或者value（只能有一个null的key，因为map中不能存在两个相同的key）。HashTable不允许null的key或者value。如果TreeMap根据自然顺序或者比较器来排序的话，它的key值不能为null，否则会抛出异常。</li>
+<li><strong>同步</strong>。只有HashTable是同步的。因此如果不需要实现一个线程安全，推荐使用HashMap代替HashTable。</li>
+</ol>
+<h2 id="6-_具有反向视图和查询的Map">6. 具有反向视图和查询的Map</h2><p>有时候，我们需要一个key-value对的集合，这就意味着key和value都是唯一的（one-to-one Map）。这种约束可以确保可以创建一个“反向试图和查询的Map”。所以我们可以通过value去查询一个key。这种数据结构被称作双向映射的Map，不幸的是java JDK不支持。<br>    Apache Common Collections 和 Guava 提供了实现双向映射的Map类。分别称为BidiMap和BiMap。这两种都需要强制约束它们的key和value的值1:1的关系。</p>
+<h2 id="7-_Map的浅拷贝">7. Map的浅拷贝</h2><p>在Java中实现Map的大部分类，提供一个拷贝其他map的构造方法。但是拷贝的过程不是同步的。那就意味着当一个线程拷贝一个map，另一个线程可能会改变它的结构。为了阻止偶然不同步的拷贝，必须提前用到Collections.synchronizedMap()。</p>
+<blockquote>
+<p>Map copiedMap = Collections.synchronizedMap(map);<br>另一种有趣的浅拷贝的方式是使用clone(),然而即使是Java集合框架的设计者Josh Bloch都不推荐使用这种方法。在一次讨论” constructor 和 cloning 拷贝的比较”中，他说：<br>我经常提供一个public的clone方法在创建类的时候，因为大家希望如此。这是克隆的耻辱，但它发生。…克隆是一个弱点，我认为人们应该意识到它的局限性。</p>
+</blockquote>
+<p>正因如此，我将不会告诉你如何使用clone()方法进行拷贝一个map。</p>
+<h2 id="8-_创建一个空的Map">8. 创建一个空的Map</h2><p>如果Map是不可变的。使用<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span> = Collections.emptyMap();</span><br></pre></td></tr></table></figure></p>
+<p>否则，使用如下实现的方式。<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>();</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.programcreek.com/2013/09/top-9-questions-for-java-map/" target="_blank" rel="external">原文链接</a></p>
 
       
     </div>
 
     <div class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/sort/"> #sort </a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/29/Comparator-vs-Comparable/">Comparator vs Comparable</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/25/Java-比较器/">深入理解Arrays.sort()数组排序</a>
+              <a href="/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/">HashMap vs TreeMap vs HashTable vs LinkedHashMap</a>
             
           </div>
         </div>
@@ -435,8 +433,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/06/27/java中开发者如何排序/"
-               data-title="java中开发者如何排序" data-url="http://yoursite.com/2015/06/27/java中开发者如何排序/">
+          <div class="ds-thread" data-thread-key="2015/07/08/Top关于Java中Map的9种常见问题/"
+               data-title="Top关于Java中Map的9种常见问题" data-url="http://yoursite.com/2015/07/08/Top关于Java中Map的9种常见问题/">
           </div>
         
       </div>
@@ -548,7 +546,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用sort()方法"><span class="nav-number">1.</span> <span class="nav-text">使用sort()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用排序好的数据结构"><span class="nav-number">2.</span> <span class="nav-text">使用排序好的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不好的实例"><span class="nav-number">3.</span> <span class="nav-text">不好的实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-_Map2List_Map转化成List"><span class="nav-number">1.</span> <span class="nav-text">0. Map2List Map转化成List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_在Map中遍历每一个Entry"><span class="nav-number">2.</span> <span class="nav-text">1. 在Map中遍历每一个Entry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_根据key在Map中排序"><span class="nav-number">3.</span> <span class="nav-text">2. 根据key在Map中排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-_根据value在Map中排序"><span class="nav-number"></span> <span class="nav-text">3. 根据value在Map中排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-_初始化一个静态的或者不可以变的Map"><span class="nav-number">1.</span> <span class="nav-text">4. 初始化一个静态的或者不可以变的Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-_HashMap,TreeMap,HashTable区别"><span class="nav-number">2.</span> <span class="nav-text">5. HashMap,TreeMap,HashTable区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-_具有反向视图和查询的Map"><span class="nav-number">3.</span> <span class="nav-text">6. 具有反向视图和查询的Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-_Map的浅拷贝"><span class="nav-number">4.</span> <span class="nav-text">7. Map的浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-_创建一个空的Map"><span class="nav-number">5.</span> <span class="nav-text">8. 创建一个空的Map</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
