@@ -340,6 +340,85 @@
           
           
             
+              <a class="post-title-link" href="/2015/07/12/Java中equals-和hashCode-的契约/">
+                Java中equals()和hashCode()的契约
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-12
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/12/Java中equals-和hashCode-的契约/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/12/Java中equals-和hashCode-的契约/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Java的父类 java.lang.Object 有两个很重要的方法被定义如下：<br><img src="/avatar/java-hashcode.png" alt="Alt text"><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public boolean <span class="function"><span class="title">equals</span><span class="params">(Object obj)</span></span></span><br><span class="line">public int <span class="function"><span class="title">hashCode</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure></p>
+<p>它们已经被证明非常重要去理解，特别当用户自定义的对象被add到Maps中。然后，即使是高级开发者有时候也不知道如何合理的使用这两个方法。这篇文章中，我首先举一个经常犯的错误的例子，并解释hashCode和equals是如何起作用的。</p>
+<h2 id="1-_一个常见的错误">1. 一个常见的错误</h2><p>常见的错误如下例子<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="keyword">HashMap</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> class Apple &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> <span class="built_in">color</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> Apple(<span class="keyword">String</span> <span class="built_in">color</span>) &#123;</span><br><span class="line">		<span class="keyword">this</span>.<span class="built_in">color</span> = <span class="built_in">color</span>;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">boolean</span> equals(<span class="keyword">Object</span> obj) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!(obj <span class="keyword">instanceof</span> Apple))</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;	</span><br><span class="line">		<span class="keyword">if</span> (obj == <span class="keyword">this</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.<span class="built_in">color</span>.equals(((Apple) obj).<span class="built_in">color</span>);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		Apple a1 = <span class="keyword">new</span> Apple(<span class="string">"green"</span>);</span><br><span class="line">		Apple a2 = <span class="keyword">new</span> Apple(<span class="string">"red"</span>);</span><br><span class="line"> </span><br><span class="line">		<span class="comment">//hashMap stores apple type and its quantity</span></span><br><span class="line">		<span class="keyword">HashMap</span>&lt;Apple, Integer&gt; m = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;Apple, Integer&gt;();</span><br><span class="line">		m.put(a1, <span class="number">10</span>);</span><br><span class="line">		m.put(a2, <span class="number">20</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(m.<span class="built_in">get</span>(<span class="keyword">new</span> Apple(<span class="string">"green"</span>)));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个例子中，一个green苹果对象被成功的存在一个HashMap中，但是当在map中查询此对象的时候，这个对象没有被找到。程序结果是null。然而我们可以确定的是在debugger中该对象确实存在HashMap中。<br><img src="/avatar/hashCode-and-equals-contract.png" alt="Alt text"></p>
+<h2 id="2-_问题是由hashCode()引起的">2. 问题是由hashCode()引起的</h2><p>这个问题是由于没有重写hashCode()方法。hashCode和equals中的契约是这样的：</p>
+<ol>
+<li>如果两个对象相等，它们必须有相同的hashcode值。</li>
+<li>如果两个对象有相同的hashcode值，它们可能相等也可能不相等。</li>
+</ol>
+<p>Map背后的思想是能找比线性搜索更快的找到一个对象。使用散列键值来定位对象有两步过程。map内部存储对象作为一个数组的数组。第一个数组的索引就是键的hashCode的值。位于第二个数组通过线性搜索根据equals()来判断该对象是否被找到。</p>
+<p>对象类的默认实现了hashcode()方法并返回不同的整数对于不同的对象来说。因此，在上面的例子中，不同的对象（即使同一类型）都有不同的hashCode值。</p>
+<p>hashcode就像是一个序列的仓库存储，不同的东西可以存储在不同的仓库中。如果你把材料组织到不同的地方，而不是同一个仓库，那就更有效了。所以这是平均分配的hashCode值的一个很好的实践。（虽然不是主要的观点）。</p>
+<p>解决方案就是在类中添加hashCode()方法，这里我只是使用color字符串的长度做示范。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.color.length();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.programcreek.com/2011/07/java-equals-and-hashcode-contract/" target="_blank" rel="external">原文链接</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/08/Top关于Java中Map的9种常见问题/">
                 Top关于Java中Map的9种常见问题
               </a>
@@ -1176,95 +1255,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/07/01/Java中按行写文件的方法/">
-                Java中按行写文件的方法
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-07-01
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Simple-Java/">Simple Java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/01/Java中按行写文件的方法/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/01/Java中按行写文件的方法/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>这篇文章总结了使用相关类写文件的操作</p>
-<h2 id="1-_FileOutputStream">1. FileOutputStream</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> writeFile1() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> fout = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"out.txt"</span>);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fout);</span><br><span class="line">		BufferedWriter br = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(fos));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				br.<span class="keyword">write</span>(<span class="string">"test"</span>);</span><br><span class="line">				br.newLine();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个例子中用了FileOutputStream,你可以使用FileWriter或者PrintWriter代替处理txt格式的文件操作</p>
-<h2 id="2-_FileWriter">2. FileWriter</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">writeFile2</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"out.txt"</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				fw.write(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-_PrintWriter">3. PrintWriter</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">writeFile3</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">"out.txt"</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				pw.write(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		pw.close();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-_OutputStreamWriter">4. OutputStreamWriter</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> writeFile4() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> fout = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"out.txt"</span>);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fout);</span><br><span class="line">		OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(fos);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">				osw.<span class="keyword">write</span>(<span class="string">"something"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		osw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="5-_它们的区别">5. 它们的区别</h2><p>来自Java Doc</p>
-<blockquote>
-<p>FileWriter是写入字符文件的工具类。该类的构造函数假设默认的字符编码和默认的字节缓冲区大小是可以接受的。<br>如果需要自定义这些参数值，通过构建一个OutputStreamWriter基于FileOutputStream。</p>
-<p>PrintWriter打印格式化的对象表示通过文本输出流。<br>这个类实现了所有被创建在PrintWriter中的方法。它不包含写原始字节的方法，因此程序应该使用未编码的字节流。</p>
-</blockquote>
-<p>主要的区别是，PrintWriter提供格式如println和printf一些额外的方法。此外，FileWriter会抛出异常以防任何一种I/O失败。<br>PrintWriter方法不抛出IOException，它们设置一个可使用checkerror()获得的boolean型flag位。PrintWriter在每个被写入的数据字节后自动调用flush。涉及到FileWriter，调用者需要注意使用flush。</p>
-<p><a href="http://www.programcreek.com/2011/03/java-write-to-a-file-code-example/" target="_blank" rel="external">原文链接</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1303,7 +1293,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1317,7 +1307,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
