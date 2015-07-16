@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   
   <title><![CDATA[Courage Me]]></title>
-  <subtitle><![CDATA[To err is human; to forgive,divine.]]></subtitle>
+  <subtitle><![CDATA[Talk is cheap,show me the code!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com//"/>
-  <updated>2015-07-12T15:50:20.000Z</updated>
+  <updated>2015-07-16T15:53:56.000Z</updated>
   <id>http://yoursite.com//</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Top 10 Java中常用于Array的方法]]></title>
+    <link href="http://yoursite.com/2015/07/16/Top-10-Java%E4%B8%AD%E5%B8%B8%E7%94%A8%E4%BA%8EArray%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2015/07/16/Top-10-Java中常用于Array的方法/</id>
+    <published>2015-07-16T15:26:36.000Z</published>
+    <updated>2015-07-16T15:53:56.000Z</updated>
+    <content type="html"><![CDATA[<p>下面是经常在Java Array中用到的10个方法。在StackOverFlow上被提出最多的问题。</p>
+<h2 id="1-_声明一个数组">1. 声明一个数组</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>[] aArray = <span class="keyword">new</span> <span class="built_in">String</span>[<span class="number">5</span>];</span><br><span class="line"><span class="built_in">String</span>[] bArray = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>&#125;;</span><br><span class="line"><span class="built_in">String</span>[] cArray = <span class="keyword">new</span> <span class="built_in">String</span>[]&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="2-_打印一个数组">2. 打印一个数组</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int[] intArray = &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line">String intArrayString = Arrays.<span class="keyword">toString</span>(intArray);</span><br><span class="line">System.<span class="keyword">out</span>.println(intArray);</span><br><span class="line"><span class="comment">// [I@7150bd4d</span></span><br><span class="line">System.<span class="keyword">out</span>.println(intArrayString);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//foreach</span></span><br><span class="line"><span class="keyword">for</span>(int <span class="keyword">n</span> : intArray) &#123;</span><br><span class="line">	System.<span class="keyword">out</span>.<span class="keyword">print</span>(<span class="keyword">n</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-_用array创建一个list">3. 用array创建一个list</h2><p><strong>Arrays.asList(stringArray)</strong>传入一个数组，返回一个list<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span>[] stringArray = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span> &#125;;</span><br><span class="line">ArrayList&lt;<span class="keyword">String</span>&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;(Arrays.asList(stringArray));</span><br><span class="line">System.out.<span class="built_in">println</span>(arrayList);</span><br><span class="line"><span class="comment">// [a, b, c, d, e]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4-_连接两个数组(首尾连接)">4. 连接两个数组(首尾连接)</h2><p>用到apache一个jar包   commons-lang3-3.4.jar<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] intArray2 = &#123; <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] combinedIntArray = ArrayUtils.addAll(intArray, intArray2);</span><br><span class="line"><span class="comment">// combinedIntArray &#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10 &#125;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="5-_数组中插入分割字符">5. 数组中插入分割字符</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// containing the provided list of elements</span></span><br><span class="line"><span class="comment">// Apache common lang</span></span><br><span class="line"><span class="keyword">String</span> j = StringUtils.<span class="built_in">join</span>(<span class="keyword">new</span> <span class="keyword">String</span>[] &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span> &#125;, <span class="string">"|"</span>);</span><br><span class="line">System.out.<span class="built_in">println</span>(j);</span><br><span class="line"><span class="comment">// a| b| c</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-_ArrayList_转换_Array">6. ArrayList 转换 Array</h2><p>思路：用到List.toArray(array)方法<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span>[] stringArray = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span> &#125;;</span><br><span class="line">ArrayList&lt;<span class="keyword">String</span>&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;(Arrays.asList(stringArray));</span><br><span class="line"><span class="comment">//创建一个和list的大小一致的空的数组</span></span><br><span class="line"><span class="keyword">String</span>[] stringArr = <span class="keyword">new</span> <span class="keyword">String</span>[arrayList.<span class="built_in">size</span>()];</span><br><span class="line"><span class="comment">//list 2 array</span></span><br><span class="line">arrayList.toArray(stringArr);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">String</span> s : stringArr)</span><br><span class="line">	System.out.<span class="built_in">println</span>(s);</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-_Array_2_Set">7. Array 2 Set</h2><p>set的构造函数可传入一个集合<br>  array to list  ;  new HsahSet(list)<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//set是无序的</span></span><br><span class="line"><span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; <span class="literal">set</span> = <span class="keyword">new</span> HashSet&lt;<span class="built_in">String</span>&gt;(Arrays.asList(stringArray));</span><br><span class="line">System.out.println(<span class="literal">set</span>);</span><br><span class="line"><span class="comment">//[d, e, b, c, a]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="8-_反转Array">8. 反转Array</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">ArrayUtils.<span class="keyword">reverse</span>(intArray);</span><br><span class="line">System.out.<span class="keyword">println</span>(Arrays.toString(intArray));</span><br><span class="line"><span class="comment">//[5, 4, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+<h2 id="9-_数组中删除一个元素">9. 数组中删除一个元素</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line"><span class="comment">//create a new array</span></span><br><span class="line"><span class="keyword">int</span>[] removed = ArrayUtils.removeElement(intArray, <span class="number">3</span>);</span><br><span class="line">System.<span class="keyword">out</span>.println(Arrays.toString(removed));</span><br></pre></td></tr></table></figure>
+<h2 id="10-_检查数组中是否包含某个值">10. 检查数组中是否包含某个值</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] stringArray = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span> &#125;;</span><br><span class="line"><span class="keyword">boolean</span> b = Arrays.<span class="keyword">asList</span>(stringArray).contains(<span class="string">"a"</span>);</span><br><span class="line">System.out.<span class="keyword">println</span>(b);</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="keyword">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">boolean</span> a = Arrays.<span class="keyword">asList</span>(numbers).contains(<span class="number">1</span>);</span><br><span class="line">System.out.<span class="keyword">println</span>();</span><br><span class="line"><span class="comment">//return false;</span></span><br></pre></td></tr></table></figure>
+<p>上述String[] 是ok的，然而int[]却返回false。原因是Arrays.asList(array);这个方法的返回值<br>当array是int类型的时候，返回的是List<int[]>，而不是List<integer>。所以传入的值不会和int[]相等的。<br>此方法 不适用于int[]。</integer></int[]></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>下面是经常在Java Array中用到的10个方法。在StackOverFlow上被提出最多的问题。</p>
+<h2 id="1-_声明一个数组">1. 声明一个数组</h2><figure class="highlight dart"><table><tr><td cla]]>
+    </summary>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="Top 10 Series" scheme="http://yoursite.com/categories/Top-10-Series/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Java中equals()和hashCode()的契约]]></title>
@@ -668,23 +698,6 @@
       <category term="Reading List" scheme="http://yoursite.com/tags/Reading-List/"/>
     
       <category term="读书清单" scheme="http://yoursite.com/categories/%E8%AF%BB%E4%B9%A6%E6%B8%85%E5%8D%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[A Simple Video]]></title>
-    <link href="http://yoursite.com/2015/06/18/A-Simple-Video/"/>
-    <id>http://yoursite.com/2015/06/18/A-Simple-Video/</id>
-    <published>2015-06-18T15:06:17.000Z</published>
-    <updated>2015-06-18T15:10:22.000Z</updated>
-    <content type="html"><![CDATA[<video id="video" controls preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png"><br>      <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4"><br>      <source id="webm" src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm"><br>      <source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg"><br>      <p>Your user agent does not support the HTML5 Video element.</p><br></video>]]></content>
-    <summary type="html">
-    <![CDATA[<video id="video" controls preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png"><br>      <source id="mp4" src="http://medi]]>
-    </summary>
-    
-      <category term="video" scheme="http://yoursite.com/tags/video/"/>
-    
-      <category term="Classical Fragment" scheme="http://yoursite.com/categories/Classical-Fragment/"/>
     
   </entry>
   
