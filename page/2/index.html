@@ -340,6 +340,101 @@
           
           
             
+              <a class="post-title-link" href="/2015/07/02/Java中如何把Array转化成ArrayList/">
+                Java中如何把Array转化成ArrayList
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/02/Java中如何把Array转化成ArrayList/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/02/Java中如何把Array转化成ArrayList/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>本文分析了在Stack Overflow上的问题的答案。问这个问题的人得到了很多的赞，这可以让他有权限做大量的事情在Stack Overflow。这对我来说不是很有意义，但是让我们先来看看这个问题吧。</p>
+<p>**问题是：如何将下面的 数组转换成ArrayList集合？</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Element<span class="keyword">[</span>]<span class="instruction"> array </span>= &#123;new<span class="function"> Element(</span>1<span class="function">)</span>,new<span class="function"> Element(</span>2<span class="function">)</span>,new<span class="function"> Element(</span>3<span class="function">)</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1-_最流行和被接受的答案">1. 最流行和被接受的答案</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Element&gt; arrayList = new ArrayList&lt;Element&gt;<span class="list">(<span class="keyword">Arrays</span>.asList<span class="list">(<span class="keyword">array</span>)</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>首先，我们看下Java Doc中关于ArrayList的构造函数的描述：</p>
+<pre><code>&gt; <span class="type">ArrayList</span>(<span class="type">Collection</span> &lt; ? extends E &gt; c) : <span class="type">Constructs</span> a list containing the elements <span class="keyword">of</span> the specified collection, <span class="keyword">in</span> the order they are returned by the collection's <span class="keyword">iterator</span>.
+</code></pre><p>所以构造函数做了下面两件事：</p>
+<ol>
+<li>把Collection转换成Array</li>
+<li>复制Array到ArrayList自己的备份数组“elementData”中<br>下面是ArrayList的构造器的源代码</li>
+</ol>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">public ArrayList(Collection&lt;? <span class="keyword">extends</span> E&gt; c ) &#123;</span><br><span class="line">		elementData = c<span class="string">.toArray()</span>;</span><br><span class="line">		size = elementData<span class="string">.length</span>;</span><br><span class="line">		if(elementData<span class="string">.getClass()</span> != Object[]<span class="string">.class)</span> &#123;</span><br><span class="line">				elementData = Arrays<span class="string">.copyOf(elementData</span>, size, Object[]<span class="string">.class)</span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-_第二流行的答案">2. 第二流行的答案</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="subst">&lt;</span>Element<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> Arrays<span class="built_in">.</span>asList(<span class="built_in">array</span>);</span><br></pre></td></tr></table></figure>
+<p>这不是最好的，因为从aslist()返回list的大小是固定的。实际上返回的list是不java.util.ArrayList，而是私有静态类内部定义的java.util.Arrays。我们知道ArrayList基本实现为一个Array，从aslist()返回的list是由原来的Array返回的一个固定大小的list。这样，如果从返回的list中添加或删除元素，将抛出UnsupportedOperationException。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">list</span>.<span class="built_in">add</span>(<span class="keyword">new</span> Element(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java<span class="class">.lang</span><span class="class">.ClassCastException</span>: java<span class="class">.util</span><span class="class">.Arrays</span><span class="variable">$ArrayList</span> cannot be cast to java<span class="class">.util</span><span class="class">.ArrayList</span></span><br><span class="line">	at collection<span class="class">.ConvertArray</span><span class="class">.main</span>(ConvertArray<span class="class">.java</span>:<span class="number">22</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="3-_另外一个的答案">3. 另外一个的答案</h2><p>这个答案来自于网友的评论</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Element<span class="keyword">[</span>]<span class="instruction"> array </span>= &#123;new<span class="function"> Element(</span>1<span class="function">)</span>,<span class="instruction"> new </span>Element(2<span class="function">)</span>&#125;;</span><br><span class="line">List&lt;element&gt; list =<span class="instruction"> new </span>ArrayList&lt;element&gt;(array.length<span class="function">)</span>;</span><br><span class="line">Collections.addAll(list, array<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.programcreek.com/2013/04/how-to-convert-array-to-arraylist-in-java/" target="_blank" rel="external">原文链接</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/02/随机生成手机号码/">
                 随机生成手机号码
               </a>
@@ -1139,91 +1234,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/22/readingList/">
-                2015下半年读书清单
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-22
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/读书清单/">读书清单</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/22/readingList/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/22/readingList/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>前几天网上看到书店打折，心血来潮的就买了很多书，计划着下半年有时间一定要看完这些书，平时上班虽然很忙，但发现在学到的知识都是零乱的，为了能够系统的去学和增加阅读习惯，希望能多看看书，涨涨知识，趁着年轻多读点书。</p>
-<ol>
-<li>The Presentation Secrets Of Steve Jobs </li>
-<li>Asking The Right Questions </li>
-<li>Programming Pearls </li>
-<li>Clean Code</li>
-<li>Effective Java </li>
-<li>Code Complete</li>
-</ol>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1262,7 +1272,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1276,7 +1286,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

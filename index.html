@@ -340,6 +340,99 @@
           
           
             
+              <a class="post-title-link" href="/2015/07/20/Top-10-Java常见的Exceptions/">
+                Top 10 Java常见的Exceptions
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-20
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Top-10-Series/">Top 10 Series</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/20/Top-10-Java常见的Exceptions/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/20/Top-10-Java常见的Exceptions/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>这篇文章总结了关于Java Exceptions 10个最常被问的问题</p>
+<h2 id="1-_Checked_vs_UnChecked">1. Checked vs UnChecked</h2><p>简言之，检查异常必须在一个方法中被显式捕获，或者在方法的throws从句中被声明。非检查时异常是由于除数为0、空指针异常等问题导致的。非检查时异常特别重要，因为你希望其他使用你的API的开发者知道如何处理这些异常。<br>例如，IOException是一种常见的检查时异常，运行时异常是一种非检查时异常。在读余下的文章之前你可以看下<a href="http://www.programcreek.com/2009/02/diagram-for-hierarchy-of-exception-classes/" target="_blank" rel="external">Java Exception Hierarchy Diagram</a></p>
+<h2 id="2-_管理异常的最佳实践">2. 管理异常的最佳实践</h2><p>如果一个Exception可以被合理的处理，那么它就应该被caught，否则就应该被thrown抛出。</p>
+<h2 id="3-_为什么在try中声明的变量不能在catch和finally语句块的中被调用？">3. 为什么在try中声明的变量不能在catch和finally语句块的中被调用？</h2><p>下面的代码中，字符串s在try块中被声明，不能被用在catch从句中。如下代码不能通过编译。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"path"</span>);</span><br><span class="line">	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="keyword">file</span>);</span><br><span class="line">	String s = <span class="string">"insideTry"</span>;</span><br><span class="line">&#125;<span class="keyword">catch</span>(FileNotFoundException e)&#123;</span><br><span class="line">	e.printStactTrace();</span><br><span class="line">	System.out.<span class="keyword">print</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原因是你不知道在try语句块中Exception什么时候被抛出。对于一些特殊的例子来说，异常很有可能会在对象声明之前被抛出。</p>
+<h2 id="4-_为什么Double-parseDouble(null)和Integer-parseInt(null)抛出不同的异常?">4. 为什么Double.parseDouble(null)和Integer.parseInt(null)抛出不同的异常?</h2><p>首先，它们确实抛出不同的异常。这是JDK的问题，主要是它们是不同的开发人员开发的，不用多想。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Integer.parseInt(<span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//throws java.lang.NumberFormatException: null</span></span><br><span class="line"><span class="keyword">Double</span>.parseDouble(<span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//throws java.lang.NullPointerException</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="5-_Java中常见的运行时异常">5. Java中常见的运行时异常</h2><p>这里给出一部分，IllegalArgumentException，ArrayIndexOutBoundsException<br>它们可以用于如下语句条件不满足的时候。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(obj == <span class="literal">null</span>)&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"obj can not be null"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-_我们可以在一个catch从句中捕捉多个Exception吗？">6. 我们可以在一个catch从句中捕捉多个Exception吗？</h2><p>答案是肯定的。只要这些异常类在类的继承中都继承同一个父类，你可以只用父类就可以了。</p>
+<h2 id="7-_Java中构造函数可以抛出异常吗？">7. Java中构造函数可以抛出异常吗？</h2><p>答案是肯定的，构造函数是一种特殊的函数。</p>
+<h2 id="8-_在finally从句中抛出异常。">8. 在finally从句中抛出异常。</h2><p>做下面的处理是合法的<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> mani(String[] args) &#123;</span><br><span class="line">	<span class="keyword">File</span> file1 = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"path1"</span>);</span><br><span class="line">	<span class="keyword">File</span> file2 = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"path2"</span>);</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		FileInputStream fis = <span class="keyword">new</span> FileInputStream(file1);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			FileInputStream fis = <span class="keyword">new</span> FileInputStream(file2);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是要有更好的代码可读性，你应该把嵌入式的try-catch块包起来作为一种新方法，然后将方法调用放在finally一个子句中。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> mani(String[] args) &#123;</span><br><span class="line">	<span class="keyword">File</span> file1 = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"path1"</span>);</span><br><span class="line">	<span class="keyword">File</span> file2 = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"path2"</span>);</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		FileInputStream fis = <span class="keyword">new</span> FileInputStream(file1);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		methodThrowException();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="9-_在finally语句块中可以用return关键字吗？">9. 在finally语句块中可以用return关键字吗？</h2><p>可以。</p>
+<h2 id="10-_为什么开发者默认处理异常？">10. 为什么开发者默认处理异常？</h2><pre><code>有这么多的时间段类似的代码段发生。如果正确处理异常是非常重要的，为什么开发人员一直这样做？
+</code></pre><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	....</span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="built_in">Exception</span> <span class="literal">e</span>) &#123;</span><br><span class="line">	<span class="literal">e</span>.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>忽略虽然很容易。频繁发生并不意味着正确性。</p>
+<p><a href="http://www.programcreek.com/2013/10/top-10-questions-about-java-exceptions/" target="_blank" rel="external">原文链接</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/16/Top-10-Java中常用于Array的方法/">
                 Top 10 Java中常用于Array的方法
               </a>
@@ -393,11 +486,11 @@
 <h2 id="4-_连接两个数组(首尾连接)">4. 连接两个数组(首尾连接)</h2><p>用到apache一个jar包   commons-lang3-3.4.jar<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] intArray2 = &#123; <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] combinedIntArray = ArrayUtils.addAll(intArray, intArray2);</span><br><span class="line"><span class="comment">// combinedIntArray &#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10 &#125;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="5-_数组中插入分割字符">5. 数组中插入分割字符</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// containing the provided list of elements</span></span><br><span class="line"><span class="comment">// Apache common lang</span></span><br><span class="line"><span class="keyword">String</span> j = StringUtils.<span class="built_in">join</span>(<span class="keyword">new</span> <span class="keyword">String</span>[] &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span> &#125;, <span class="string">"|"</span>);</span><br><span class="line">System.out.<span class="built_in">println</span>(j);</span><br><span class="line"><span class="comment">// a| b| c</span></span><br></pre></td></tr></table></figure>
 <h2 id="6-_ArrayList_转换_Array">6. ArrayList 转换 Array</h2><p>思路：用到List.toArray(array)方法<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span>[] stringArray = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span> &#125;;</span><br><span class="line">ArrayList&lt;<span class="keyword">String</span>&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;(Arrays.asList(stringArray));</span><br><span class="line"><span class="comment">//创建一个和list的大小一致的空的数组</span></span><br><span class="line"><span class="keyword">String</span>[] stringArr = <span class="keyword">new</span> <span class="keyword">String</span>[arrayList.<span class="built_in">size</span>()];</span><br><span class="line"><span class="comment">//list 2 array</span></span><br><span class="line">arrayList.toArray(stringArr);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">String</span> s : stringArr)</span><br><span class="line">	System.out.<span class="built_in">println</span>(s);</span><br></pre></td></tr></table></figure></p>
-<h2 id="7-_Array_2_Set">7. Array 2 Set</h2><p>set的构造函数可传入一个集合<br>  array to list  ;  new HsahSet(list)<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//set是无序的</span></span><br><span class="line"><span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; <span class="literal">set</span> = <span class="keyword">new</span> HashSet&lt;<span class="built_in">String</span>&gt;(Arrays.asList(stringArray));</span><br><span class="line">System.out.println(<span class="literal">set</span>);</span><br><span class="line"><span class="comment">//[d, e, b, c, a]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-_Array转换Set">7. Array转换Set</h2><p>set的构造函数可传入一个集合<br>  array to list  ;  new HsahSet(list)<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//set是无序的</span></span><br><span class="line"><span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; <span class="literal">set</span> = <span class="keyword">new</span> HashSet&lt;<span class="built_in">String</span>&gt;(Arrays.asList(stringArray));</span><br><span class="line">System.out.println(<span class="literal">set</span>);</span><br><span class="line"><span class="comment">//[d, e, b, c, a]</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="8-_反转Array">8. 反转Array</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">ArrayUtils.<span class="keyword">reverse</span>(intArray);</span><br><span class="line">System.out.<span class="keyword">println</span>(Arrays.toString(intArray));</span><br><span class="line"><span class="comment">//[5, 4, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
 <h2 id="9-_数组中删除一个元素">9. 数组中删除一个元素</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line"><span class="comment">//create a new array</span></span><br><span class="line"><span class="keyword">int</span>[] removed = ArrayUtils.removeElement(intArray, <span class="number">3</span>);</span><br><span class="line">System.<span class="keyword">out</span>.println(Arrays.toString(removed));</span><br></pre></td></tr></table></figure>
-<h2 id="10-_检查数组中是否包含某个值">10. 检查数组中是否包含某个值</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] stringArray = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span> &#125;;</span><br><span class="line"><span class="keyword">boolean</span> b = Arrays.<span class="keyword">asList</span>(stringArray).contains(<span class="string">"a"</span>);</span><br><span class="line">System.out.<span class="keyword">println</span>(b);</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="keyword">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">boolean</span> a = Arrays.<span class="keyword">asList</span>(numbers).contains(<span class="number">1</span>);</span><br><span class="line">System.out.<span class="keyword">println</span>();</span><br><span class="line"><span class="comment">//return false;</span></span><br></pre></td></tr></table></figure>
-<p>上述String[] 是ok的，然而int[]却返回false。原因是Arrays.asList(array);这个方法的返回值<br>当array是int类型的时候，返回的是List<int[]>，而不是List<integer>。所以传入的值不会和int[]相等的。<br>此方法 不适用于int[]。</integer></int[]></p>
+<h2 id="10-_检查数组中是否包含某个值">10. 检查数组中是否包含某个值</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] stringArray = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span> &#125;;</span><br><span class="line"><span class="keyword">boolean</span> b = Arrays.<span class="keyword">asList</span>(stringArray).contains(<span class="string">"a"</span>);</span><br><span class="line">System.out.<span class="keyword">println</span>(b);</span><br><span class="line"><span class="comment">//return true</span></span><br><span class="line"><span class="keyword">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">boolean</span> a = Arrays.<span class="keyword">asList</span>(numbers).contains(<span class="number">1</span>);</span><br><span class="line">System.out.<span class="keyword">println</span>();</span><br><span class="line"><span class="comment">//return false;</span></span><br></pre></td></tr></table></figure>
+<p>上述String[]返回true，然而int[]却返回false。原因是Arrays.asList(array)这个方法的返回值类型。<br>当array是int类型的时候，返回的是List<int[]>，而不是List<integer>。所以传入的值不会和int[]相等的。<br>此方法 不适用于int[]。</integer></int[]></p>
 
         
       
@@ -1169,101 +1262,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/07/02/Java中如何把Array转化成ArrayList/">
-                Java中如何把Array转化成ArrayList
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-07-02
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Simple-Java/">Simple Java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/02/Java中如何把Array转化成ArrayList/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/02/Java中如何把Array转化成ArrayList/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>本文分析了在Stack Overflow上的问题的答案。问这个问题的人得到了很多的赞，这可以让他有权限做大量的事情在Stack Overflow。这对我来说不是很有意义，但是让我们先来看看这个问题吧。</p>
-<p>**问题是：如何将下面的 数组转换成ArrayList集合？</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Element<span class="keyword">[</span>]<span class="instruction"> array </span>= &#123;new<span class="function"> Element(</span>1<span class="function">)</span>,new<span class="function"> Element(</span>2<span class="function">)</span>,new<span class="function"> Element(</span>3<span class="function">)</span> &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="1-_最流行和被接受的答案">1. 最流行和被接受的答案</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Element&gt; arrayList = new ArrayList&lt;Element&gt;<span class="list">(<span class="keyword">Arrays</span>.asList<span class="list">(<span class="keyword">array</span>)</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>首先，我们看下Java Doc中关于ArrayList的构造函数的描述：</p>
-<pre><code>&gt; <span class="type">ArrayList</span>(<span class="type">Collection</span> &lt; ? extends E &gt; c) : <span class="type">Constructs</span> a list containing the elements <span class="keyword">of</span> the specified collection, <span class="keyword">in</span> the order they are returned by the collection's <span class="keyword">iterator</span>.
-</code></pre><p>所以构造函数做了下面两件事：</p>
-<ol>
-<li>把Collection转换成Array</li>
-<li>复制Array到ArrayList自己的备份数组“elementData”中<br>下面是ArrayList的构造器的源代码</li>
-</ol>
-<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">public ArrayList(Collection&lt;? <span class="keyword">extends</span> E&gt; c ) &#123;</span><br><span class="line">		elementData = c<span class="string">.toArray()</span>;</span><br><span class="line">		size = elementData<span class="string">.length</span>;</span><br><span class="line">		if(elementData<span class="string">.getClass()</span> != Object[]<span class="string">.class)</span> &#123;</span><br><span class="line">				elementData = Arrays<span class="string">.copyOf(elementData</span>, size, Object[]<span class="string">.class)</span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-_第二流行的答案">2. 第二流行的答案</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="subst">&lt;</span>Element<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> Arrays<span class="built_in">.</span>asList(<span class="built_in">array</span>);</span><br></pre></td></tr></table></figure>
-<p>这不是最好的，因为从aslist()返回list的大小是固定的。实际上返回的list是不java.util.ArrayList，而是私有静态类内部定义的java.util.Arrays。我们知道ArrayList基本实现为一个Array，从aslist()返回的list是由原来的Array返回的一个固定大小的list。这样，如果从返回的list中添加或删除元素，将抛出UnsupportedOperationException。</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">list</span>.<span class="built_in">add</span>(<span class="keyword">new</span> Element(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java<span class="class">.lang</span><span class="class">.ClassCastException</span>: java<span class="class">.util</span><span class="class">.Arrays</span><span class="variable">$ArrayList</span> cannot be cast to java<span class="class">.util</span><span class="class">.ArrayList</span></span><br><span class="line">	at collection<span class="class">.ConvertArray</span><span class="class">.main</span>(ConvertArray<span class="class">.java</span>:<span class="number">22</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="3-_另外一个的答案">3. 另外一个的答案</h2><p>这个答案来自于网友的评论</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Element<span class="keyword">[</span>]<span class="instruction"> array </span>= &#123;new<span class="function"> Element(</span>1<span class="function">)</span>,<span class="instruction"> new </span>Element(2<span class="function">)</span>&#125;;</span><br><span class="line">List&lt;element&gt; list =<span class="instruction"> new </span>ArrayList&lt;element&gt;(array.length<span class="function">)</span>;</span><br><span class="line">Collections.addAll(list, array<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.programcreek.com/2013/04/how-to-convert-array-to-arraylist-in-java/" target="_blank" rel="external">原文链接</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1302,7 +1300,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1316,7 +1314,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
