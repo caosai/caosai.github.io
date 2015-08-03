@@ -383,7 +383,7 @@
       
         <p>Java I/O的总的类的数量很多，所以很容糊涂什么时候用哪一种。下面有两个方法介绍按行读取文件的操作。</p>
 <h2 id="方法一：">方法一：</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> readFile1(File fin) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">	FileInputStream fis = <span class="keyword">new</span> FileInputStream(fin);</span><br><span class="line">	<span class="comment">//Construct BufferedReader from InputStreamReader</span></span><br><span class="line">	<span class="keyword">BufferedReader</span> br = <span class="keyword">new</span> BufferReader(<span class="keyword">new</span> InputStreamReader(fis));</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">while</span>((<span class="built_in">line</span> = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">		System.out.<span class="built_in">print</span>(<span class="built_in">line</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="方法二：">方法二：</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> readFile2(File fin) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// Construct BufferedReader from FileReader</span></span><br><span class="line">	BufferedRead br =<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> FileReader(fis));</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">	While((<span class="built_in">line</span> = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="built_in">line</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法二：">方法二：</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> readFile2(File fin) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// Construct BufferedReader from FileReader</span></span><br><span class="line">	<span class="keyword">BufferedReader</span> br =<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> FileReader(fis));</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">	While((<span class="built_in">line</span> = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="built_in">line</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="下面的代码取文件路径">下面的代码取文件路径</h2><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//<span class="keyword">use</span> . <span class="keyword">to</span> get current directory</span><br><span class="line"><span class="keyword">File</span> dir = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"."</span>);</span><br><span class="line"><span class="keyword">File</span> fin = <span class="keyword">new</span> <span class="keyword">File</span>(dir.getCanonicalPath() + <span class="keyword">File</span>.separator + <span class="string">"in.txt"</span>);</span><br><span class="line">readFile1(fin);</span><br><span class="line">readFile2(fin);</span><br></pre></td></tr></table></figure>
 <p>这两个例子都是为了按行读取一个文本文件。</p>
 <p>这两种方法之间的区别是用什么区构造BufferedReader。方法1使用 InputStreamReader，方法2使用有FileReader。这两者的区别是什么？</p>
@@ -488,21 +488,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

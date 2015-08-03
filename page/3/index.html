@@ -340,6 +340,163 @@
           
           
             
+              <a class="post-title-link" href="/2015/06/24/字符串索引越界异常/">
+                字符串索引越界异常
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-06-24
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/java/">java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/06/24/字符串索引越界异常/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/24/字符串索引越界异常/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><strong>java.lang.StringIndexOutOfBoundsException: String index out of range: -10</strong></p>
+<p>查看日志看到这个返回异常消息时，也不知道问题出在哪里。后来想到有调用过String.subString()方法，当时在程序中截取字符串的时候把截取的位置写死了，以为传过来的被截字符串长度是固定的。后来传过来的值变小了，就出现了index 越界的情况。</p>
+<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">  <span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/06/23/java-Long-to-Integer/">
+                java.lang.Long cannot be cast to java.lang.Integer
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-06-23
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/java/">java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/06/23/java-Long-to-Integer/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/23/java-Long-to-Integer/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>今天在做项目的时候，遇到的一个异常，逻辑里面抛出的。<br>具体原因是从数据库中查询出一个<strong>record</strong>，从这个记录中取出ID属性，由于在表中ID是自增的，查询出的结果竟然是<strong>Long</strong>类型，刚好我在程序中用int 类型的变量来接收Long类型的ID值，导致出现类型转换异常问题，解决方案：将Long类型转换成String，经过String转换成int类型即可。<br><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//<span class="keyword">map</span>.get(<span class="string">"ID"</span>)从数据库中查询出的结果转换成<span class="keyword">map</span>对象</span><br><span class="line"><span class="typename">String</span> tmp = <span class="typename">String</span>.valueOf(<span class="keyword">map</span>.get(<span class="string">"ID"</span>);</span><br><span class="line">int id = <span class="typename">Integer</span>.parseInt(tmp);</span><br></pre></td></tr></table></figure></p>
+<hr>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/06/22/readingList/">
                 2015下半年读书清单
               </a>
@@ -681,21 +838,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

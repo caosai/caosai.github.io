@@ -340,6 +340,161 @@
           
           
             
+              <a class="post-title-link" href="/2015/07/05/Java中检查数组中是否存在某个值的方法/">
+                Java中检查数组中是否存在某个值的方法
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/05/Java中检查数组中是否存在某个值的方法/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/05/Java中检查数组中是否存在某个值的方法/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>检查数组中是否存在某一个值的方法有三种方式<br>    foreach：for循环<br>    Arrays.asList(arr);<br>    Set</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * java中检查一个数组中是否含有某个值的方法</span><br><span class="line"> * @author cslience</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> class ArrayUtils &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//useLoop 推荐这种方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> isContainsValueLoop(<span class="keyword">String</span>[] arr, <span class="keyword">String</span> targetValue) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">String</span> s : arr) &#123;</span><br><span class="line">			<span class="keyword">if</span>(s.equals(targetValue)) </span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//useList</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> isContainsValueList(<span class="keyword">String</span>[] arr, <span class="keyword">String</span> targetValue) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> Arrays.asList(arr).contains(targetValue);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> isContainsValueSet(<span class="keyword">String</span>[] arr, <span class="keyword">String</span> targetValue) &#123;</span><br><span class="line">		</span><br><span class="line">		Set&lt;<span class="keyword">String</span>&gt; <span class="built_in">set</span> = <span class="keyword">new</span> HashSet&lt;<span class="keyword">String</span>&gt;(Arrays.asList(arr));</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">set</span>.contains(targetValue);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//5,1k,10k  time complexity</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">String</span>[] arr = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>&#125;;</span><br><span class="line">		<span class="keyword">String</span> targetValue = <span class="string">"e"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">long</span> begin = System.nanoTime();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			isContainsValueLoop(arr, targetValue);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">long</span> end = System.nanoTime();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">long</span> cost = end - begin;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"loop cost time = "</span> + cost/<span class="number">1000</span>);</span><br><span class="line">		</span><br><span class="line">		begin = System.nanoTime();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			isContainsValueSet(arr, targetValue);</span><br><span class="line">		&#125;</span><br><span class="line">		end = System.nanoTime();</span><br><span class="line">		</span><br><span class="line">		cost = end - begin;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"set cost time = "</span> + cost/<span class="number">1000</span>);</span><br><span class="line">		</span><br><span class="line">		begin = System.nanoTime();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			isContainsValueList(arr, targetValue);</span><br><span class="line">		&#125;</span><br><span class="line">		end = System.nanoTime();</span><br><span class="line">		</span><br><span class="line">		cost = end - begin;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"list cost time = "</span> + cost/<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/07/03/Java中PrintMap/">
+                Java中PrintMap
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-03
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/03/Java中PrintMap/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/03/Java中PrintMap/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>给一个数组，统计某些值出现的次数，通过HashMap来处理</p>
+<p>map的排序 HashMap是无序的，如果想给一个集合排序的话<br>有两种方式：<br>第一种：转换成TreeMap  ：使用比较器：按照key/value排序<br>第二种；转换成List  ：使用比较器：也可以按照key/value排序</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">import</span> java.util.Comparator;</span><br><span class="line"><span class="literal">import</span> java.util.HashMap;</span><br><span class="line"><span class="literal">import</span> java.util.<span class="built_in">Iterator</span>;</span><br><span class="line"><span class="literal">import</span> java.util.<span class="built_in">Map</span>;</span><br><span class="line"><span class="literal">import</span> java.util.TreeMap;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">PrintMap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*String[] test = &#123;"a","a","a","a","b","b","c",&#125;;</span><br><span class="line">		Map&lt;String, Integer&gt; map = counterMap(test);</span><br><span class="line">		printMapForeach(map);</span><br><span class="line">		System.out.println("------------------------------");</span><br><span class="line">		printMap(map);*/</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		sortTreeMapByValue();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment"><span class="markdown">/**</span><br><span class="line"><span class="code">	 * 统一数组中各个值出现的次数</span></span><br><span class="line"><span class="code">	 * @param strArray</span></span><br><span class="line"><span class="code">	 */</span></span></span></span><br><span class="line">	public <span class="literal">static</span> <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Integer&gt; counterMap(<span class="built_in">String</span>[] strArray) &#123;</span><br><span class="line">		HashMap&lt;<span class="built_in">String</span>, Integer&gt; countMap = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>, Integer&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">String</span> a : strArray) &#123;</span><br><span class="line">			<span class="keyword">if</span>(countMap.keySet().contains(a))&#123;</span><br><span class="line">				countMap.put(a, countMap.<span class="literal">get</span>(a)+<span class="number">1</span>);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				countMap.put(a, <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> countMap;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//HashMap 无序的 无法直接排序--需要转换list  Collections.sort(list,Comparator);</span></span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> sortHashMapByKey() &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> sortHashMapByValue() &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//TreeMap 有序的  new TreeMap(new Comparator())</span></span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> sortTreeMapByValue() &#123;</span><br><span class="line">		HashMap&lt;<span class="built_in">String</span>, Integer&gt; countMap = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>, Integer&gt;();</span><br><span class="line">		<span class="comment">//add a lot of entries</span></span><br><span class="line">		countMap.put(<span class="string">"a"</span>, <span class="number">10</span>);</span><br><span class="line">		countMap.put(<span class="string">"b"</span>, <span class="number">20</span>);</span><br><span class="line">		 </span><br><span class="line">		ValueComparator vc =  <span class="keyword">new</span> ValueComparator(countMap);</span><br><span class="line">		TreeMap&lt;<span class="built_in">String</span>,Integer&gt; sortedMap = <span class="keyword">new</span> TreeMap&lt;<span class="built_in">String</span>,Integer&gt;(vc);</span><br><span class="line">		 </span><br><span class="line">		sortedMap.putAll(countMap);</span><br><span class="line">		printMap(sortedMap);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment"><span class="markdown">/**</span><br><span class="line"><span class="code">	 * 打印map</span></span><br><span class="line"><span class="code">	 * @param mp</span></span><br><span class="line"><span class="code">	 */</span></span></span></span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> printMap(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Integer&gt; mp) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">Iterator</span>&lt;?&gt; it = mp.entrySet().iterator();</span><br><span class="line">		<span class="keyword">while</span>(it.hasNext()) &#123;</span><br><span class="line">			<span class="annotation">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">			<span class="built_in">Map</span>.Entry&lt;<span class="built_in">String</span>, Integer&gt; pairs = (<span class="built_in">Map</span>.Entry&lt;<span class="built_in">String</span>, Integer&gt;) it.next();</span><br><span class="line">			System.out.println(pairs.getKey() + <span class="string">" = "</span> + pairs.getValue());</span><br><span class="line">			it.remove();<span class="comment">//移除该元素</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment"><span class="markdown">/**</span><br><span class="line"><span class="code">	 * foreach 打印map</span></span><br><span class="line"><span class="code">	 * @param mp</span></span><br><span class="line"><span class="code">	 */</span></span></span></span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> printMapForeach(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Integer&gt; mp) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">Map</span>.Entry&lt;<span class="built_in">String</span>, Integer&gt; entry : mp.entrySet()) &#123;</span><br><span class="line">			System.out.println(entry.getKey() + <span class="string">" = "</span> + entry.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ValueComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Integer&gt; base;</span><br><span class="line"></span><br><span class="line">	public ValueComparator(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Integer&gt; base) &#123;</span><br><span class="line">		<span class="keyword">this</span>.base = base;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	public <span class="built_in">int</span> compare(<span class="built_in">String</span> key1, <span class="built_in">String</span> key2) &#123;</span><br><span class="line">		<span class="keyword">return</span> base.<span class="literal">get</span>(key1) - base.<span class="literal">get</span>(key2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/02/Java中如何把Array转化成ArrayList/">
                 Java中如何把Array转化成ArrayList
               </a>
@@ -651,7 +806,7 @@
         
           <p>Java I/O的总的类的数量很多，所以很容糊涂什么时候用哪一种。下面有两个方法介绍按行读取文件的操作。</p>
 <h2 id="方法一：">方法一：</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> readFile1(File fin) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">	FileInputStream fis = <span class="keyword">new</span> FileInputStream(fin);</span><br><span class="line">	<span class="comment">//Construct BufferedReader from InputStreamReader</span></span><br><span class="line">	<span class="keyword">BufferedReader</span> br = <span class="keyword">new</span> BufferReader(<span class="keyword">new</span> InputStreamReader(fis));</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">while</span>((<span class="built_in">line</span> = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">		System.out.<span class="built_in">print</span>(<span class="built_in">line</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="方法二：">方法二：</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> readFile2(File fin) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// Construct BufferedReader from FileReader</span></span><br><span class="line">	BufferedRead br =<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> FileReader(fis));</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">	While((<span class="built_in">line</span> = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="built_in">line</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法二：">方法二：</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> readFile2(File fin) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// Construct BufferedReader from FileReader</span></span><br><span class="line">	<span class="keyword">BufferedReader</span> br =<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> FileReader(fis));</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">	While((<span class="built_in">line</span> = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="built_in">line</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="下面的代码取文件路径">下面的代码取文件路径</h2><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//<span class="keyword">use</span> . <span class="keyword">to</span> get current directory</span><br><span class="line"><span class="keyword">File</span> dir = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"."</span>);</span><br><span class="line"><span class="keyword">File</span> fin = <span class="keyword">new</span> <span class="keyword">File</span>(dir.getCanonicalPath() + <span class="keyword">File</span>.separator + <span class="string">"in.txt"</span>);</span><br><span class="line">readFile1(fin);</span><br><span class="line">readFile2(fin);</span><br></pre></td></tr></table></figure>
 <p>这两个例子都是为了按行读取一个文本文件。</p>
 <p>这两种方法之间的区别是用什么区构造BufferedReader。方法1使用 InputStreamReader，方法2使用有FileReader。这两者的区别是什么？</p>
@@ -1077,163 +1232,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/24/字符串索引越界异常/">
-                字符串索引越界异常
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-24
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/java/">java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/24/字符串索引越界异常/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/24/字符串索引越界异常/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><strong>java.lang.StringIndexOutOfBoundsException: String index out of range: -10</strong></p>
-<p>查看日志看到这个返回异常消息时，也不知道问题出在哪里。后来想到有调用过String.subString()方法，当时在程序中截取字符串的时候把截取的位置写死了，以为传过来的被截字符串长度是固定的。后来传过来的值变小了，就出现了index 越界的情况。</p>
-<p>解决方法:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先做判断字符串的长度，是否比截取的字符串长</span></span><br><span class="line"><span class="built_in">String</span> testStr = <span class="string">"justfortest"</span>;</span><br><span class="line"><span class="built_in">int</span> strLen = testStr.length();</span><br><span class="line"><span class="built_in">int</span> n = input;<span class="comment">//截取后几位的字符串</span></span><br><span class="line"><span class="keyword">if</span>(strLen &lt; n) &#123;</span><br><span class="line">  <span class="comment">//特殊处理</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> resultStr = testStr.subString(strLen - <span class="number">6</span>,strLen);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/23/java-Long-to-Integer/">
-                java.lang.Long cannot be cast to java.lang.Integer
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-23
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/java/">java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/23/java-Long-to-Integer/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/23/java-Long-to-Integer/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>今天在做项目的时候，遇到的一个异常，逻辑里面抛出的。<br>具体原因是从数据库中查询出一个<strong>record</strong>，从这个记录中取出ID属性，由于在表中ID是自增的，查询出的结果竟然是<strong>Long</strong>类型，刚好我在程序中用int 类型的变量来接收Long类型的ID值，导致出现类型转换异常问题，解决方案：将Long类型转换成String，经过String转换成int类型即可。<br><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//<span class="keyword">map</span>.get(<span class="string">"ID"</span>)从数据库中查询出的结果转换成<span class="keyword">map</span>对象</span><br><span class="line"><span class="typename">String</span> tmp = <span class="typename">String</span>.valueOf(<span class="keyword">map</span>.get(<span class="string">"ID"</span>);</span><br><span class="line">int id = <span class="typename">Integer</span>.parseInt(tmp);</span><br></pre></td></tr></table></figure></p>
-<hr>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1272,21 +1270,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
