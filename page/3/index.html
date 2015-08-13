@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="CAO,next" />
+  <meta name="keywords" content="CAO,Going" />
 
 
 
@@ -122,14 +122,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
@@ -142,6 +134,30 @@
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook">
+            <i class="menu-item-icon icon-guestbook"></i> <br />
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html">
+            <i class="menu-item-icon icon-commonweal"></i> <br />
+            公益404
           </a>
         </li>
       
@@ -328,6 +344,106 @@
         <div id="content" class="content">
           
   <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/06/25/Java中子类和父类的构造函数/">
+                Java中子类和父类的构造函数
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-06-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/06/25/Java中子类和父类的构造函数/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/25/Java中子类和父类的构造函数/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><strong>1. 为什么创建一个子类对象的时候也要调用父类的构造器？</strong></p>
+<p>下面代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line">    String s;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"Super"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"Sub"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    	Sub s = <span class="keyword">new</span> Sub();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>打印结果：</p>
+<blockquote>
+<p>Super<br>Sub</p>
+</blockquote>
+<p>当子类继承一个父类，super()方法必须被子类的构造器调用，并且放在子类构造器中的首行。如果没有显式的调用super()方法，编译器将会在子类的构造器中插入super()方法。这就是创建一个子类对象的时候父类的构造器也被调用的原因。</p>
+<p>这别不是创建两个对象，只创建了一个子类对象。之所以调用父类的构造器是因为父类可能有private修饰的属性需要被它的构造器初始化。</p>
+<p>在编译器插入父类构造器后，子类构造器如下所示：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	System.out.println(<span class="string">"Sub"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 一个常见的错误消息：隐式的父类构造函数没有定义默认的构造函数</strong></p>
+<blockquote>
+<p>隐式的父类构造函数没有定义默认的构造函数,必须定义一个显式的构造函数。</p>
+</blockquote>
+<p><img src="/avatar/Implicit-super-constructor-is-undefined-for-default-constructor.png" alt="Alt text"></p>
+<p>这种编译错误发生的原因是默认的父类构造函数没有被定义。在Java中，如果一个类没有定义一个构造函数，编译器将会插入一个无参的构造函数作为该类的默认构造函数。如果一个父类定义一个构造函数，像这种Super(String s),编译器不会插入默认的无参的构造函数。</p>
+<p>子类的构造函数中无论是有参数还是无参数的构造函数都将会调用父类无参的构造函数。由于编译器试图插入super()方法到子类的两个构造函数，但是父类并没有定义默认的构造函数，编译器会报告错误的消息。</p>
+<p>要解决此问题，只有 1）在父类中添加一个父类默认的构造函数如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	System.<span class="keyword">out</span>.println(<span class="string">"Super"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者2）移除父类自定义的构造函数，或者3）在子类的构造函数中添加 super（value）带参数的方法。</p>
+<p><strong>3. 在子类的构造函数中显式的调用父类的构造函数</strong></p>
+<p>下面的代码是正确的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span></span>&#123;</span><br><span class="line">	String s;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.s = s;</span><br><span class="line">		System.out.println(<span class="string">"Super s"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">200</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(s);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Sub s = <span class="keyword">new</span> Sub(<span class="string">"a"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>子类的构造函数显式的调用了父类带参数的构造函数。父类的构造函数被定义，并且被成功的调用。</p>
+<p><strong>4. 规则</strong></p>
+<p>总之，规则是：子类的构造函数必须调用父类构造器，无论是通过程序员显式的或编译器隐式的调用。对于任何一种方式，被调用的父类构造函数必须被定义。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
     
       
 
@@ -838,7 +954,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

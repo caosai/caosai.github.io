@@ -4,9 +4,9 @@
   <title><![CDATA[Courage Me]]></title>
   <subtitle><![CDATA[Talk is cheap,show me the code!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com//"/>
-  <updated>2015-08-03T09:26:30.000Z</updated>
-  <id>http://yoursite.com//</id>
+  <link href="http://caosai.org.cn//"/>
+  <updated>2015-08-13T16:13:44.000Z</updated>
+  <id>http://caosai.org.cn//</id>
   
   <author>
     <name><![CDATA[Cao Sai]]></name>
@@ -16,9 +16,22 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[public-404]]></title>
+    <link href="http://caosai.org.cn/2015/08/14/public-404/"/>
+    <id>http://caosai.org.cn/2015/08/14/public-404/</id>
+    <published>2015-08-13T16:13:43.000Z</published>
+    <updated>2015-08-13T16:13:44.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Top 10 Java中Strings的常见问题]]></title>
-    <link href="http://yoursite.com/2015/08/03/Top-10-Java%E4%B8%ADStrings%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2015/08/03/Top-10-Java中Strings的常见问题/</id>
+    <link href="http://caosai.org.cn/2015/08/03/Top-10-Java%E4%B8%ADStrings%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://caosai.org.cn/2015/08/03/Top-10-Java中Strings的常见问题/</id>
     <published>2015-08-03T08:35:51.000Z</published>
     <updated>2015-08-03T09:26:30.000Z</updated>
     <content type="html"><![CDATA[<p>下面是关于Java String最常见的10个问题</p>
@@ -40,34 +53,34 @@
 <h2 id="1-_如何比较String类型的变量？用“==”还是equals()?">1. 如何比较String类型的变量？用“==”还是equals()?</h2><p>简言之，“==”用于测试引用是否相等，]]>
     </summary>
     
-      <category term="string" scheme="http://yoursite.com/tags/string/"/>
+      <category term="string" scheme="http://caosai.org.cn/tags/string/"/>
     
-      <category term="Top 10 Series" scheme="http://yoursite.com/categories/Top-10-Series/"/>
+      <category term="Top 10 Series" scheme="http://caosai.org.cn/categories/Top-10-Series/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[LittleSummry]]></title>
-    <link href="http://yoursite.com/2015/08/03/LittleSummry/"/>
-    <id>http://yoursite.com/2015/08/03/LittleSummry/</id>
+    <link href="http://caosai.org.cn/2015/08/03/LittleSummry/"/>
+    <id>http://caosai.org.cn/2015/08/03/LittleSummry/</id>
     <published>2015-08-03T08:18:52.000Z</published>
-    <updated>2015-08-03T08:32:34.000Z</updated>
-    <content type="html"><![CDATA[<pre><code>2015年转眼间已经过了一大半了，生活继而有了很大的变化，而不是改善，当初为了自己所谓的梦想和追求，走了出来，虽说不后悔，却也有些伤感。一方面在收支上直接跟财政挂钩，搞了个财政赤字出来。另一方面在学习上，虽然学习了很多东西，实际上并没有想象中学到的多而且深入。理想和现实之间总有无法逾越的鸿沟，即使计划的总体安排是这样，但是并没有起到太多决定性的作用。
-</code></pre>]]></content>
+    <updated>2015-08-13T15:59:26.000Z</updated>
+    <content type="html"><![CDATA[<p>2015年转眼间已经过了一大半了，生活继而有了很大的变化，而不是改善，当初为了自己所谓的梦想和追求，走了出来，虽说不后悔，却也有些伤感。一方面在收支上直接跟财政挂钩，搞了个财政赤字出来。另一方面在学习上，虽然学习了很多东西，实际上并没有想象中学到的多而且深入。理想和现实之间总有无法逾越的鸿沟，即使计划的总体安排是这样，但是并没有起到太多决定性的作用。</p>
+]]></content>
     <summary type="html">
-    <![CDATA[<pre><code>2015年转眼间已经过了一大半了，生活继而有了很大的变化，而不是改善，当初为了自己所谓的梦想和追求，走了出来，虽说不后悔，却也有些伤感。一方面在收支上直接跟财政挂钩，搞了个财政赤字出来。另一方面在学习上，虽然学习了很多东西，实际上并没有想象中学到的多而且深入]]>
+    <![CDATA[<p>2015年转眼间已经过了一大半了，生活继而有了很大的变化，而不是改善，当初为了自己所谓的梦想和追求，走了出来，虽说不后悔，却也有些伤感。一方面在收支上直接跟财政挂钩，搞了个财政赤字出来。另一方面在学习上，虽然学习了很多东西，实际上并没有想象中学到的多而且深入。理想和现实之间]]>
     </summary>
     
-      <category term="summry" scheme="http://yoursite.com/tags/summry/"/>
+      <category term="summry" scheme="http://caosai.org.cn/tags/summry/"/>
     
-      <category term="summry life" scheme="http://yoursite.com/categories/summry-life/"/>
+      <category term="summry life" scheme="http://caosai.org.cn/categories/summry-life/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Top 10 Java常见的Exceptions]]></title>
-    <link href="http://yoursite.com/2015/07/20/Top-10-Java%E5%B8%B8%E8%A7%81%E7%9A%84Exceptions/"/>
-    <id>http://yoursite.com/2015/07/20/Top-10-Java常见的Exceptions/</id>
+    <link href="http://caosai.org.cn/2015/07/20/Top-10-Java%E5%B8%B8%E8%A7%81%E7%9A%84Exceptions/"/>
+    <id>http://caosai.org.cn/2015/07/20/Top-10-Java常见的Exceptions/</id>
     <published>2015-07-20T13:14:15.000Z</published>
     <updated>2015-07-20T14:02:22.000Z</updated>
     <content type="html"><![CDATA[<p>这篇文章总结了关于Java Exceptions 10个最常被问的问题</p>
@@ -93,16 +106,16 @@
 <h2 id="1-_Checked_vs_UnChecked">1. Checked vs UnChecked</h2><p>简言之，检查异常必须在一个方法中被显式捕获，或者在方法的throw]]>
     </summary>
     
-      <category term="Exceptions" scheme="http://yoursite.com/tags/Exceptions/"/>
+      <category term="Exceptions" scheme="http://caosai.org.cn/tags/Exceptions/"/>
     
-      <category term="Top 10 Series" scheme="http://yoursite.com/categories/Top-10-Series/"/>
+      <category term="Top 10 Series" scheme="http://caosai.org.cn/categories/Top-10-Series/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Top 10 Java中常用于Array的方法]]></title>
-    <link href="http://yoursite.com/2015/07/16/Top-10-Java%E4%B8%AD%E5%B8%B8%E7%94%A8%E4%BA%8EArray%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2015/07/16/Top-10-Java中常用于Array的方法/</id>
+    <link href="http://caosai.org.cn/2015/07/16/Top-10-Java%E4%B8%AD%E5%B8%B8%E7%94%A8%E4%BA%8EArray%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://caosai.org.cn/2015/07/16/Top-10-Java中常用于Array的方法/</id>
     <published>2015-07-16T15:26:36.000Z</published>
     <updated>2015-07-16T16:00:18.000Z</updated>
     <content type="html"><![CDATA[<p>下面是经常在Java Array中用到的10个方法。在StackOverFlow上被提出最多的问题。</p>
@@ -123,16 +136,16 @@
 <h2 id="1-_声明一个数组">1. 声明一个数组</h2><figure class="highlight dart"><table><tr><td cla]]>
     </summary>
     
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+      <category term="Array" scheme="http://caosai.org.cn/tags/Array/"/>
     
-      <category term="Top 10 Series" scheme="http://yoursite.com/categories/Top-10-Series/"/>
+      <category term="Top 10 Series" scheme="http://caosai.org.cn/categories/Top-10-Series/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Java中equals()和hashCode()的契约]]></title>
-    <link href="http://yoursite.com/2015/07/12/Java%E4%B8%ADequals-%E5%92%8ChashCode-%E7%9A%84%E5%A5%91%E7%BA%A6/"/>
-    <id>http://yoursite.com/2015/07/12/Java中equals-和hashCode-的契约/</id>
+    <link href="http://caosai.org.cn/2015/07/12/Java%E4%B8%ADequals-%E5%92%8ChashCode-%E7%9A%84%E5%A5%91%E7%BA%A6/"/>
+    <id>http://caosai.org.cn/2015/07/12/Java中equals-和hashCode-的契约/</id>
     <published>2015-07-12T14:56:18.000Z</published>
     <updated>2015-07-12T15:50:20.000Z</updated>
     <content type="html"><![CDATA[<p><img src="/avatar/java-hashcode.png" alt="Alt text"><br>Java的父类 java.lang.Object 有两个很重要的方法被定义如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public boolean <span class="function"><span class="title">equals</span><span class="params">(Object obj)</span></span></span><br><span class="line">public int <span class="function"><span class="title">hashCode</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure></p>
@@ -154,14 +167,14 @@
     <![CDATA[<p><img src="/avatar/java-hashcode.png" alt="Alt text"><br>Java的父类 java.lang.Object 有两个很重要的方法被定义如下：<br><figure class="highlight stylus"><tab]]>
     </summary>
     
-      <category term="hashCode" scheme="http://yoursite.com/tags/hashCode/"/>
+      <category term="hashCode" scheme="http://caosai.org.cn/tags/hashCode/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Top关于Java中Map的9种常见问题]]></title>
-    <link href="http://yoursite.com/2015/07/08/Top%E5%85%B3%E4%BA%8EJava%E4%B8%ADMap%E7%9A%849%E7%A7%8D%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2015/07/08/Top关于Java中Map的9种常见问题/</id>
+    <link href="http://caosai.org.cn/2015/07/08/Top%E5%85%B3%E4%BA%8EJava%E4%B8%ADMap%E7%9A%849%E7%A7%8D%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://caosai.org.cn/2015/07/08/Top关于Java中Map的9种常见问题/</id>
     <published>2015-07-08T15:16:46.000Z</published>
     <updated>2015-07-12T14:49:28.000Z</updated>
     <content type="html"><![CDATA[<p>总的来说，Map是一种集合的数据结构有key-value对组成，每一个key可以在Map中出现一次。这篇文章总结了Java中Map最常用的9种使用方法。为了简单起见，我将在例子中使用泛型。因此我只使用Map而不使用具体的Map。但是你可以假设K和V都实现了Comparable接口。</p>
@@ -203,8 +216,8 @@
   
   <entry>
     <title><![CDATA[HashMap vs TreeMap vs HashTable vs LinkedHashMap]]></title>
-    <link href="http://yoursite.com/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/"/>
-    <id>http://yoursite.com/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/</id>
+    <link href="http://caosai.org.cn/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/"/>
+    <id>http://caosai.org.cn/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/</id>
     <published>2015-07-07T14:12:08.000Z</published>
     <updated>2015-07-07T14:53:10.000Z</updated>
     <content type="html"><![CDATA[<p>Java中Map是最重要的数据结构之一。在这篇文章中，我将说明如何使用不同类型的Map，如HashMap，TreeMap，哈希表和LinkedHashMap。</p>
@@ -265,16 +278,16 @@
 <h2 id="1-_Map的概要">1. Map的概要</h2><p><img src="/avatar]]>
     </summary>
     
-      <category term="Map的区别" scheme="http://yoursite.com/tags/Map%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <category term="Map的区别" scheme="http://caosai.org.cn/tags/Map%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[remove以.bak结尾的文件]]></title>
-    <link href="http://yoursite.com/2015/07/07/remove%E4%BB%A5-bak%E7%BB%93%E5%B0%BE%E7%9A%84%E6%96%87%E4%BB%B6/"/>
-    <id>http://yoursite.com/2015/07/07/remove以-bak结尾的文件/</id>
+    <link href="http://caosai.org.cn/2015/07/07/remove%E4%BB%A5-bak%E7%BB%93%E5%B0%BE%E7%9A%84%E6%96%87%E4%BB%B6/"/>
+    <id>http://caosai.org.cn/2015/07/07/remove以-bak结尾的文件/</id>
     <published>2015-07-07T14:00:02.000Z</published>
     <updated>2015-07-07T14:06:18.000Z</updated>
     <content type="html"><![CDATA[<p>使用UltraEdit编辑器的时候，产生了好多.bak结尾的备份文件。<br>一个一个的删除掉又比较费时，没啥意义，就想了个办法写个小程序来帮我做喽。<br>程序很简单，涉及到文件的路径和文件的递归遍历这两点。</p>
@@ -285,16 +298,16 @@
 <figure class="highlight gr]]>
     </summary>
     
-      <category term="removeFiles" scheme="http://yoursite.com/tags/removeFiles/"/>
+      <category term="removeFiles" scheme="http://caosai.org.cn/tags/removeFiles/"/>
     
-      <category term="Java Tools" scheme="http://yoursite.com/categories/Java-Tools/"/>
+      <category term="Java Tools" scheme="http://caosai.org.cn/categories/Java-Tools/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[一个简单的TreeSet例子]]></title>
-    <link href="http://yoursite.com/2015/07/06/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84TreeSet%E4%BE%8B%E5%AD%90/"/>
-    <id>http://yoursite.com/2015/07/06/一个简单的TreeSet例子/</id>
+    <link href="http://caosai.org.cn/2015/07/06/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84TreeSet%E4%BE%8B%E5%AD%90/"/>
+    <id>http://caosai.org.cn/2015/07/06/一个简单的TreeSet例子/</id>
     <published>2015-07-06T15:43:01.000Z</published>
     <updated>2015-07-06T16:00:18.000Z</updated>
     <content type="html"><![CDATA[<p>下面是一个非常简单的TreeSet的例子。从这个简单的例子中我们可以得知：</p>
@@ -328,16 +341,16 @@
 <li>如何删除元]]>
     </summary>
     
-      <category term="TreeSet" scheme="http://yoursite.com/tags/TreeSet/"/>
+      <category term="TreeSet" scheme="http://caosai.org.cn/tags/TreeSet/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[HashSet vs TreeSet vs LinkedHashSet]]></title>
-    <link href="http://yoursite.com/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/"/>
-    <id>http://yoursite.com/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/</id>
+    <link href="http://caosai.org.cn/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/"/>
+    <id>http://caosai.org.cn/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/</id>
     <published>2015-07-06T14:45:18.000Z</published>
     <updated>2015-07-06T15:35:14.000Z</updated>
     <content type="html"><![CDATA[<p>一个set集合不包含重复元素。这是使用set的主要原因之一。有3个常用的实现set的途径：HashSet，TreeSet和LinkedHashSet。何时使用哪一种是一个重要问题。总之，如果你需要一个快速的set，你应该使用HashSet；如果你需要一个有序集合，则使用TreeSet；如果你需要一个可以插入顺序存储的set，那么LinkedHashSet应被使用。</p>
@@ -390,16 +403,16 @@
     <![CDATA[<p>一个set集合不包含重复元素。这是使用set的主要原因之一。有3个常用的实现set的途径：HashSet，TreeSet和LinkedHashSet。何时使用哪一种是一个重要问题。总之，如果你需要一个快速的set，你应该使用HashSet；如果你需要一个有序集合，则使用Tr]]>
     </summary>
     
-      <category term="set" scheme="http://yoursite.com/tags/set/"/>
+      <category term="set" scheme="http://caosai.org.cn/tags/set/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Java中检查数组中是否存在某个值的方法]]></title>
-    <link href="http://yoursite.com/2015/07/05/Java%E4%B8%AD%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2015/07/05/Java中检查数组中是否存在某个值的方法/</id>
+    <link href="http://caosai.org.cn/2015/07/05/Java%E4%B8%AD%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://caosai.org.cn/2015/07/05/Java中检查数组中是否存在某个值的方法/</id>
     <published>2015-07-05T14:42:42.000Z</published>
     <updated>2015-07-05T14:46:32.000Z</updated>
     <content type="html"><![CDATA[<p>检查数组中是否存在某一个值的方法有三种方式<br>    foreach：for循环<br>    Arrays.asList(arr);<br>    Set</p>
@@ -409,16 +422,16 @@
 <figure class="highlight processing"><table><tr><td ]]>
     </summary>
     
-      <category term="array contains value" scheme="http://yoursite.com/tags/array-contains-value/"/>
+      <category term="array contains value" scheme="http://caosai.org.cn/tags/array-contains-value/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Java中PrintMap]]></title>
-    <link href="http://yoursite.com/2015/07/03/Java%E4%B8%ADPrintMap/"/>
-    <id>http://yoursite.com/2015/07/03/Java中PrintMap/</id>
+    <link href="http://caosai.org.cn/2015/07/03/Java%E4%B8%ADPrintMap/"/>
+    <id>http://caosai.org.cn/2015/07/03/Java中PrintMap/</id>
     <published>2015-07-03T15:53:25.000Z</published>
     <updated>2015-07-03T16:00:08.000Z</updated>
     <content type="html"><![CDATA[<p>给一个数组，统计某些值出现的次数，通过HashMap来处理</p>
@@ -429,16 +442,16 @@
 <p>map的排序 HashMap是无序的，如果想给一个集合排序的话<br>有两种方式：<br>第一种：转换成TreeMap  ：使用比较器：按照key/value排序<br>第二种；转换成List  ：使]]>
     </summary>
     
-      <category term="HashMap" scheme="http://yoursite.com/tags/HashMap/"/>
+      <category term="HashMap" scheme="http://caosai.org.cn/tags/HashMap/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Java中如何把Array转化成ArrayList]]></title>
-    <link href="http://yoursite.com/2015/07/02/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E6%8A%8AArray%E8%BD%AC%E5%8C%96%E6%88%90ArrayList/"/>
-    <id>http://yoursite.com/2015/07/02/Java中如何把Array转化成ArrayList/</id>
+    <link href="http://caosai.org.cn/2015/07/02/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E6%8A%8AArray%E8%BD%AC%E5%8C%96%E6%88%90ArrayList/"/>
+    <id>http://caosai.org.cn/2015/07/02/Java中如何把Array转化成ArrayList/</id>
     <published>2015-07-02T15:02:10.000Z</published>
     <updated>2015-07-02T15:39:12.000Z</updated>
     <content type="html"><![CDATA[<p>本文分析了在Stack Overflow上的问题的答案。问这个问题的人得到了很多的赞，这可以让他有权限做大量的事情在Stack Overflow。这对我来说不是很有意义，但是让我们先来看看这个问题吧。</p>
@@ -466,16 +479,16 @@
 <p>**问题是：如何将下面的 数组转换成ArrayList集合]]>
     </summary>
     
-      <category term="Array2ArrayList" scheme="http://yoursite.com/tags/Array2ArrayList/"/>
+      <category term="Array2ArrayList" scheme="http://caosai.org.cn/tags/Array2ArrayList/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[随机生成手机号码]]></title>
-    <link href="http://yoursite.com/2015/07/02/%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81/"/>
-    <id>http://yoursite.com/2015/07/02/随机生成手机号码/</id>
+    <link href="http://caosai.org.cn/2015/07/02/%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81/"/>
+    <id>http://caosai.org.cn/2015/07/02/随机生成手机号码/</id>
     <published>2015-07-02T13:56:31.000Z</published>
     <updated>2015-07-02T14:30:46.000Z</updated>
     <content type="html"><![CDATA[<h2 id="随机生成一个手机号码">随机生成一个手机号码</h2><p>首先说说手机号码的构成：<br>我国使用的手机号码为11位，其中各段有不同的编码方向：前3位———网络识别号；第4-7位———地区编码；第8-11位———用户号码。<br>前三位：代表不同的运营商，也就是号段。<br>        移动137、138、139 联通 132、155、156、186 电信 133、180、181、189 等<br>第4-7位：代表中国地区：也就是利用这个查询归属地的<br>后四位：随机是生成</p>
@@ -486,16 +499,16 @@
     <![CDATA[<h2 id="随机生成一个手机号码">随机生成一个手机号码</h2><p>首先说说手机号码的构成：<br>我国使用的手机号码为11位，其中各段有不同的编码方向：前3位———网络识别号；第4-7位———地区编码；第8-11位———用户号码。<br>前三位：代表不同的运营商，也就是]]>
     </summary>
     
-      <category term="随机生成手机号码" scheme="http://yoursite.com/tags/%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81/"/>
+      <category term="随机生成手机号码" scheme="http://caosai.org.cn/tags/%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81/"/>
     
-      <category term="Java Tools" scheme="http://yoursite.com/categories/Java-Tools/"/>
+      <category term="Java Tools" scheme="http://caosai.org.cn/categories/Java-Tools/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Java中按行写文件的方法]]></title>
-    <link href="http://yoursite.com/2015/07/01/Java%E4%B8%AD%E6%8C%89%E8%A1%8C%E5%86%99%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2015/07/01/Java中按行写文件的方法/</id>
+    <link href="http://caosai.org.cn/2015/07/01/Java%E4%B8%AD%E6%8C%89%E8%A1%8C%E5%86%99%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://caosai.org.cn/2015/07/01/Java中按行写文件的方法/</id>
     <published>2015-07-01T14:37:09.000Z</published>
     <updated>2015-07-01T15:50:02.000Z</updated>
     <content type="html"><![CDATA[<p>这篇文章总结了使用相关类写文件的操作</p>
@@ -517,16 +530,16 @@
 <h2 id="1-_FileOutputStream">1. FileOutputStream</h2><figure class="highlight gradle"><table><tr><td class="gutter]]>
     </summary>
     
-      <category term="writeFile" scheme="http://yoursite.com/tags/writeFile/"/>
+      <category term="writeFile" scheme="http://caosai.org.cn/tags/writeFile/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Java中按行读取文件的方法]]></title>
-    <link href="http://yoursite.com/2015/07/01/Java%E4%B8%AD%E6%8C%89%E8%A1%8C%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2015/07/01/Java中按行读取文件的方法/</id>
+    <link href="http://caosai.org.cn/2015/07/01/Java%E4%B8%AD%E6%8C%89%E8%A1%8C%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://caosai.org.cn/2015/07/01/Java中按行读取文件的方法/</id>
     <published>2015-06-30T16:06:29.000Z</published>
     <updated>2015-07-22T15:53:54.000Z</updated>
     <content type="html"><![CDATA[<p>Java I/O的总的类的数量很多，所以很容糊涂什么时候用哪一种。下面有两个方法介绍按行读取文件的操作。</p>
@@ -553,16 +566,16 @@
 <h2 id="方法一：">方法一：</h2><figure class="highlight processing"><table><tr><td class]]>
     </summary>
     
-      <category term="readLine" scheme="http://yoursite.com/tags/readLine/"/>
+      <category term="readLine" scheme="http://caosai.org.cn/tags/readLine/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Comparator vs Comparable]]></title>
-    <link href="http://yoursite.com/2015/06/29/Comparator-vs-Comparable/"/>
-    <id>http://yoursite.com/2015/06/29/Comparator-vs-Comparable/</id>
+    <link href="http://caosai.org.cn/2015/06/29/Comparator-vs-Comparable/"/>
+    <id>http://caosai.org.cn/2015/06/29/Comparator-vs-Comparable/</id>
     <published>2015-06-29T15:44:28.000Z</published>
     <updated>2015-06-29T15:48:58.000Z</updated>
     <content type="html"><![CDATA[<p>Comparable 和 Comparator 是JAVA 核心API 提供的两个接口。从它们的名字我们可以得知它们是用来比较东西的在某种意义上说。但他们到底是什么，它们之间的区别是什么呢？以下是回答这个问题的2个例子。比较两个HDTV的尺寸简单的例子。在阅读代码后，如何使用Comparable vs. Comparator就比较容易了。</p>
@@ -594,16 +607,16 @@
     <![CDATA[<p>Comparable 和 Comparator 是JAVA 核心API 提供的两个接口。从它们的名字我们可以得知它们是用来比较东西的在某种意义上说。但他们到底是什么，它们之间的区别是什么呢？以下是回答这个问题的2个例子。比较两个HDTV的尺寸简单的例子。在阅读代码后，如何使]]>
     </summary>
     
-      <category term="Comparator" scheme="http://yoursite.com/tags/Comparator/"/>
+      <category term="Comparator" scheme="http://caosai.org.cn/tags/Comparator/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[java中开发者如何排序]]></title>
-    <link href="http://yoursite.com/2015/06/27/java%E4%B8%AD%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E6%8E%92%E5%BA%8F/"/>
-    <id>http://yoursite.com/2015/06/27/java中开发者如何排序/</id>
+    <link href="http://caosai.org.cn/2015/06/27/java%E4%B8%AD%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E6%8E%92%E5%BA%8F/"/>
+    <id>http://caosai.org.cn/2015/06/27/java中开发者如何排序/</id>
     <published>2015-06-27T15:24:05.000Z</published>
     <updated>2015-06-27T15:38:16.000Z</updated>
     <content type="html"><![CDATA[<p> 分析开源java项目的大量开源代码，我发现java开发者常用的排序方法有两种。一种是用Collections或者Arrays的sort()方法，另一种是用排好序的数据结构，例如TreeMap和TreeSet。</p>
@@ -625,16 +638,16 @@
 <h2 id="使用sort()方法">使用sort(]]>
     </summary>
     
-      <category term="sort" scheme="http://yoursite.com/tags/sort/"/>
+      <category term="sort" scheme="http://caosai.org.cn/tags/sort/"/>
     
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="Simple Java" scheme="http://caosai.org.cn/categories/Simple-Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[深入理解Arrays.sort()数组排序]]></title>
-    <link href="http://yoursite.com/2015/06/25/Java-%E6%AF%94%E8%BE%83%E5%99%A8/"/>
-    <id>http://yoursite.com/2015/06/25/Java-比较器/</id>
+    <link href="http://caosai.org.cn/2015/06/25/Java-%E6%AF%94%E8%BE%83%E5%99%A8/"/>
+    <id>http://caosai.org.cn/2015/06/25/Java-比较器/</id>
     <published>2015-06-25T14:34:40.000Z</published>
     <updated>2015-06-25T14:36:12.000Z</updated>
     <content type="html"><![CDATA[<p>Arrays.sort(T[], Comparator &lt; ? super T &gt; c)是一个<strong>用户定义的对象</strong>数组的排序方法。</p>
@@ -669,51 +682,9 @@
 <h3 id="1-_如何使用_Arrays-sort():_一个简单的例子">1. 如何使用]]>
     </summary>
     
-      <category term="comparator" scheme="http://yoursite.com/tags/comparator/"/>
+      <category term="comparator" scheme="http://caosai.org.cn/tags/comparator/"/>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Java中子类和父类的构造函数]]></title>
-    <link href="http://yoursite.com/2015/06/25/Java%E4%B8%AD%E5%AD%90%E7%B1%BB%E5%92%8C%E7%88%B6%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
-    <id>http://yoursite.com/2015/06/25/Java中子类和父类的构造函数/</id>
-    <published>2015-06-24T16:06:29.000Z</published>
-    <updated>2015-06-24T16:20:06.000Z</updated>
-    <content type="html"><![CDATA[<p><strong>1. 为什么创建一个子类对象的时候也要调用父类的构造器？</strong></p>
-<p>下面代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line">    String s;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"Super"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"Sub"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    	Sub s = <span class="keyword">new</span> Sub();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>打印结果：</p>
-<blockquote>
-<p>Super<br>Sub</p>
-</blockquote>
-<p>当子类继承一个父类，super()方法必须被子类的构造器调用，并且放在子类构造器中的首行。如果没有显式的调用super()方法，编译器将会在子类的构造器中插入super()方法。这就是创建一个子类对象的时候父类的构造器也被调用的原因。</p>
-<p>这别不是创建两个对象，只创建了一个子类对象。之所以调用父类的构造器是因为父类可能有private修饰的属性需要被它的构造器初始化。</p>
-<p>在编译器插入父类构造器后，子类构造器如下所示：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	System.out.println(<span class="string">"Sub"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2. 一个常见的错误消息：隐式的父类构造函数没有定义默认的构造函数</strong></p>
-<blockquote>
-<p>隐式的父类构造函数没有定义默认的构造函数,必须定义一个显式的构造函数。</p>
-</blockquote>
-<p><img src="/avatar/Implicit-super-constructor-is-undefined-for-default-constructor.png" alt="Alt text"></p>
-<p>这种编译错误发生的原因是默认的父类构造函数没有被定义。在Java中，如果一个类没有定义一个构造函数，编译器将会插入一个无参的构造函数作为该类的默认构造函数。如果一个父类定义一个构造函数，像这种Super(String s),编译器不会插入默认的无参的构造函数。</p>
-<p>子类的构造函数中无论是有参数还是无参数的构造函数都将会调用父类无参的构造函数。由于编译器试图插入super()方法到子类的两个构造函数，但是父类并没有定义默认的构造函数，编译器会报告错误的消息。</p>
-<p>要解决此问题，只有 1）在父类中添加一个父类默认的构造函数如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	System.<span class="keyword">out</span>.println(<span class="string">"Super"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>或者2）移除父类自定义的构造函数，或者3）在子类的构造函数中添加 super（value）带参数的方法。</p>
-<p><strong>3. 在子类的构造函数中显式的调用父类的构造函数</strong></p>
-<p>下面的代码是正确的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span></span>&#123;</span><br><span class="line">	String s;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.s = s;</span><br><span class="line">		System.out.println(<span class="string">"Super s"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">200</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(s);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Sub s = <span class="keyword">new</span> Sub(<span class="string">"a"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>子类的构造函数显式的调用了父类带参数的构造函数。父类的构造函数被定义，并且被成功的调用。</p>
-<p><strong>4. 规则</strong></p>
-<p>总之，规则是：子类的构造函数必须调用父类构造器，无论是通过程序员显式的或编译器隐式的调用。对于任何一种方式，被调用的父类构造函数必须被定义。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><strong>1. 为什么创建一个子类对象的时候也要调用父类的构造器？</strong></p>
-<p>下面代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span clas]]>
-    </summary>
-    
-      <category term="构造函数" scheme="http://yoursite.com/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
-    
-      <category term="Simple Java" scheme="http://yoursite.com/categories/Simple-Java/"/>
+      <category term="java" scheme="http://caosai.org.cn/categories/java/"/>
     
   </entry>
   
