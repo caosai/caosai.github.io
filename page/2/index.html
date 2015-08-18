@@ -206,6 +206,223 @@
           
           
             
+              <a class="post-title-link" href="/2015/07/06/一个简单的TreeSet例子/">
+                一个简单的TreeSet例子
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/06/一个简单的TreeSet例子/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/一个简单的TreeSet例子/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>下面是一个非常简单的TreeSet的例子。从这个简单的例子中我们可以得知：</p>
+<ul>
+<li>TreeSet是有序的</li>
+<li>如何遍历TreeSet</li>
+<li>如何检查空</li>
+<li>如何检索第一个/最后一个元素</li>
+<li>如何删除元素</li>
+</ul>
+<p>如果你想了解更多关于Java Collection的内容，你可以查看<a href="http://www.programcreek.com/2009/02/the-interface-and-class-hierarchy-for-collections/" target="_blank" rel="external">Java Collection hierarchy diagram</a></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="type">Iterator</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">TreeSet</span>;</span><br><span class="line"> </span><br><span class="line">public class <span class="type">TreeSetExample</span> &#123;</span><br><span class="line"> </span><br><span class="line">   public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set Example!\n"</span>);</span><br><span class="line">	<span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt; tree = new <span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt;();</span><br><span class="line">	tree.add(<span class="number">12</span>);</span><br><span class="line">	tree.add(<span class="number">63</span>);</span><br><span class="line">	tree.add(<span class="number">34</span>);</span><br><span class="line">	tree.add(<span class="number">45</span>);</span><br><span class="line"> </span><br><span class="line">	// here it test it's sorted, <span class="number">63</span> <span class="keyword">is</span> the last element. see output below</span><br><span class="line">	<span class="type">Iterator</span>&lt;<span class="type">Integer</span>&gt; <span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree set data: "</span>);</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Displaying</span> the <span class="type">Tree</span> <span class="type">set</span> data</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println();</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Check</span> empty <span class="keyword">or</span> <span class="keyword">not</span></span><br><span class="line">	<span class="keyword">if</span> (tree.isEmpty()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree Set is empty."</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set size: "</span> + tree.size());</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Retrieve</span> first data <span class="keyword">from</span> tree <span class="type">set</span></span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"First data: "</span> + tree.first());</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Retrieve</span> last data <span class="keyword">from</span> tree <span class="type">set</span></span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Last data: "</span> + tree.last());</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (tree.remove(<span class="number">45</span>)) &#123; // remove element by value</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Data is removed from tree set"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Data doesn't exist!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Now the tree set contain: "</span>);</span><br><span class="line">	<span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Displaying</span> the <span class="type">Tree</span> <span class="type">set</span> data</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println();</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Now the size of tree set: "</span> + tree.size());</span><br><span class="line"> </span><br><span class="line">	// <span class="type">Remove</span> all</span><br><span class="line">	tree.clear();</span><br><span class="line">	<span class="keyword">if</span> (tree.isEmpty()) &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree Set is empty."</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Tree Set size: "</span> + tree.size());</span><br><span class="line">	&#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>Tree Set Example!</p>
+<p>Tree set data: 12 34 45 63<br>Tree Set size: 4</p>
+<p>First data: 12<br>Last data: 63</p>
+<p>Data is removed from tree set</p>
+<p>Now the tree set contain: 12 34 63<br>Now the size of tree set: 3</p>
+<p>Tree Set is empty.</p>
+</blockquote>
+<p><a href="http://www.programcreek.com/2009/02/a-simple-treeset-example/" target="_blank" rel="external">原文链接</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/">
+                HashSet vs TreeSet vs LinkedHashSet
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-07-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Simple-Java/">Simple Java</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/HashSet-vs-TreeSet-vs-LinkedHashSet/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>一个set集合不包含重复元素。这是使用set的主要原因之一。有3个常用的实现set的途径：HashSet，TreeSet和LinkedHashSet。何时使用哪一种是一个重要问题。总之，如果你需要一个快速的set，你应该使用HashSet；如果你需要一个有序集合，则使用TreeSet；如果你需要一个可以插入顺序存储的set，那么LinkedHashSet应被使用。</p>
+<h2 id="1-_set的接口">1. set的接口</h2><p>Set继承Collection 接口。在一个set中，没有重复的元素。在set中的每一个元素必须是唯一的。你可以简单地将元素添加到一个集合中，重复的元素会被自动删除。</p>
+<p>下图是set集合集成的树形图</p>
+<p><img src="/avatar/java-collection-hierarchy.png" alt="Alt text"></p>
+<h2 id="2-_HashSet_vs-_TreeSet_vs-_LinkedHashSet_之间的比较">2. HashSet vs. TreeSet vs. LinkedHashSet 之间的比较</h2><p>HashSet 使用一个 hash table 实现. 元素是无序的。添加add，删除remove，和包含contains的方法有恒定的时间复杂度O(1)。</p>
+<p>TreeSet 使用一个树形结构实现（算法中的红黑树）。set中的元素是有序的，但是add、remove、contains方法的时间复杂度是O(log(n))。TreeSet提供不同的方法处理有序的set集合，像first()/last()/headSet()/tailSert()等</p>
+<p>LinkedHashSet 基于HashSet和TreeSet之间。它使用一个hash table实现基于一个链表的结构，所以它提供按顺序插入到集合中，时间复杂度是O(1)</p>
+<h2 id="3-_TreeSet的例子">3. TreeSet的例子</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt; tree = new <span class="type">TreeSet</span>&lt;<span class="type">Integer</span>&gt;();</span><br><span class="line">tree.add(<span class="number">12</span>);</span><br><span class="line">tree.add(<span class="number">63</span>);</span><br><span class="line">tree.add(<span class="number">34</span>);</span><br><span class="line">tree.add(<span class="number">45</span>);</span><br><span class="line"> </span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Integer</span>&gt; <span class="keyword">iterator</span> = tree.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">"Tree set data: "</span>);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">    <span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果(有序的)：</p>
+<blockquote>
+<p>Tree set data: 12 34 45 63 </p>
+</blockquote>
+<p>下面定义一个Dog类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span><br><span class="line">	<span class="keyword">int</span> size;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Dog</span>(<span class="params"><span class="keyword">int</span> s</span>) </span>&#123;</span><br><span class="line">		size = s;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> size + <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>向TreeSet中add几组Dog对象</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="type">Iterator</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">TreeSet</span>;</span><br><span class="line"> </span><br><span class="line">public class <span class="type">TestTreeSet</span> &#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">		<span class="type">TreeSet</span>&lt;<span class="type">Dog</span>&gt; dset = new <span class="type">TreeSet</span>&lt;<span class="type">Dog</span>&gt;();</span><br><span class="line">		dset.add(new <span class="type">Dog</span>(<span class="number">2</span>));</span><br><span class="line">		dset.add(new <span class="type">Dog</span>(<span class="number">1</span>));</span><br><span class="line">		dset.add(new <span class="type">Dog</span>(<span class="number">3</span>));</span><br><span class="line"> </span><br><span class="line">		<span class="type">Iterator</span>&lt;<span class="type">Dog</span>&gt; <span class="keyword">iterator</span> = dset.<span class="keyword">iterator</span>();</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">			<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译成功，但是运行时出现错误</p>
+<blockquote>
+<p>Exception in thread “main” java.lang.ClassCastException: collection.<strong>Dog cannot be cast to java.lang.Comparable</strong><br>    at java.util.TreeMap.put(Unknown Source)<br>    at java.util.TreeSet.add(Unknown Source)<br>    at collection.TestTreeSet.main(TestTreeSet.java:22)</p>
+</blockquote>
+<p>原因： TreeSet是有序的集合，Dog对象需要实现<strong>java.lang.Comparable’s compareTo()</strong> 方法</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Dog <span class="keyword">implements</span> Comparable&lt;Dog&gt;&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">size</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> Dog(<span class="keyword">int</span> s) &#123;</span><br><span class="line">		<span class="keyword">size</span> = s;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> String toString() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">size</span> + <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> <span class="keyword">compareTo</span>(Dog o) &#123;</span><br><span class="line">	        <span class="keyword">return</span> <span class="keyword">size</span> - o.<span class="keyword">size</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>1 2 3</p>
+</blockquote>
+<h2 id="4-_HashSet_例子">4. HashSet 例子</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HashSet</span>&lt;<span class="type">Dog</span>&gt; dset = new <span class="type">HashSet</span>&lt;<span class="type">Dog</span>&gt;();</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">2</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">1</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">3</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">5</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">4</span>));</span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Dog</span>&gt; <span class="keyword">iterator</span> = dset.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<blockquote>
+<p>5 3 2 1 4<br>注意结果顺序是不确定的。</p>
+</blockquote>
+<h2 id="5-_LinkedHashSet_例子">5. LinkedHashSet 例子</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LinkedHashSet</span>&lt;<span class="type">Dog</span>&gt; dset = new <span class="type">LinkedHashSet</span>&lt;<span class="type">Dog</span>&gt;();</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">2</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">1</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">3</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">5</span>));</span><br><span class="line">dset.add(new <span class="type">Dog</span>(<span class="number">4</span>));</span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Dog</span>&gt; <span class="keyword">iterator</span> = dset.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">iterator</span>.hasNext()) &#123;</span><br><span class="line">	<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="keyword">iterator</span>.next() + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出的结果顺序是一定的，按照添加的先后顺序排序。</p>
+<blockquote>
+<p>2 1 3 5 4</p>
+</blockquote>
+<h2 id="6-_性能测试">6. 性能测试</h2><p>下面的测试方法是测试 三种不同的set的add方法的性能</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public static void main<span class="params">(String[] args)</span> &#123;</span><br><span class="line"> </span><br><span class="line">	Random r = new Random<span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	HashSet&lt;Dog&gt; hashSet = new HashSet&lt;Dog&gt;<span class="params">()</span>;</span><br><span class="line">	TreeSet&lt;Dog&gt; treeSet = new TreeSet&lt;Dog&gt;<span class="params">()</span>;</span><br><span class="line">	LinkedHashSet&lt;Dog&gt; linkedSet = new LinkedHashSet&lt;Dog&gt;<span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// start time</span></span><br><span class="line">	long startTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span> &#123;</span><br><span class="line">		int x = r.nextInt<span class="params">(<span class="number">1000</span> - <span class="number">10</span>)</span> + <span class="number">10</span>;</span><br><span class="line">		hashSet.add<span class="params">(new Dog<span class="params">(x)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// end time</span></span><br><span class="line">	long endTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	long duration = endTime - startTime;</span><br><span class="line">	System.out.println<span class="params">(<span class="string">"HashSet: "</span> + duration)</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// start time</span></span><br><span class="line">	startTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span> &#123;</span><br><span class="line">		int x = r.nextInt<span class="params">(<span class="number">1000</span> - <span class="number">10</span>)</span> + <span class="number">10</span>;</span><br><span class="line">		treeSet.add<span class="params">(new Dog<span class="params">(x)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// end time</span></span><br><span class="line">	endTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	duration = endTime - startTime;</span><br><span class="line">	System.out.println<span class="params">(<span class="string">"TreeSet: "</span> + duration)</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// start time</span></span><br><span class="line">	startTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span> &#123;</span><br><span class="line">		int x = r.nextInt<span class="params">(<span class="number">1000</span> - <span class="number">10</span>)</span> + <span class="number">10</span>;</span><br><span class="line">		linkedSet.add<span class="params">(new Dog<span class="params">(x)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// end time</span></span><br><span class="line">	endTime = System.nanoTime<span class="params">()</span>;</span><br><span class="line">	duration = endTime - startTime;</span><br><span class="line">	System.out.println<span class="params">(<span class="string">"LinkedHashSet: "</span> + duration)</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从输出的结果可以清楚的知道，HashSet的add方法花费时间最少。</p>
+<blockquote>
+<p>HashSet: 2244768<br>TreeSet: 3549314<br>LinkedHashSet: 2263320</p>
+</blockquote>
+<p>*测试虽然不精确，但能反映基本思想TreeSet慢得多因为它是排好序的。</p>
+<p><img src="/avatar/hashset-treeset-linkedhashset1.png" alt="Alt text"></p>
+<p><a href="http://www.programcreek.com/2013/03/hashset-vs-treeset-vs-linkedhashset/" target="_blank" rel="external">原文链接</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/05/Java中检查数组中是否存在某个值的方法/">
                 Java中检查数组中是否存在某个值的方法
               </a>
@@ -896,208 +1113,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/25/Java-比较器/">
-                深入理解Arrays.sort()数组排序
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-25
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/java/">java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/25/Java-比较器/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/25/Java-比较器/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Arrays.sort(T[], Comparator &lt; ? super T &gt; c)是一个<strong>用户定义的对象</strong>数组的排序方法。</p>
-<h3 id="1-_如何使用_Arrays-sort():_一个简单的例子">1. 如何使用 Arrays.sort(): 一个简单的例子</h3><p>通过阅读下面的示例，您可以快速了解如何正确地使用这个方法。这个比较器定义比较Dog类的大小<br>然后把这个比较器用作排序方法的一个参数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> size;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">		size = s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DogSizeComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dog</span>&gt;</span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> o1.size - o2.size;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySort</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Dog d1 = <span class="keyword">new</span> Dog(<span class="number">2</span>);</span><br><span class="line">		Dog d2 = <span class="keyword">new</span> Dog(<span class="number">1</span>);</span><br><span class="line">		Dog d3 = <span class="keyword">new</span> Dog(<span class="number">3</span>);</span><br><span class="line"> </span><br><span class="line">		Dog[] dogArray = &#123;d1, d2, d3&#125;;</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line"> </span><br><span class="line">		Arrays.sort(dogArray, <span class="keyword">new</span> DogSizeComparator());	</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDogs</span><span class="params">(Dog[] dogs)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(Dog d: dogs)</span><br><span class="line">			System.out.print(d.size + <span class="string">" "</span> );</span><br><span class="line"> </span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Output:</strong></p>
-<blockquote>
-<p>2  1  3<br>1  2  3</p>
-</blockquote>
-<h3 id="2-_Arrays-sort()中使用策略模式">2.  Arrays.sort()中使用策略模式</h3><p> 这是一个策略模式的完美典范，值得在一提的是为什么策略模式适合这种情况。总之，策略模式在运行时选择不同的算法。在这种情况下，通过不同的比较器，选择不同的算法。基于上面的例子，假设现在你有另一个比较器，比较重量而不是狗的大小，你可以简单的创建一个新的比较器：如下。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> size;</span><br><span class="line">	<span class="keyword">int</span> weight;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">		size = s;</span><br><span class="line">		weight = w; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DogSizeComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dog</span>&gt;</span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> o1.size - o2.size;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DogWeightComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dog</span>&gt;</span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> o1.weight - o2.weight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySort</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Dog d1 = <span class="keyword">new</span> Dog(<span class="number">2</span>, <span class="number">50</span>);</span><br><span class="line">		Dog d2 = <span class="keyword">new</span> Dog(<span class="number">1</span>, <span class="number">30</span>);</span><br><span class="line">		Dog d3 = <span class="keyword">new</span> Dog(<span class="number">3</span>, <span class="number">40</span>);</span><br><span class="line"> </span><br><span class="line">		Dog[] dogArray = &#123;d1, d2, d3&#125;;</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line"> </span><br><span class="line">		Arrays.sort(dogArray, <span class="keyword">new</span> DogSizeComparator());	</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line"> </span><br><span class="line">		Arrays.sort(dogArray, <span class="keyword">new</span> DogWeightComparator());	</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDogs</span><span class="params">(Dog[] dogs)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(Dog d: dogs)</span><br><span class="line">			System.out.print(<span class="string">"size="</span>+d.size + <span class="string">" weight="</span> + d.weight + <span class="string">" "</span>);</span><br><span class="line"> </span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>size=2 weight=50 size=1 weight=30 size=3 weight=40<br>size=1 weight=30 size=2 weight=50 size=3 weight=40<br>size=1 weight=30 size=3 weight=40 size=2 weight=50 </p>
-</blockquote>
-<p>比较器是一个接口。任何实现此接口的比较器都可用于运行时。这是策略设计模式的核心思想。</p>
-<h3 id="3-_为什么使用_“super”?">3. 为什么使用 “super”?</h3><p>简单来看，如果 “Comparator &lt; T &gt; c”作为一个参数，第二个参数是“Comparator&lt; ? super T &gt; c”。&lt; ? super T &gt;意味着这种类型可以是T或其超类。</p>
-<p>为什么它允许super类型？答案是：这种方法允许所有子类使用相同的比较器。下面的例子中显而易见的。</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.Comparator;</span><br><span class="line"> </span><br><span class="line">class <span class="keyword">Animal</span>&#123;</span><br><span class="line">	int size;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Dog extends <span class="keyword">Animal</span>&#123;</span><br><span class="line">	public Dog(int s)&#123;</span><br><span class="line">		size = s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Cat extends <span class="keyword">Animal</span>&#123;</span><br><span class="line">	public Cat(int s)&#123;</span><br><span class="line">		size  = s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class AnimalSizeComparator implements Comparator&lt;<span class="keyword">Animal</span>&gt;&#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public int compare(<span class="keyword">Animal</span> o1, <span class="keyword">Animal</span> o2) &#123;</span><br><span class="line">		return o1.size - o2.size;</span><br><span class="line">	&#125;</span><br><span class="line">	//in this way, all sub classes <span class="keyword">of</span> <span class="keyword">Animal</span> can use this comparator.</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class ArraySort &#123;</span><br><span class="line"> </span><br><span class="line">	public static void main(String<span class="comment">[]</span> args) &#123;</span><br><span class="line">		Dog d1 = new Dog(2);</span><br><span class="line">		Dog d2 = new Dog(1);</span><br><span class="line">		Dog d3 = new Dog(3);</span><br><span class="line"> </span><br><span class="line">		Dog<span class="comment">[]</span> dogArray = &#123;d1, d2, d3&#125;;</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line"> </span><br><span class="line">		Arrays.sort(dogArray, new AnimalSizeComparator());	</span><br><span class="line">		printDogs(dogArray);</span><br><span class="line"> </span><br><span class="line">		System.out.println();</span><br><span class="line"> </span><br><span class="line">		//when you have an array <span class="keyword">of</span> Cat, same Comparator can be used. </span><br><span class="line">		Cat c1 = new Cat(2);</span><br><span class="line">		Cat c2 = new Cat(1);</span><br><span class="line">		Cat c3 = new Cat(3);</span><br><span class="line"> </span><br><span class="line">		Cat<span class="comment">[]</span> catArray = &#123;c1, c2, c3&#125;;</span><br><span class="line">		printDogs(catArray);</span><br><span class="line"> </span><br><span class="line">		Arrays.sort(catArray, new AnimalSizeComparator());	</span><br><span class="line">		printDogs(catArray);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	public static void printDogs(<span class="keyword">Animal</span><span class="comment">[]</span> animals)&#123;</span><br><span class="line">		for(<span class="keyword">Animal</span> a: animals)</span><br><span class="line">			System.out.print(<span class="string">"size="</span>+a.size + <span class="string">" "</span>);</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>size=2 size=1 size=3<br>size=1 size=2 size=3 </p>
-<p>size=2 size=1 size=3<br>size=1 size=2 size=3 </p>
-</blockquote>
-<h3 id="4-总结">4.总结</h3><p>总结，从Arrays.sort()学来的信息：</p>
-<p>泛型-超类</p>
-<p>策略模式</p>
-<p>归并排序-  nlog（n）的时间复杂度</p>
-<p><strong>Java.util.Collections#sort(List &lt; T &gt; list, Comparator &lt; ? super T &gt; c)</strong>与arrays.sort相似的想法。</p>
-<h5 id="引用">引用</h5><p> <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Arrays.html#sort%28T[],%20java.util.Comparator%29" target="_blank" rel="external">Arrays.sort(T[], java.util.Comparator)</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/25/Java中子类和父类的构造函数/">
-                Java中子类和父类的构造函数
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-06-25
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Simple-Java/">Simple Java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/25/Java中子类和父类的构造函数/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/25/Java中子类和父类的构造函数/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><strong>1. 为什么创建一个子类对象的时候也要调用父类的构造器？</strong></p>
-<p>下面代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line">    String s;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"Super"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"Sub"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    	Sub s = <span class="keyword">new</span> Sub();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>打印结果：</p>
-<blockquote>
-<p>Super<br>Sub</p>
-</blockquote>
-<p>当子类继承一个父类，super()方法必须被子类的构造器调用，并且放在子类构造器中的首行。如果没有显式的调用super()方法，编译器将会在子类的构造器中插入super()方法。这就是创建一个子类对象的时候父类的构造器也被调用的原因。</p>
-<p>这别不是创建两个对象，只创建了一个子类对象。之所以调用父类的构造器是因为父类可能有private修饰的属性需要被它的构造器初始化。</p>
-<p>在编译器插入父类构造器后，子类构造器如下所示：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	System.out.println(<span class="string">"Sub"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2. 一个常见的错误消息：隐式的父类构造函数没有定义默认的构造函数</strong></p>
-<blockquote>
-<p>隐式的父类构造函数没有定义默认的构造函数,必须定义一个显式的构造函数。</p>
-</blockquote>
-<p><img src="/avatar/Implicit-super-constructor-is-undefined-for-default-constructor.png" alt="Alt text"></p>
-<p>这种编译错误发生的原因是默认的父类构造函数没有被定义。在Java中，如果一个类没有定义一个构造函数，编译器将会插入一个无参的构造函数作为该类的默认构造函数。如果一个父类定义一个构造函数，像这种Super(String s),编译器不会插入默认的无参的构造函数。</p>
-<p>子类的构造函数中无论是有参数还是无参数的构造函数都将会调用父类无参的构造函数。由于编译器试图插入super()方法到子类的两个构造函数，但是父类并没有定义默认的构造函数，编译器会报告错误的消息。</p>
-<p>要解决此问题，只有 1）在父类中添加一个父类默认的构造函数如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	System.<span class="keyword">out</span>.println(<span class="string">"Super"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>或者2）移除父类自定义的构造函数，或者3）在子类的构造函数中添加 super（value）带参数的方法。</p>
-<p><strong>3. 在子类的构造函数中显式的调用父类的构造函数</strong></p>
-<p>下面的代码是正确的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span></span>&#123;</span><br><span class="line">	String s;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Super</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.s = s;</span><br><span class="line">		System.out.println(<span class="string">"Super s"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">200</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Sub</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(s);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Sub s = <span class="keyword">new</span> Sub(<span class="string">"a"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>子类的构造函数显式的调用了父类带参数的构造函数。父类的构造函数被定义，并且被成功的调用。</p>
-<p><strong>4. 规则</strong></p>
-<p>总之，规则是：子类的构造函数必须调用父类构造器，无论是通过程序员显式的或编译器隐式的调用。对于任何一种方式，被调用的父类构造函数必须被定义。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1136,21 +1151,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

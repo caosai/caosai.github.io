@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="sort," />
+  <meta name="keywords" content="mysql关键字冲突," />
 
 
 
@@ -59,7 +59,7 @@
 
 
 
-  <title> java中开发者如何排序 // Courage Me </title>
+  <title> mysql保留关键字和表字段冲突 // Courage Me </title>
 </head>
 
 <body>
@@ -204,7 +204,7 @@
           
           
             
-              java中开发者如何排序
+              mysql保留关键字和表字段冲突
             
           
         </h1>
@@ -212,14 +212,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-27
+          发表于 2015-08-18
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/Simple-Java/">Simple Java</a>
+              <a href="/categories/Mysql/">Mysql</a>
 
               
               
@@ -232,8 +232,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/27/java中开发者如何排序/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/27/java中开发者如何排序/"></span>
+            <a href="/2015/08/18/mysql保留关键字和表字段冲突/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/18/mysql保留关键字和表字段冲突/"></span>
             </a>
           </span>
           
@@ -247,19 +247,10 @@
       
 
       
-        <p> 分析开源java项目的大量开源代码，我发现java开发者常用的排序方法有两种。一种是用Collections或者Arrays的sort()方法，另一种是用排好序的数据结构，例如TreeMap和TreeSet。</p>
-<h2 id="使用sort()方法">使用sort()方法</h2><p>集合使用Collections.sort()方法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Collections.sort</span></span><br><span class="line">List&lt;ObjectName&gt; <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList&lt;ObjectName&gt;();</span><br><span class="line">Collections.sort(<span class="built_in">list</span>,<span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ObjectName o1, ObjectName o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().compareTo(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>数组使用Arrays.sort()方法</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Arrays.sort</span></span><br><span class="line">ObjectName[] arr = <span class="keyword">new</span> ObjectName[<span class="number">10</span>];</span><br><span class="line">Arrays.<span class="keyword">sort</span>(arr, <span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> compare(ObjectName o1, ObjectName o2) &#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().<span class="keyword">compareTo</span>(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>当集合或数据创建好了，这种方式非常简洁。</p>
-<h2 id="使用排序好的数据结构">使用排序好的数据结构</h2><p>list或者set使用TreeSet排序<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TreeSet</span></span><br><span class="line">Set&lt;ObjectName&gt; sortedSet = new TreeSet&lt;ObjectName&gt;<span class="params">(new Comparator&lt;ObjectName&gt;<span class="params">()</span> &#123;</span><br><span class="line">	public int compare<span class="params">(ObjectName o1, ObjectName o2)</span> &#123;</span><br><span class="line">		return o1.toString<span class="params">()</span>.compareTo<span class="params">(o2.toString<span class="params">()</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span>;</span><br><span class="line">sortedSet.addAll<span class="params">(unsortedSet)</span>;</span><br></pre></td></tr></table></figure></p>
-<p>map使用TreeMap排序,TreeMap 根据key排序</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TreeMap - using String.CASE_INSENSITIVE_ORDER which is a Comparator that orders Strings by compareToIgnoreCase</span></span><br><span class="line"><span class="built_in">Map</span><span class="subst">&lt;</span><span class="built_in">String</span>, <span class="built_in">Integer</span><span class="subst">&gt;</span> sortedMap <span class="subst">=</span> <span class="literal">new</span> TreeMap<span class="subst">&lt;</span><span class="built_in">String</span>, <span class="built_in">Integer</span><span class="subst">&gt;</span>(<span class="built_in">String</span><span class="built_in">.</span>CASE_INSENSITIVE_ORDER);</span><br><span class="line">sortedMap<span class="built_in">.</span>putAll(unsortedMap);</span><br></pre></td></tr></table></figure>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//TreeMap - In general, defined comparator</span></span><br><span class="line"><span class="built_in">Map</span>&lt;ObjectName, <span class="built_in">String</span>&gt; sortedMap = <span class="keyword">new</span> TreeMap&lt;ObjectName, <span class="built_in">String</span>&gt;(<span class="keyword">new</span> Comparator&lt;ObjectName&gt;() &#123;</span><br><span class="line">	public <span class="built_in">int</span> compare(ObjectName o1, ObjectName o2) &#123;</span><br><span class="line">		<span class="keyword">return</span> o1.toString().compareTo(o2.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">sortedMap.putAll(unsortedMap);</span><br></pre></td></tr></table></figure>
-<p>这种方法是非常有用的,如果你想做很多关于集合的搜索操作。排序的数据结构的时间是复杂度O(logn),低于O(n)。</p>
-<h2 id="不好的实例">不好的实例</h2><p>有很多不好的实例,比如使用自定义排序算法。以下面的代码为例,不仅算法不是有效的,而且它是不可读的。这种情况发生在不同形式的变化。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">double t;</span><br><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; <span class="number">2</span>; <span class="built_in">i</span>++)</span><br><span class="line">	<span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="built_in">i</span> + <span class="number">1</span>; <span class="built_in">j</span> &lt; <span class="number">3</span>; <span class="built_in">j</span>++)</span><br><span class="line">		<span class="keyword">if</span> (r<span class="matrix">[j]</span> &lt; r<span class="matrix">[i]</span>) <span class="cell">&#123;</span><br><span class="line">			t = r[i];</span><br><span class="line">			r[i] = r[j];</span><br><span class="line">			r[j] = t;</span><br><span class="line">		&#125;</span></span><br></pre></td></tr></table></figure>
+        <p>mysql数据库表的字段名称不能和数据库本身的保留关键字相同<br>问题：插入数据库的sql报异常，检查了好多遍没发现到底是啥原因，问题如下：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Thread-<span class="number">6</span> ERROR [com.sdk.biz.snowfox.common.db.SaveCacheToDB] doBatchDB <span class="number">1</span> exception: </span><br><span class="line">java.sql.SQLException: You have <span class="operator">an</span> error <span class="operator">in</span> your SQL syntax; check <span class="operator">the</span> manual that corresponds <span class="built_in">to</span> your MySQL server <span class="built_in">version</span> <span class="keyword">for</span> <span class="operator">the</span> <span class="constant">right</span> syntax <span class="built_in">to</span> use near <span class="string">'desc,create_time) values('</span>t<span class="string">','</span><span class="operator">a</span><span class="string">','</span>d<span class="string">','</span>o<span class="string">','</span><span class="operator">a</span><span class="string">','</span>test<span class="string">','</span><span class="number">2015</span>-<span class="number">08</span>-<span class="number">14</span> <span class="number">19</span>:<span class="number">25</span>:<span class="number">35</span><span class="string">')'</span> <span class="keyword">at</span> <span class="built_in">line</span> <span class="number">1</span> Query: insert ignore <span class="keyword">into</span> testTable(ptxId,userId,txId,priceId,statusCode,desc,create_time) values(?,?,?,?,?,?,?); Parameters: [[t, <span class="operator">a</span>, d, o, <span class="operator">a</span>, test, <span class="number">2015</span>-<span class="number">08</span>-<span class="number">14</span> <span class="number">19</span>:<span class="number">21</span>:<span class="number">04</span>], [t, <span class="operator">a</span>, d, o, <span class="operator">a</span>, test, <span class="number">2015</span>-<span class="number">08</span>-<span class="number">14</span> <span class="number">19</span>:<span class="number">25</span>:<span class="number">35</span>]]</span><br><span class="line">	<span class="keyword">at</span> org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:<span class="number">392</span>) ~[commons-dbutils-<span class="number">1.6</span>.jar:<span class="number">1.6</span>]</span><br><span class="line">	<span class="keyword">at</span> org.apache.commons.dbutils.QueryRunner.batch(QueryRunner.java:<span class="number">155</span>) ~[commons-dbutils-<span class="number">1.6</span>.jar:<span class="number">1.6</span>]</span><br><span class="line">	<span class="keyword">at</span> org.apache.commons.dbutils.QueryRunner.batch(QueryRunner.java:<span class="number">92</span>) ~[commons-dbutils-<span class="number">1.6</span>.jar:<span class="number">1.6</span>]</span><br><span class="line">	<span class="keyword">at</span> com.sdk.core.jdbc.DBUtils.batch(DBUtils.java:<span class="number">405</span>) ~[classes/:na]</span><br><span class="line">	<span class="keyword">at</span> com.sdk.core.jdbc.DBModel.batch(DBModel.java:<span class="number">64</span>) ~[classes/:na]</span><br></pre></td></tr></table></figure></p>
+<p>仔细看上面的报错原因：You have an error in your SQL syntax，use near ‘desc,create_time)<br>sql语法错误，在desc这个字段附近。不注意还真不知道到底为啥会出现这种错误，后来在本地测试出现一样的问题。<br>找同事过来帮忙看原因也是一头雾水，后来终于发现，原因这个desc和mysql数据库中的排序关键字冲突了。</p>
+<p>解决方案：1、修改字段名称desc，如desc_name，以后建表的时候要注意不要使用关键字了。<br>2、insert ignore into sdk_callback_pulzesdk(ptxId,userId,txId,priceId,statusCode,<code>desc</code>,create_time)<br> values(‘a’,’b’,’c’,’d’,’e’,’test’, ‘2015-08-14 19:21:04’)<br>注意desc和其他字段的区别，多了两个符号括起来。就是键盘上数字键的前面那个键盘上的符号（不晓得名字了）</p>
+<p>总结：遇到问题，解决问题的过程是相当苦逼的，并且遇到这种坑爹的问题，更是要细心，成长的过程就是这么酸爽。下次建表的时候要长点心了！</p>
 
       
     </div>
@@ -268,7 +259,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/sort/"> #sort </a>
+            <a href="/tags/mysql关键字冲突/"> #mysql关键字冲突 </a>
           
         </div>
       
@@ -277,13 +268,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/29/Comparator-vs-Comparable/">Comparator vs Comparable</a>
+              <a href="/2015/08/18/java-BigInteger-to-string/">java BigInteger to string</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/25/Java-比较器/">深入理解Arrays.sort()数组排序</a>
+              <a href="/2015/08/03/Top-10-Java中Strings的常见问题/">Top 10 Java中Strings的常见问题</a>
             
           </div>
         </div>
@@ -301,8 +292,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/06/27/java中开发者如何排序/"
-               data-title="java中开发者如何排序" data-url="http://caosai.org.cn/2015/06/27/java中开发者如何排序/">
+          <div class="ds-thread" data-thread-key="2015/08/18/mysql保留关键字和表字段冲突/"
+               data-title="mysql保留关键字和表字段冲突" data-url="http://caosai.org.cn/2015/08/18/mysql保留关键字和表字段冲突/">
           </div>
         
       </div>
@@ -414,7 +405,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用sort()方法"><span class="nav-number">1.</span> <span class="nav-text">使用sort()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用排序好的数据结构"><span class="nav-number">2.</span> <span class="nav-text">使用排序好的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不好的实例"><span class="nav-number">3.</span> <span class="nav-text">不好的实例</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
