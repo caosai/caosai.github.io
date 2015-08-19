@@ -206,6 +206,85 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/19/Java-Generate-Xml/">
+                Java Generate Xml
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-08-19
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Java-Tools/">Java Tools</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/08/19/Java-Generate-Xml/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/19/Java-Generate-Xml/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>在对http请求的接口进行解析处理时，经常会遇到传过来的是xml格式的数据，处理完成后需要返回一个xml格式的String回去。<br>下面就是一个简单的生成xml格式的数据返回功能。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">import</span> org.dom4j.Document;</span><br><span class="line"><span class="literal">import</span> org.dom4j.DocumentHelper;</span><br><span class="line"><span class="literal">import</span> org.dom4j.<span class="built_in">Element</span>;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">GenerateXmlTest</span> </span>&#123;</span><br><span class="line">	private <span class="literal">static</span> <span class="built_in">String</span> string2Xml(<span class="built_in">String</span> field, <span class="built_in">String</span> value) &#123;</span><br><span class="line">		Document <span class="built_in">document</span> = DocumentHelper.createDocument();</span><br><span class="line">		<span class="built_in">Element</span> root = <span class="built_in">document</span>.addElement(field);</span><br><span class="line">		root.addText(value);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">document</span>.asXML();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public <span class="literal">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">		<span class="built_in">String</span> s = string2Xml(<span class="string">"root"</span>, <span class="string">"0"</span>);</span><br><span class="line">		System.out.println(s);</span><br></pre></td></tr></table></figure>
+<p>out<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">root</span>&gt;</span>0<span class="tag">&lt;/<span class="title">root</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/18/java-BigInteger-to-string/">
                 java BigInteger to string
               </a>
@@ -1004,84 +1083,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/07/07/remove以-bak结尾的文件/">
-                remove以.bak结尾的文件
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-07-07
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Java-Tools/">Java Tools</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/07/remove以-bak结尾的文件/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/07/remove以-bak结尾的文件/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>使用UltraEdit编辑器的时候，产生了好多.bak结尾的备份文件。<br>一个一个的删除掉又比较费时，没啥意义，就想了个办法写个小程序来帮我做喽。<br>程序很简单，涉及到文件的路径和文件的递归遍历这两点。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.<span class="keyword">File</span>;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> FileUtils &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		String filePath = <span class="string">"D:/test/_posts"</span>;</span><br><span class="line">		String suffix = <span class="string">".bak"</span>;</span><br><span class="line">		removeSomeFiles(filePath, suffix);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 删除以指定格式结尾的文件如 .txt .jpg .mp3等等</span><br><span class="line">	 * @param filePath 目录或文件的路径</span><br><span class="line">	 * @param suffix   文件结尾的格式</span><br><span class="line">	 * @throws IOException</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> removeSomeFiles(String filePath, String suffix) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="keyword">File</span> f = <span class="keyword">new</span> <span class="keyword">File</span>(filePath);</span><br><span class="line">		<span class="keyword">if</span>(!f.isDirectory()) &#123;</span><br><span class="line">			<span class="keyword">if</span>(f.getName().endsWith(suffix)) </span><br><span class="line">				f.<span class="keyword">delete</span>();</span><br><span class="line">			</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">File</span>[] list = f.listFiles();</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">File</span> <span class="keyword">file</span> : list) &#123;</span><br><span class="line">				removeSomeFiles(<span class="keyword">file</span>.getCanonicalPath(), suffix);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1120,7 +1121,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1134,7 +1135,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
