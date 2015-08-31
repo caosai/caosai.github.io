@@ -206,6 +206,86 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/21/根据手机号码解析归属地/">
+                根据手机号码解析归属地
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-08-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Java-Tools/">Java Tools</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/08/21/根据手机号码解析归属地/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/21/根据手机号码解析归属地/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>项目中有时候需要根据手机号得到用户的归属地信息，在网上查了下有免费的API接口可以根据手机号得到用户的归属地信息，感谢这些免费的API。<br>下面就用一个根据用户手机号码查询归属地的API接口解析的例子，API是淘宝提供的还是比较牛掰的。<br>比较简单：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/tcc.taobao.com/cc</span><span class="regexp">/json/mobile</span>_tel_segment.htm?tel=<span class="number">15850781443</span></span><br><span class="line">参数：</span><br><span class="line">tel：手机号码</span><br><span class="line">返回：<span class="constant">JSON</span></span><br><span class="line"><span class="constant">__GetZoneResult_ </span>= &#123;</span><br><span class="line">            <span class="symbol">mts:</span><span class="string">'1585078'</span>,</span><br><span class="line">            <span class="symbol">province:</span><span class="string">'江苏'</span>,</span><br><span class="line">            <span class="symbol">catName:</span><span class="string">'中国移动'</span>,</span><br><span class="line">            <span class="symbol">telString:</span><span class="string">'15850781443'</span>,</span><br><span class="line">            <span class="symbol">areaVid:</span><span class="string">'30511'</span>,</span><br><span class="line">            <span class="symbol">ispVid:</span><span class="string">'3236139'</span>,</span><br><span class="line">            <span class="symbol">carrier:</span><span class="string">'江苏移动'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>根据给的API需要准备两样东西：<br>一、调用apache的HttpClient类实现httpGet方法，调用此API。<br>二、使用Jackson 解析返回来的json字符串成Map即可对应取其中的字段。</p>
+<p>具体代码如下：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> courage.me.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.http.HttpEntity;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.HttpGet;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.HttpClients;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.util.EntityUtils;</span><br><span class="line"><span class="keyword">import</span> org.codehaus.jackson.JsonParser;</span><br><span class="line"><span class="keyword">import</span> org.codehaus.jackson.<span class="built_in">map</span>.ObjectMapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class PhoneNumberUtils &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span>  phoneLocationAPI = <span class="string">"http://tcc.taobao.com/cc/json/mobile_tel_segment.htm"</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> getProvinceByPhoneNumber(<span class="keyword">String</span> phoneNumber) &#123;</span><br><span class="line">		<span class="keyword">String</span> param = <span class="string">"tel="</span>+phoneNumber;</span><br><span class="line">		<span class="keyword">String</span> resultJson = <span class="string">""</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			resultJson = httpGet(phoneLocationAPI, param);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e1) &#123;</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//去掉=及其前面的字符串，格式化成规范的json字符串格式 :key：value</span></span><br><span class="line">		resultJson = resultJson.replaceAll(<span class="string">"^[__]\\w&#123;14&#125;+[_ = \']+"</span>, <span class="string">""</span>).<span class="built_in">trim</span>().replace(<span class="string">"\'"</span>, <span class="string">"\""</span>);</span><br><span class="line">		<span class="keyword">return</span> jsonToMap(resultJson).<span class="built_in">get</span>(<span class="string">"province"</span>);</span><br><span class="line">	&#125;  </span><br><span class="line"></span><br><span class="line">	<span class="comment">/**封装http get请求*/</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> httpGet(<span class="keyword">String</span> url, <span class="keyword">String</span> params) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		CloseableHttpClient httpclient = HttpClients.createDefault();</span><br><span class="line">		HttpGet httpget = <span class="keyword">new</span> HttpGet(url+<span class="string">"?"</span>+params);</span><br><span class="line">		CloseableHttpResponse response = httpclient.execute(httpget);</span><br><span class="line">		<span class="keyword">String</span> result = <span class="string">""</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			HttpEntity entity = response.getEntity();</span><br><span class="line">			<span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">				result = EntityUtils.toString(entity);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			response.close();</span><br><span class="line">			httpclient.close();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;    </span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**jackson parse string to map*/</span></span><br><span class="line">	@SuppressWarnings(<span class="string">"unchecked"</span>)</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; jsonToMap(<span class="keyword">String</span> jsonString) &#123;</span><br><span class="line">		</span><br><span class="line">		Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; resultMap = <span class="keyword">null</span>;</span><br><span class="line">		ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper(); </span><br><span class="line">		<span class="comment">//保证可以解析不规则的json格式</span></span><br><span class="line">		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, <span class="keyword">true</span>); </span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			resultMap = mapper.readValue(jsonString, Map.class);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;    </span><br><span class="line">		<span class="keyword">return</span> resultMap;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		<span class="keyword">String</span> province = getProvinceByPhoneNumber(<span class="string">"15850781443"</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(province);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>开源中国社区原始链接：<a href="http://www.oschina.net/code/snippet_251355_18921" target="_blank" rel="external">http://www.oschina.net/code/snippet_251355_18921</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/19/Java-Generate-Xml/">
                 Java Generate Xml
               </a>
@@ -955,134 +1035,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/">
-                HashMap vs TreeMap vs HashTable vs LinkedHashMap
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-07-07
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
-            
-              <a href="/categories/Simple-Java/">Simple Java</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/07/HashMap-vs-TreeMap-vs-HashTable-vs-LinkedHashMap/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Java中Map是最重要的数据结构之一。在这篇文章中，我将说明如何使用不同类型的Map，如HashMap，TreeMap，哈希表和LinkedHashMap。</p>
-<h2 id="1-_Map的概要">1. Map的概要</h2><p><img src="/avatar/MapClassHierarchy.png" alt="Alt text"></p>
-<p>在Java SE中有四种经常被实现的Map类型被使用。HashMap，TreeMap，HashTable和LinkedHashMap。</p>
-<pre><code><span class="bullet">* </span>HashMap是一个哈希表实现的,它的键或值是没有排序的。
-<span class="bullet">* </span>TreeMap是基于红黑树结构的实现，它是按照key进行排序的。
-<span class="bullet">* </span>LinkedHashMap保留插入顺序排序。
-<span class="bullet">* </span>哈希表是同步的，即线程安全的，其他的与HashMap一样。它有一个同步的开销。这是HashMap应该在程序是线程安全的时候被使用的原因。
-</code></pre><h2 id="2-_HashMap">2. HashMap</h2><p>如果HashMap的key值是自定义的对象，那么equals()和hashCode()方法的规定需要被遵循。</p>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Dog &#123;</span><br><span class="line">	String <span class="built_in">color</span>;</span><br><span class="line"> </span><br><span class="line">	Dog<span class="params">(String c)</span> &#123;</span><br><span class="line">		<span class="built_in">color</span> = c;</span><br><span class="line">	&#125;</span><br><span class="line">	public String toString<span class="params">()</span>&#123;	</span><br><span class="line">		return <span class="built_in">color</span> + <span class="string">" dog"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class TestHashMap &#123;</span><br><span class="line">	public static void main<span class="params">(String[] args)</span> &#123;</span><br><span class="line">		HashMap&lt;Dog, Integer&gt; hashMap = new HashMap&lt;Dog, Integer&gt;<span class="params">()</span>;</span><br><span class="line">		Dog d1 = new Dog<span class="params">(<span class="string">"red"</span>)</span>;</span><br><span class="line">		Dog d2 = new Dog<span class="params">(<span class="string">"black"</span>)</span>;</span><br><span class="line">		Dog d3 = new Dog<span class="params">(<span class="string">"white"</span>)</span>;</span><br><span class="line">		Dog d4 = new Dog<span class="params">(<span class="string">"white"</span>)</span>;</span><br><span class="line"> </span><br><span class="line">		hashMap.put<span class="params">(d1, <span class="number">10</span>)</span>;</span><br><span class="line">		hashMap.put<span class="params">(d2, <span class="number">15</span>)</span>;</span><br><span class="line">		hashMap.put<span class="params">(d3, <span class="number">5</span>)</span>;</span><br><span class="line">		hashMap.put<span class="params">(d4, <span class="number">20</span>)</span>;</span><br><span class="line"> </span><br><span class="line">		<span class="comment">//print size</span></span><br><span class="line">		System.out.println<span class="params">(hashMap.size<span class="params">()</span>)</span>;</span><br><span class="line"> </span><br><span class="line">		<span class="comment">//loop HashMap</span></span><br><span class="line">		<span class="keyword">for</span> <span class="params">(Entry&lt;Dog, Integer&gt; entry : hashMap.entrySet<span class="params">()</span>)</span> &#123;</span><br><span class="line">			System.out.println<span class="params">(entry.getKey<span class="params">()</span>.toString<span class="params">()</span> + <span class="string">" - "</span> + entry.getValue<span class="params">()</span>)</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<blockquote>
-<p>4<br>white dog - 5<br>black dog - 15<br>red dog - 10<br>white dog - 20</p>
-</blockquote>
-<p>注意，我们错误的add “white dogs” 两次，但是HashMap接受了。这并没有意义的，因为现在我们很困惑有多少只white dogs在HashMap中。</p>
-<p>Dog类必须定义如下所示：</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Dog &#123;</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">color</span>;</span><br><span class="line"> </span><br><span class="line">	Dog(<span class="keyword">String</span> c) &#123;</span><br><span class="line">		<span class="built_in">color</span> = c;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">boolean</span> equals(<span class="keyword">Object</span> o) &#123;</span><br><span class="line">		<span class="keyword">return</span> ((Dog) o).<span class="built_in">color</span>.equals(<span class="keyword">this</span>.<span class="built_in">color</span>);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">int</span> hashCode() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span>.length();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> toString()&#123;	</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span> + <span class="string">" dog"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在输出的结果：</p>
-<blockquote>
-<p>3<br>red dog - 10<br>white dog - 20<br>black dog - 15</p>
-</blockquote>
-<p>原因是HashMap不允许两个相同的元素。默认情况下，该hashcode()和equals()方法在对象类实现的被使用。默认hashcode()方法return不同的对象不同的整数返回值，equals()方法只返回true仅当两个引用指向同一个对象。看看hashcode()和equals()的约定是不是符合你的预期。</p>
-<h2 id="3-_TreeMap">3. TreeMap</h2><p>TreeMap是按key值排序的。让我们先来看一下下面的例子来理解“按key排序”的思路。</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Dog &#123;</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">color</span>;</span><br><span class="line"> </span><br><span class="line">	Dog(<span class="keyword">String</span> c) &#123;</span><br><span class="line">		<span class="built_in">color</span> = c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">boolean</span> equals(<span class="keyword">Object</span> o) &#123;</span><br><span class="line">		<span class="keyword">return</span> ((Dog) o).<span class="built_in">color</span>.equals(<span class="keyword">this</span>.<span class="built_in">color</span>);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">int</span> hashCode() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span>.length();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> toString()&#123;	</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span> + <span class="string">" dog"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> class TestTreeMap &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		Dog d1 = <span class="keyword">new</span> Dog(<span class="string">"red"</span>);</span><br><span class="line">		Dog d2 = <span class="keyword">new</span> Dog(<span class="string">"black"</span>);</span><br><span class="line">		Dog d3 = <span class="keyword">new</span> Dog(<span class="string">"white"</span>);</span><br><span class="line">		Dog d4 = <span class="keyword">new</span> Dog(<span class="string">"white"</span>);</span><br><span class="line"> </span><br><span class="line">		TreeMap&lt;Dog, Integer&gt; treeMap = <span class="keyword">new</span> TreeMap&lt;Dog, Integer&gt;();</span><br><span class="line">		treeMap.put(d1, <span class="number">10</span>);</span><br><span class="line">		treeMap.put(d2, <span class="number">15</span>);</span><br><span class="line">		treeMap.put(d3, <span class="number">5</span>);</span><br><span class="line">		treeMap.put(d4, <span class="number">20</span>);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">for</span> (Entry&lt;Dog, Integer&gt; entry : treeMap.entrySet()) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(entry.getKey() + <span class="string">" - "</span> + entry.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<blockquote>
-<p>Exception in thread “main” java.lang.ClassCastException: collection.Dog cannot be &gt; cast to java.lang.Comparable<br>at java.util.TreeMap.put(Unknown Source)<br>at collection.TestHashMap.main(TestHashMap.java:35)</p>
-</blockquote>
-<p>从TreeMap是按key排序的，key的对象必须能够相互比较，这就是为什么它必须实现Comparable接口。例如，您将使用字符串作为键，因为字符串实现了Comparable接口。</p>
-<p>修改Dog类让它具有可比性</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class Dog implements Comparable&lt;Dog&gt;&#123;</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">color</span>;</span><br><span class="line">	<span class="built_in">int</span> <span class="built_in">size</span>;</span><br><span class="line"> </span><br><span class="line">	Dog(<span class="keyword">String</span> c, <span class="built_in">int</span> s) &#123;</span><br><span class="line">		<span class="built_in">color</span> = c;</span><br><span class="line">		<span class="built_in">size</span> = s;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> toString()&#123;	</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span> + <span class="string">" dog"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">int</span> compareTo(Dog o) &#123;</span><br><span class="line">		<span class="keyword">return</span>  o.<span class="built_in">size</span> - <span class="keyword">this</span>.<span class="built_in">size</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> class TestTreeMap &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		Dog d1 = <span class="keyword">new</span> Dog(<span class="string">"red"</span>, <span class="number">30</span>);</span><br><span class="line">		Dog d2 = <span class="keyword">new</span> Dog(<span class="string">"black"</span>, <span class="number">20</span>);</span><br><span class="line">		Dog d3 = <span class="keyword">new</span> Dog(<span class="string">"white"</span>, <span class="number">10</span>);</span><br><span class="line">		Dog d4 = <span class="keyword">new</span> Dog(<span class="string">"white"</span>, <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">		TreeMap&lt;Dog, Integer&gt; treeMap = <span class="keyword">new</span> TreeMap&lt;Dog, Integer&gt;();</span><br><span class="line">		treeMap.put(d1, <span class="number">10</span>);</span><br><span class="line">		treeMap.put(d2, <span class="number">15</span>);</span><br><span class="line">		treeMap.put(d3, <span class="number">5</span>);</span><br><span class="line">		treeMap.put(d4, <span class="number">20</span>);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">for</span> (Entry&lt;Dog, Integer&gt; entry : treeMap.entrySet()) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(entry.getKey() + <span class="string">" - "</span> + entry.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<blockquote>
-<p>red dog - 10<br>black dog - 15<br>white dog - 20</p>
-</blockquote>
-<p>在这种情况下，它是根据key排序的，即Dog的size属性值。<br>如果”Dog d4 = new Dog(“white”, 10);” 被这句话替代 “Dog d4 = new Dog(“white”, 40);”, 输出结果将会是:</p>
-<blockquote>
-<p>white dog - 20<br>red dog - 10<br>black dog - 15<br>white dog - 5</p>
-</blockquote>
-<p>原因是，现在使用的方法compareto()比较TreeMap的key值。不同Dog的size不同！</p>
-<h2 id="4-_HashTable">4. HashTable</h2><p>来自Java Doc<br>HashMap类大致相当于HashTable，除了它是不同步的，允许有空值之外。</p>
-<h2 id="5-_LinkedHashMap">5. LinkedHashMap</h2><p>LinkedHashMap是HashMap的子类。这意味着它继承了HashMap的特点。此外，链表保留了插入顺序的排序。</p>
-<p>让我们用相同的代码使用LinkedHashMap替换HashMap。</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class Dog &#123;</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">color</span>;</span><br><span class="line"> </span><br><span class="line">	Dog(<span class="keyword">String</span> c) &#123;</span><br><span class="line">		<span class="built_in">color</span> = c;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">boolean</span> equals(<span class="keyword">Object</span> o) &#123;</span><br><span class="line">		<span class="keyword">return</span> ((Dog) o).<span class="built_in">color</span>.equals(<span class="keyword">this</span>.<span class="built_in">color</span>);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">int</span> hashCode() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span>.length();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> toString()&#123;	</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">color</span> + <span class="string">" dog"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> class TestHashMap &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line"> </span><br><span class="line">		Dog d1 = <span class="keyword">new</span> Dog(<span class="string">"red"</span>);</span><br><span class="line">		Dog d2 = <span class="keyword">new</span> Dog(<span class="string">"black"</span>);</span><br><span class="line">		Dog d3 = <span class="keyword">new</span> Dog(<span class="string">"white"</span>);</span><br><span class="line">		Dog d4 = <span class="keyword">new</span> Dog(<span class="string">"white"</span>);</span><br><span class="line"> </span><br><span class="line">		LinkedHashMap&lt;Dog, Integer&gt; linkedHashMap = <span class="keyword">new</span> LinkedHashMap&lt;Dog, Integer&gt;();</span><br><span class="line">		linkedHashMap.put(d1, <span class="number">10</span>);</span><br><span class="line">		linkedHashMap.put(d2, <span class="number">15</span>);</span><br><span class="line">		linkedHashMap.put(d3, <span class="number">5</span>);</span><br><span class="line">		linkedHashMap.put(d4, <span class="number">20</span>);</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">for</span> (Entry&lt;Dog, Integer&gt; entry : linkedHashMap.entrySet()) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(entry.getKey() + <span class="string">" - "</span> + entry.getValue());</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<blockquote>
-<p>red dog - 10<br>black dog - 15<br>white dog - 20</p>
-</blockquote>
-<p>不同的是，如果我们使用HashMap的输出结果顺序和插入的顺序是不一定一致的。</p>
-<blockquote>
-<p>red dog - 10<br>white dog - 20<br>black dog - 15</p>
-</blockquote>
-<p><a href="http://www.programcreek.com/2013/03/hashmap-vs-treemap-vs-hashtable-vs-linkedhashmap/" target="_blank" rel="external">原文链接</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1121,7 +1073,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1135,7 +1087,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
